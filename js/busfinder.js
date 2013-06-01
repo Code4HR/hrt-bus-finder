@@ -24,6 +24,7 @@ $(function(){
 		addStop: function(stop) {
 			var stopView = new StopView({model: stop});
 			this.$el.append(stopView.render().$el);
+			console.log(stop);
 		}
 	});
 	

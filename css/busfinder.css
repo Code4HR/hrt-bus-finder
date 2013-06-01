@@ -1,3 +1,9 @@
+.title a {
+	text-decoration: none;
+	color: #333;
+	margin: 0;
+}
+
 h1, h2, h3, h4, h5 {
 	font-family: Arvo, Helvetica, Arial;
 	margin: 0;
