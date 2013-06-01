@@ -57,7 +57,7 @@ $(function(){
 	});
 	
 	var ArrivalView = Backbone.View.extend({
-		tagName: 'tr',
+		tagName: 'div',
 		
 		template: _.template($('#arrival-template').html()),
 		
