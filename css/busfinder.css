@@ -1,3 +1,9 @@
+* {
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 .title a {
 	font-family: Arvo;
 	font-weight: 400;
@@ -19,14 +25,23 @@ h1, h2, h3, h4, h5, p, a, body {
 @media all and (max-width: 480px)  {
     .quarter {
         float: left !important;
-        width: 20% !important;
+        width: 25% !important;
+    }
+
+    .half {
+        float: right !important;
+        width: 50% !important;    	
     }
 }
 
+.head-label {
+	background-color: #ccc;
+	padding: 5px 5px;
+}
+
 .schedule {
-	margin: 5px 0;
-	padding: 10px 0;
 	border-bottom: 1px dotted #aaa;
+	padding: 10px 5px;
 }
 
 .stop-name {
@@ -38,10 +53,11 @@ h1, h2, h3, h4, h5, p, a, body {
 	margin-bottom: 10px;
 }
 
-.head-label {
-	background-color: #ccc;
-	padding: 5px;
+.stop-name h4 {
+	margin-bottom: 5px;
 }
+
+
 
 .stop-name p {
 
@@ -71,4 +87,8 @@ h1, h2, h3, h4, h5, p, a, body {
 	text-align: right;
 	font-family: Arvo;
 	font-weight: 700;
+}
+
+.output > div:nth-child(odd) {
+	background-color: #EEDFCC;
 }

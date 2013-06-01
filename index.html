@@ -40,29 +40,29 @@
 	<script type="text/template" id="stop-template">
 		<div class="stop-name"><h4><%= stopName %></h4> <p>(Stop <%= stopId %>)</p></div>
 		<div class="arrivals">
-			<div class="row head-label">
+			<div class="row-fluid head-label">
+				<div class="span1 quarter" style="text-align:center;">
+					Route
+				</div>
 				<div class="span1 quarter" style="text-align:center;">
 					Schedule
 				</div>
-				<div class="span1 quarter" style="text-align:center;">
-					Time
-				</div>
-				<div class="span10" style="text-align:right;">
+				<div class="span10 half" style="text-align:right;">
 					Destination
 				</div>
 			</div>
 			<div class="table">
-				<div class="output row">	
+				<div class="output">	
 				</div>
 			</div>
 		</div>
 	</script>
 	
 	<script type="text/template" id="arrival-template">
-		<div class="row schedule">
-			<div class="route span1 quarter"><%= route_id %></div>
-			<div class="timeframe span1 quarter"><%= arriveMinutes %></div>
-			<div class="destination span10"><%= destination %></div>
+		<div class="schedule row-fluid">
+			<div class="span1 route quarter"><%= route_id %></div>
+			<div class="span1 timeframe quarter"><%= arriveMinutes %></div>
+			<div class="span10 destination half"><%= destination %></div>
 		</div>
 	</script>
 </body>
