@@ -52,7 +52,7 @@ $(function(){
 		
 		addArrival: function(arrival) {
 			var arrivalView = new ArrivalView({model: arrival});
-			this.$('.arrivals tbody').append(arrivalView.render().$el);
+			this.$('.arrivals .output').append(arrivalView.render().$el);
 		}
 	});
 	

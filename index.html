@@ -38,27 +38,19 @@
 	<script src="./js/busfinder.js"></script>
 	
 	<script type="text/template" id="stop-template">
-		<div class="stop-name"><b><%= stopName %></b> (Stop <%= stopId %>)</div>
+		<div class="stop-name"><h4><%= stopName %></h4> (Stop <%= stopId %>)</div>
 		<div class="arrivals">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Route</th>
-						<th>Destination</th>
-						<th>Minutes</th>
-					</tr>
-				</thead>
-				<tbody>
-				<p>test</p>
-				</tbody>
-			</table>
+			<div class="table">
+				<div class="output">	
+				</div>
+			</div>
 		</div>
 	</script>
 	
 	<script type="text/template" id="arrival-template">
-		<div class><%= route_id %></div>
-		<div><%= destination %></div>
-		<div><%= arriveMinutes %></div>
+		<div class="route"><%= route_id %></div>
+		<div class="destination"><%= destination %></div>
+		<div class="timeframe"><%= arriveMinutes %></div>
 	</script>
 </body>
 </html>
