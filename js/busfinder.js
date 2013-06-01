@@ -1,20 +1,20 @@
 $(function(){
 	var ArrivalList = Backbone.Collection.extend({ 
 		url: function() {
-			return '/api/stop_times/' + this.stopId + '/';
+			return 'http://go.hrtb.us/api/stop_times/' + this.stopId + '/';
 		}
 	});
 	
 	var StopList = Backbone.Collection.extend({ 
 		url: function() {
-			return '/api/stops/near/' + this.location.lat() + '/' + this.location.lng() + '/';
+			return 'http://go.hrtb.us/api/stops/near/' + this.location.lat() + '/' + this.location.lng() + '/';
 		}
 	});
 	
 	var StopListView = Backbone.View.extend({
 		initialize: function() {
 			this.collection.on('reset', this.render, this);
-			this.collection.fetch({reset: true});
+			this.collection.fetch({reset: true, dataType: 'jsonp'});
 		},
 		
 		render: function() {
@@ -34,7 +34,7 @@ $(function(){
 			this.collection = new ArrivalList;
 			this.collection.stopId = this.model.get('stopId');
 			this.collection.on('reset', this.addAllArrivals, this);
-			this.collection.fetch({reset: true});
+			this.collection.fetch({reset: true, dataType: 'jsonp'});
 		},
 		
 		render: function() {
