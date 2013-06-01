@@ -1,0 +1,37 @@
+h1, h2, h3, h4, h5 {
+	font-family: Arvo, Helvetica, Arial;
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+}
+
+.schedule {
+	margin: 5px 0;
+	border-bottom: 1px dotted #aaa;
+}
+
+.stop-name {
+	background-color: #333333;
+	padding: 1em;
+	color: white;
+}
+
+.route, .timeframe {
+	height: 50px;
+	color: white;
+	font-size: 1.5em;
+	text-align: center;
+}
+
+.route {
+	background-color:#7398AC;
+}
+
+.timeframe {
+	background-color:#DB5051;
+}
+
+.destination {
+	font-size: 1.5em;
+	text-align: right;
+}

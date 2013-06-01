@@ -19,6 +19,8 @@
 	<link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="./css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="./css/busfinder.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
 </head>
 <body>
 	<div class="container">
@@ -41,16 +43,18 @@
 		<div class="stop-name"><h4><%= stopName %></h4> (Stop <%= stopId %>)</div>
 		<div class="arrivals">
 			<div class="table">
-				<div class="output">	
+				<div class="output row">	
 				</div>
 			</div>
 		</div>
 	</script>
 	
 	<script type="text/template" id="arrival-template">
-		<div class="route"><%= route_id %></div>
-		<div class="destination"><%= destination %></div>
-		<div class="timeframe"><%= arriveMinutes %></div>
+		<div class="row schedule">
+			<div class="route span1"><%= route_id %></div>
+			<div class="timeframe span1"><%= arriveMinutes %></div>
+			<div class="destination span10"><%= destination %></div>
+		</div>
 	</script>
 </body>
 </html>
