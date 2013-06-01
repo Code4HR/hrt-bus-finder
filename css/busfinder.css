@@ -18,9 +18,11 @@ h1, h2, h3, h4, h5 {
 }
 
 .stop-name {
-	background-color: #333333;
+	background-color: #dfdfdf;
+	font-weight:400;
 	padding: 1em;
-	color: white;
+	color: #333333;
+	text-align: center;
 }
 
 .route, .timeframe{
@@ -33,7 +35,7 @@ h1, h2, h3, h4, h5 {
 
 .route {
 	color:#7398AC;
-	border: 2px solid #7398AC;
+	background-color:#a7bfcc;
 	font-weight: 700;
 }
 
@@ -42,7 +44,9 @@ h1, h2, h3, h4, h5 {
 }
 
 .destination {
-	font-size: 1.125em;
+	font-size: 1em;
 	/*line-height: 50px;*/
 	text-align: right;
+	font-family: Arvo;
+	font-weight: 700;
 }
