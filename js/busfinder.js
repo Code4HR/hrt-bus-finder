@@ -53,12 +53,12 @@ $(function(){
 		
 		addArrival: function(arrival) {
 			var arrivalView = new ArrivalView({model: arrival});
-			this.$('.arrivals .output').append(arrivalView.render().$el);
+			this.$('.arrivals .table').append(arrivalView.render().$el);
 		}
 	});
 	
 	var ArrivalView = Backbone.View.extend({
-		tagName: 'div',
+		className: 'schedule row-fluid',
 		
 		template: _.template($('#arrival-template').html()),
 		
