@@ -20,11 +20,12 @@
 }
 
 .input-append input {
-	height: 25px;
+	height: 35px;
 }
 
 .input-append button.add-on {
 	height: inherit !important;
+}
 
 * {
 	-webkit-box-sizing: border-box;
@@ -45,10 +46,13 @@
 
 h1, h2, h3, h4, h5, p, a, body {
 	font-family: Arvo, Helvetica, Arial;
+	color: #444;
+}
+
+h1, h2, h3, h4, h5, p, a {
 	margin: 0;
 	padding: 0;
 	line-height: 1;
-	color: #444;
 }
 
 @media all and (max-width: 480px)  {
