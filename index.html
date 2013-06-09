@@ -19,6 +19,8 @@
 	<link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="./css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="./css/busfinder.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
 </head>
 <body>
 	<div class="navbar navbar-fixed-top">
@@ -46,26 +48,32 @@
 	<script src="./js/busfinder.js"></script>
 	
 	<script type="text/template" id="stop-template">
-		<div class="stop-name"><b><%= stopName %></b> (Stop <%= stopId %>)</div>
+		<div class="stop-name"><h4><%= stopName %></h4> <p>(Stop <%= stopId %>)</p></div>
 		<div class="arrivals">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Route</th>
-						<th>Destination</th>
-						<th>Minutes</th>
-					</tr>
-				</thead>
-				<tbody>
-				</tbody>
-			</table>
+			<div class="row-fluid head-label">
+				<div class="span1 quarter" style="text-align:center;">
+					<p>Route</p>
+				</div>
+				<div class="span1 quarter" style="text-align:center;">
+					<p>Schedule</p>
+				</div>
+				<div class="span10 half" style="text-align:right;">
+					<p>Destination</p>
+				</div>
+			</div>
+			<div class="table">
+				<div class="output">	
+				</div>
+			</div>
 		</div>
 	</script>
 	
 	<script type="text/template" id="arrival-template">
-		<td><%= route_id %></td>
-		<td><%= destination %></td>
-		<td><%= arriveMinutes %></td>
+		<div class="schedule row-fluid">
+			<div class="span1 route quarter"><%= route_id %></div>
+			<div class="span1 timeframe quarter"><%= arriveMinutes %></div>
+			<div class="span10 destination half"><%= destination %></div>
+		</div>
 	</script>
 </body>
 </html>

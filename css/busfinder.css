@@ -25,4 +25,114 @@
 
 .input-append button.add-on {
 	height: inherit !important;
+
+* {
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.title a {
+	font-family: Arvo;
+	font-weight: 700;
+	font-style: italic;
+	text-decoration: none;
+	text-transform: uppercase;
+	color: #82A6BA;
+	margin-top: 10px;
+	padding: 0;
+}
+
+h1, h2, h3, h4, h5, p, a, body {
+	font-family: Arvo, Helvetica, Arial;
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+	color: #444;
+}
+
+@media all and (max-width: 480px)  {
+    .quarter {
+        float: left !important;
+        width: 25% !important;
+    }
+
+    .half {
+        float: right !important;
+        width: 50% !important;    	
+    }
+}
+
+.head-label {
+	background-color: #82a6ba;
+	color: white;
+	padding: 5px 5px;
+}
+
+.head-label .span1 {
+	min-height: 0px;
+}
+
+.head-label > div:nth-child(2) {
+	border-right: 1px #333333;
+}
+
+.schedule {
+	border-bottom: 1px dotted #aaa;
+	padding: 10px;
+}
+
+.head-label {
+	min-height: 1px;
+}
+
+.head-label p {
+	color: white;
+}
+
+.stop-name {
+	background-color: #a7bfcc;
+	padding: 1em;
+	text-align: center;
+	letter-spacing: 1px;
+}
+
+.stop-name > h4 {
+	color:white;
+	line-height: 1.25em;
+}
+
+.stop-name > p {
+	color:white;
+}
+
+.route, .timeframe{
+	height: 50px;
+	line-height: 50px;
+	color: white;
+	font-size: 1.5em;
+	text-align: center;
+}
+
+.route {
+	color:#7398AC;
+	background-color:#a7bfcc;
+	font-weight: 700;
+}
+
+.timeframe {
+	background-color:#DB5051;
+}
+
+.destination {
+	font-size: 1em;
+	/*line-height: 50px;*/
+	text-align: right;
+	font-family: Arvo;
+	font-weight: 400;
+	padding-left:10px;
+}
+
+.output > div:nth-child(odd) {
+	background-color: #EEDFCC;
 }

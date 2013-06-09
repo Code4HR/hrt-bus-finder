@@ -24,6 +24,7 @@ $(function(){
 		addStop: function(stop) {
 			var stopView = new StopView({model: stop});
 			this.$el.append(stopView.render().$el);
+			console.log(stop);
 		}
 	});
 	
@@ -52,12 +53,12 @@ $(function(){
 		
 		addArrival: function(arrival) {
 			var arrivalView = new ArrivalView({model: arrival});
-			this.$('.arrivals tbody').append(arrivalView.render().$el);
+			this.$('.arrivals .output').append(arrivalView.render().$el);
 		}
 	});
 	
 	var ArrivalView = Backbone.View.extend({
-		tagName: 'tr',
+		tagName: 'div',
 		
 		template: _.template($('#arrival-template').html()),
 		
