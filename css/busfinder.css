@@ -130,13 +130,20 @@ h1, h2, h3, h4, h5, p, a {
 
 .destination {
 	font-size: 1em;
-	/*line-height: 50px;*/
-	text-align: right;
+	text-align: center;
 	font-family: Arvo;
 	font-weight: 400;
 	padding-left:10px;
 }
 
+.destination p:first-child {
+	line-height: 30px;
+}
+
 .arrivals .table > div:nth-child(odd) {
 	background-color: #EEDFCC;
+}
+
+.no-arrivals {
+	padding: 10px;
 }
