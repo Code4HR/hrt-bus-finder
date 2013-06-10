@@ -19,15 +19,25 @@
 	<link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="./css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="./css/busfinder.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
 </head>
 <body>
-	<div class="container">
-		<div class="navbar navbar-inverse">
-			<div class="navbar-inner">
-				<a class="brand" href="#">HRT Bus Finder</a>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand"><img alt="HRT Bus Logo" width="75" src="./img/logo-small.png" ></a>
+				<button class="btn-current-location btn btn-info btn-address pull-right"><i class=""></i><img height="25" width="25" src="./img/location.png" alt="Update Location"></button>
+				<div class="navbar-form">
+					<div class="input-append">
+						<input type="text" placeholder="Search..." value="">
+						<button class="btn add-on"> <i class="icon-search"></i></button>
+					</div>
+				</div>
 			</div>
 		</div>
-		
+	</div>
+	<div class="app-container container">
 		<div id="stops"></div>
 	</div>
 		
@@ -38,26 +48,31 @@
 	<script src="./js/busfinder.js"></script>
 	
 	<script type="text/template" id="stop-template">
-		<div class="stop-name"><b><%= stopName %></b> (Stop <%= stopId %>)</div>
+		<div class="stop-name"><h4><%= stopName %></h4> <p>(Stop <%= stopId %>)</p></div>
 		<div class="arrivals">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Route</th>
-						<th>Destination</th>
-						<th>Minutes</th>
-					</tr>
-				</thead>
-				<tbody>
-				</tbody>
-			</table>
+			<div class="row-fluid head-label">
+				<div class="span1 quarter" style="text-align:center;">
+					<p>Route</p>
+				</div>
+				<div class="span10 half" style="text-align:center;">
+					<p>Destination</p>
+				</div>
+				<div class="span1 quarter" style="text-align:center;">
+					<p>Minutes</p>
+				</div>
+			</div>
+			<div class="table">
+			</div>
 		</div>
 	</script>
 	
 	<script type="text/template" id="arrival-template">
-		<td><%= route_id %></td>
-		<td><%= destination %></td>
-		<td><%= arriveMinutes %></td>
+		<div class="span1 route quarter"><%= routeId %></div>
+		<div class="span10 destination half">
+			<p><%= destination %></p>
+			<p><%= arriveTime %> - <%= adherence %></p>
+		</div>
+		<div class="span1 timeframe quarter"><%= arriveMinutes %></div>
 	</script>
 </body>
 </html>

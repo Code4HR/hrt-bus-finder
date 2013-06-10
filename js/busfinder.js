@@ -1,5 +1,42 @@
 $(function(){
+	var Arrival = Backbone.Model.extend({
+		date: function() {
+			return new Date(Date.parseUtc(this.get('arrival_time')));
+		},
+		
+		localTime: function() {
+			return this.date().to12HourString();
+		},
+		
+		minutesFromNow: function() {
+			var arriveTime = this.date();
+			if(this.get('busAdherence')) {
+				arriveTime = arriveTime.addMinutes(this.get('busAdherence') * -1);
+			}
+			
+			var arriveTimeFromNow = new Date(arriveTime - new Date().getTime());
+			return (arriveTimeFromNow.getTime() / 1000 / 60 | 0) + 1;
+		},
+		
+		adherenceDescription: function() {
+			var adherence = this.get('busAdherence');
+			var description = 'on time';
+			
+			if(adherence && adherence < 0) {
+				description = (adherence * -1) + ' min delay';
+			} else if(adherence && adherence > 0) {
+				description = adherence + ' min early';
+			} else if(!adherence) {
+				description = 'adherence unknown';
+			}
+			
+			return description;
+		}
+	});
+	
 	var ArrivalList = Backbone.Collection.extend({ 
+		model: Arrival,
+		
 		url: function() {
 			return 'http://go.hrtb.us/api/stop_times/' + this.stopId + '/';
 		}
@@ -24,6 +61,7 @@ $(function(){
 		addStop: function(stop) {
 			var stopView = new StopView({model: stop});
 			this.$el.append(stopView.render().$el);
+			console.log(stop);
 		}
 	});
 	
@@ -31,9 +69,17 @@ $(function(){
 		template: _.template($('#stop-template').html()),
 		
 		initialize: function() {
+			this.arrivalViews = [];
+			
 			this.collection = new ArrivalList;
 			this.collection.stopId = this.model.get('stopId');
 			this.collection.on('reset', this.addAllArrivals, this);
+			
+			this.updateArrivalList();
+			setInterval($.proxy(this.updateArrivalList, this), 20000);
+		},
+		
+		updateArrivalList: function() {
 			this.collection.fetch({reset: true, dataType: 'jsonp'});
 		},
 		
@@ -43,37 +89,39 @@ $(function(){
 		},
 		
 		addAllArrivals: function() {
+			while(this.arrivalViews.length) this.arrivalViews.pop().remove();
+			
 			if(this.collection.length) {
 				this.collection.each(this.addArrival, this);
 			} else {
-				this.$('.arrivals').html('No scheduled stops');
+				this.$('.arrivals')
+				    .html($('<div/>', {
+						class: 'no-arrivals', 
+						text: 'No scheduled stops'
+					}));
 			}
 		},
 		
 		addArrival: function(arrival) {
 			var arrivalView = new ArrivalView({model: arrival});
-			this.$('.arrivals tbody').append(arrivalView.render().$el);
+			this.$('.arrivals .table').append(arrivalView.render().$el);
+			this.arrivalViews.push(arrivalView);
 		}
 	});
 	
 	var ArrivalView = Backbone.View.extend({
-		tagName: 'tr',
+		className: 'schedule row-fluid',
 		
 		template: _.template($('#arrival-template').html()),
 		
-		initialize: function() {
-			var date = new Date(Date.parseUtc(this.model.get('arrival_time')));
-			//var adherence = this.model.get('adherence');
-			//if(adherence) {
-			//	date = date.addMinutes(adherence);
-			//}
-			
-			var stopTimeMinutesFromNow = new Date(new Date().getTime() - date).getTime() / 1000 / 60 | 0;
-			this.model.set('arriveMinutes', stopTimeMinutesFromNow);
-		},
-		
 		render: function() {
-			this.$el.html(this.template(this.model.toJSON()));
+			this.$el.html(this.template({
+				routeId: this.model.get('route_id'),
+				destination: this.model.get('destination'),
+				arriveTime: this.model.localTime(),
+				adherence: this.model.adherenceDescription(),
+				arriveMinutes: this.model.minutesFromNow()
+			}));
 			return this;
 		}
 	});
@@ -117,6 +165,22 @@ $(function(){
 	Date.prototype.addMinutes = function(m){
 	    this.setMinutes(this.getMinutes()+m);
 	    return this;
+	}
+	Date.prototype.to12HourString = function(m){
+	    var dd = "AM";
+		var hours = this.getHours();
+		var mins = this.getMinutes();
+		if (hours >= 12) {
+			hours = hours - 12;
+			dd = "PM";
+		}
+		if (hours == 0) {
+			hours = 12;
+		}
+		
+		mins = mins < 10 ? "0"+mins : mins;
+		
+		return hours + ":" + mins + " " + dd;
 	}
 	Date.parseUtc = function(input){
 	    var parts = input.match(/(\d+)/g);
