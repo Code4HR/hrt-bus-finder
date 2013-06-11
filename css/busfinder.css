@@ -16,11 +16,13 @@
 
 .input-append {
 	height: 35px;
+	width: 30%;
 	margin-bottom: 0px;
 }
 
 .input-append input {
-	height: 35px;
+	height: 100%;
+	width: 100%;
 }
 
 .input-append button.add-on {
