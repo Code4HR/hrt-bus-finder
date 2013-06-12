@@ -134,6 +134,15 @@ h1, h2, h3, h4, h5, p, a {
 }
 
 @media (max-width: 767px) {
+	body {
+		padding: 0px;
+	}
+	
+	.navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {
+		margin-right: 0px;
+		margin-left: 0px;
+	}
+	
 	#stops .row-fluid {
 		position: relative;
 	}
@@ -148,7 +157,7 @@ h1, h2, h3, h4, h5, p, a {
 	}
 	
 	.schedule {
-		height: 50px;
+		height: 60px;
 	}
 	
 	.schedule > div {
@@ -158,6 +167,8 @@ h1, h2, h3, h4, h5, p, a {
 	.quarter {
         width: 20% !important;
 		top: 0px;
+		margin-top: 5px;
+		margin-bottom: 5px;
     }
 
 	.quarter:first-child {
@@ -171,6 +182,8 @@ h1, h2, h3, h4, h5, p, a {
     .half {
         width: 60% !important;
 		right: 20%;
+		padding-left: 3px;
+		padding-right: 3px;
     }
 
 	.half > p:not(:first-child) {
