@@ -1,14 +1,9 @@
 .app-container {
-  margin-top: 60px;
+  	margin-top: 60px;
+	text-align: center;
 }
 
-@media (max-width: 767px) {
-	.app-container {
-		margin-top: 0px;
-	}
-}
-
-@media (max-width: 979px) and (min-width: 768px) {
+@media (max-width: 979px) {
 	.app-container {
 		margin-top: 0px;
 	}
@@ -55,18 +50,6 @@ h1, h2, h3, h4, h5, p, a {
 	margin: 0;
 	padding: 0;
 	line-height: 1;
-}
-
-@media all and (max-width: 480px)  {
-    .quarter {
-        float: left !important;
-        width: 25% !important;
-    }
-
-    .half {
-        float: right !important;
-        width: 50% !important;    	
-    }
 }
 
 .head-label {
@@ -148,4 +131,53 @@ h1, h2, h3, h4, h5, p, a {
 
 .no-arrivals {
 	padding: 10px;
+}
+
+@media (max-width: 767px) {
+	#stops .row-fluid {
+		position: relative;
+	}
+	
+	.head-label {
+		height: 40px;
+	}
+	
+	.head-label > div {
+		position: absolute;
+		top: 25%;
+	}
+	
+	.schedule {
+		height: 50px;
+	}
+	
+	.schedule > div {
+		position: absolute;
+	}
+	
+	.quarter {
+        width: 20% !important;
+		top: 0px;
+    }
+
+	.quarter:first-child {
+		left: 0px;
+    }
+
+	.quarter:last-child {
+		right: 0px;
+    }
+
+    .half {
+        width: 60% !important;
+		right: 20%;
+    }
+
+	.half > p:not(:first-child) {
+        display: none;  	
+    }
+
+	.destination p:first-child {
+		line-height: normal;
+	}
 }
