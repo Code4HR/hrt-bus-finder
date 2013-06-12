@@ -154,6 +154,7 @@ h1, h2, h3, h4, h5, p, a {
 	.head-label > div {
 		position: absolute;
 		top: 25%;
+		margin: 0px;
 	}
 	
 	.schedule {
