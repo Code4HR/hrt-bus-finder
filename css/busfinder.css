@@ -9,6 +9,16 @@
 	}
 }
 
+h1.title {
+	font-size: 20px;
+	font-style: italic;
+	text-transform: uppercase;
+	line-height:50px;
+	color: white;
+	display: inline;
+	float: left;
+}
+
 .navbar-inner {
 	background-image: none !important;
 	background-color:#82A6BA !important;
@@ -50,6 +60,8 @@ button.add-on:hover {
 	height: 35px;
 	width: 40%;
 	margin-bottom: 0px;
+	float: right;
+	margin-right:40px;
 }
 
 .input-append input {
