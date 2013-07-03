@@ -120,10 +120,16 @@ h1, h2, h3, h4, h5, p, a {
 
 .head-label {
 	min-height: 1px;
+	padding: 0;
 }
 
 .head-label p {
 	color: white;
+}
+
+.head-label > div > p {
+	color: white;
+	line-height: 20px;
 }
 
 .stop-name {
