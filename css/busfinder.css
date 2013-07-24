@@ -9,20 +9,27 @@
 	}
 }
 
-h1.title {
-	font-size: 14px;
-	font-style: italic;
-	text-transform: uppercase;
-	line-height:50px;
-	color: white;
-	display: inline;
-	float: left;
+.navbar {
+	box-shadow: 0px 1px 10px rgba(0, 0, 0, 1);
 }
 
 .navbar-inner {
 	background-image: none !important;
 	background-color:#82A6BA !important;
 	border-bottom: none;
+}
+
+.navbar-inner h1 {
+	font-size: 16px;
+	line-height:52px;
+	display: inline;
+	font-style: italic;
+	color: white;
+	text-transform: uppercase;
+}
+
+.navbar-inner button {
+	margin-top: 7px !important;
 }
 
 input {
@@ -91,6 +98,10 @@ button.add-on:hover {
 h1, h2, h3, h4, h5, p, a, body {
 	font-family: Arvo, Helvetica, Arial;
 	color: #444;
+}
+
+body { 
+	background-image: url("../img/ps_neutral.png");
 }
 
 h1, h2, h3, h4, h5, p, a {
@@ -182,6 +193,10 @@ h1, h2, h3, h4, h5, p, a {
 	line-height: 30px;
 }
 
+.arrivals .table > div {
+	background-color: white;
+}
+
 .arrivals .table > div:nth-child(odd) {
 	background-color: #EEDFCC;
 }
@@ -252,3 +267,13 @@ h1, h2, h3, h4, h5, p, a {
 		line-height: normal;
 	}
 }
+
+/************************
+Hiding Search Bar
+************************/
+
+div.navbar-inner-form {
+	display: none;
+}
+
+
