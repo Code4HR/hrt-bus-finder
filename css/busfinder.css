@@ -1,6 +1,7 @@
 .app-container {
   	margin-top: 60px;
 	text-align: center;
+	background-image: url("../img/ps_neutral.png");
 }
 
 @media (max-width: 979px) {
@@ -31,6 +32,8 @@
 .navbar-inner button {
 	margin-top: 7px !important;
 }
+
+.navbar-inner 
 
 input {
 	border: 2px solid white !important;
@@ -276,4 +279,26 @@ div.navbar-inner-form {
 	display: none;
 }
 
+/************************
+Loading Message 
+************************/
 
+#loading {
+	z-index: -5;
+	display: block;
+	position: absolute;
+	top: 45%;
+	width: 100%;
+}
+
+#loading p {
+	text-align: center;
+	display: block;
+
+}
+
+#loading img {
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 5px;
+}
