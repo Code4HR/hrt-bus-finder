@@ -38,13 +38,13 @@ $(function(){
 		model: Arrival,
 		
 		url: function() {
-			return 'http://go.hrtb.us/api/stop_times/' + this.stopId + '/';
+			return 'http://lit-inlet-3610.herokuapp.com/api/stop_times/' + this.stopId + '/';
 		}
 	});
 	
 	var StopList = Backbone.Collection.extend({ 
 		url: function() {
-			return 'http://go.hrtb.us/api/stops/near/' + this.location.lat() + '/' + this.location.lng() + '/';
+			return 'http://lit-inlet-3610.herokuapp.com/api/stops/near/' + this.location.lat() + '/' + this.location.lng() + '/';
 		}
 	});
 	
