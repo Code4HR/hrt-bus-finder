@@ -302,3 +302,29 @@ Loading Message
 	margin: 0 auto;
 	margin-bottom: 5px;
 }
+
+/************************
+Link to map version.
+************************/
+
+#old-map {
+	background-color: #DB5051;
+	height: 36px;
+	display: none;
+}
+
+#old-map p {
+	line-height: 36px;
+	text-align: center;
+	color: white;
+}
+
+#old-map p:after {
+	content: ">>";
+}
+
+#old-map a {
+	color: white !important;
+	font-style: italic;
+	font-weight: bold;
+}
