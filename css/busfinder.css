@@ -287,20 +287,43 @@ Loading Message
 	z-index: -5;
 	display: block;
 	position: absolute;
-	top: 45%;
+	top: 22%;
 	width: 100%;
 }
 
 #loading p {
 	text-align: center;
 	display: block;
-
+	font-size: 1.25em;
+	margin: 1em;
 }
 
 #loading img {
 	display: block;
 	margin: 0 auto;
 	margin-bottom: 5px;
+}
+
+/************************
+Attribution 
+************************/
+
+div#attribution {
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 2em;
+}
+
+div#attribution p {
+	margin-bottom: 1em;
+	font-size: 90%;
+	line-height: 1.25em;
+	text-align: justify;	
+}
+
+div#attribution a {
+	font-weight: bold;
+	color: #DB5051;
 }
 
 /************************
