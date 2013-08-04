@@ -24,6 +24,7 @@
 
 </head>
 <body>
+	<div id="mask"></div>
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
@@ -57,6 +58,8 @@
 		<p>We've worked hard to make the data delivered by HRT Bus Finder as accurate as possible, but we can't be held responsible for any innaccurate information.</p>
 		</div>
 	</div>
+
+	
 
 	<div class="app-container container">
 		<div id="stops"></div>
@@ -100,7 +103,13 @@
 		
 		$('#old-map').slideDown('slow').delay(5000).slideUp();
 		$('#about-trigger').click(function() {
-			$('#about-text').slideToggle();
+			$('#about-text').slideToggle(function(){
+				$('#mask').fadeToggle("fast");
+			});
+		});
+		$("#mask").click(function() {
+			$("#about-text").slideToggle();
+			$('#mask').fadeToggle("fast");
 		});
 
 	</script>

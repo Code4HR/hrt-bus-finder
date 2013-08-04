@@ -11,7 +11,7 @@
 }
 
 .navbar {
-	box-shadow: 0px 1px 10px rgba(0, 0, 0, 1);
+	box-shadow: 0px 1px 10px rgba(0, 0, 0, .5);
 }
 
 .navbar-inner {
@@ -33,7 +33,7 @@
 	margin-top: 7px !important;
 }
 
-.navbar-inner 
+.navbar-inner {}
 
 input {
 	border: 2px solid white !important;
@@ -44,6 +44,10 @@ button.btn-info {
 	background-image: none;
 	background-color: #A7BFCC;
 	border: 2px solid white;
+}
+
+button.btn-info:focus {
+	background-color: #82A6BA;
 }
 
 i.icon-search {
@@ -317,6 +321,16 @@ div#about {
 	bottom: 0;
 	width:100%;
 	margin: 0 auto;
+	z-index: 10;
+}
+
+div#mask {
+	position: absolute;
+	display: none;
+	height: 100%;
+	width: 100%;
+	z-index: 2;
+	background-color: rgba(0,0,0,.25);
 }
 
 div#about-text {
