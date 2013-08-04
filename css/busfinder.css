@@ -287,7 +287,7 @@ Loading Message
 	z-index: -5;
 	display: block;
 	position: absolute;
-	top: 22%;
+	top: 40%;
 	width: 100%;
 }
 
@@ -305,23 +305,41 @@ Loading Message
 }
 
 /************************
-Attribution 
+About Page 
 ************************/
 
-div#attribution {
-	width: 80%;
+div#about {
+
+	background-color: white;
+	padding: 1.5;
+	padding-top: 0px;
+	position: absolute;
+	bottom: 0;
+	width:100%;
 	margin: 0 auto;
-	margin-top: 2em;
 }
 
-div#attribution p {
-	margin-bottom: 1em;
+div#about-text {
+	display: none;
+}
+
+div#about-trigger {
+	font-size: 1.25em;
+	font-weight: 700;
+	color: #DB5051;
+	padding: 5px 5px;
+}
+
+div#about-text p {
+	width: 90%;
+	margin: 0 auto;
+	padding: 1em;
 	font-size: 90%;
 	line-height: 1.25em;
 	text-align: justify;	
 }
 
-div#attribution a {
+div#about-text a {
 	font-weight: bold;
 	color: #DB5051;
 }
