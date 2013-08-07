@@ -191,6 +191,11 @@ h1, h2, h3, h4, h5, p, a {
 	background-color:#DB5051;
 }
 
+.departed {
+	background-color: transparent;
+	border: 3px solid #DDC6AA;
+}
+
 .destination {
 	font-size: 1em;
 	text-align: center;
@@ -345,6 +350,7 @@ div#mask {
 
 div#about-text {
 	display: none;
+
 }
 
 div#about-trigger {
@@ -363,9 +369,10 @@ div#exit {
     border-radius: 999px;
     height: 24px;
     width: 24px;
+    font-size: 12px;
     text-align: center;
     padding: .25em 0;
-   	border-color: #e7e7e7;
+   	border-color: #dfdfdf;
     border-bottom: none;
 	top:-10px;
 	right:10px;
@@ -375,10 +382,13 @@ div#exit {
 	box-shadow: 0em .125em .125em rgba(0,0,0,.125);
 }
 
-div#about-text p {
-	width: 90%;
+div#about-text {
 	margin: 0 auto;
-	padding: 1em;
+	padding: 1em 2em;
+}
+
+div#about-text p {
+	margin-bottom: .5em;
 	font-size: 90%;
 	line-height: 1.25em;
 	text-align: justify;	
