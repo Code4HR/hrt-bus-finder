@@ -186,6 +186,8 @@ $(function(){
 				    this.bounds.extend(this.mapPositions[i]);
 				}
 				this.map.fitBounds(this.bounds);
+				
+				$('html,body').animate({scrollTop: this.$el.offset().top - 100}, 'slow');
 			}
 		}
 	});
