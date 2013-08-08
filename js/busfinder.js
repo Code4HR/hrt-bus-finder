@@ -1,5 +1,7 @@
 $(function(){
 	var Arrival = Backbone.Model.extend({
+		idAttribute: "_id",
+		
 		date: function() {
 			return new Date(Date.parseUtc(this.get('arrival_time')));
 		},
@@ -23,7 +25,7 @@ $(function(){
 			var description = 'on time';
 			
 			if(adherence && adherence < 0) {
-				description = (adherence * -1) + ' min delay';
+				description = (adherence * -1) + ' min late';
 			} else if(adherence && adherence > 0) {
 				description = adherence + ' min early';
 			} else if(!adherence) {
@@ -73,14 +75,15 @@ $(function(){
 			
 			this.collection = new ArrivalList;
 			this.collection.stopId = this.model.get('stopId');
-			this.collection.on('reset', this.addAllArrivals, this);
+			this.collection.on('add', this.addArrival, this);
+			this.collection.on('sync', this.checkForEmpty, this);
 			
 			this.updateArrivalList();
 			setInterval($.proxy(this.updateArrivalList, this), 20000);
 		},
 		
 		updateArrivalList: function() {
-			this.collection.fetch({reset: true, dataType: 'jsonp'});
+			this.collection.fetch({dataType: 'jsonp'});
 		},
 		
 		render: function() {
@@ -88,12 +91,8 @@ $(function(){
 			return this;
 		},
 		
-		addAllArrivals: function() {
-			while(this.arrivalViews.length) this.arrivalViews.pop().remove();
-			
-			if(this.collection.length) {
-				this.collection.each(this.addArrival, this);
-			} else {
+		checkForEmpty: function() {
+			if(!this.collection.length) {
 				this.$('.arrivals')
 				    .html($('<div/>', {
 						class: 'no-arrivals', 
@@ -103,7 +102,7 @@ $(function(){
 		},
 		
 		addArrival: function(arrival) {
-			var arrivalView = new ArrivalView({model: arrival});
+			var arrivalView = new ArrivalView({model: arrival, stop: this.model});
 			this.$('.arrivals .table').append(arrivalView.render().$el);
 			this.arrivalViews.push(arrivalView);
 		}
@@ -114,7 +113,23 @@ $(function(){
 		
 		template: _.template($('#arrival-template').html()),
 		
+		events: {
+			'click .row-fluid': 'showMap'
+		},
+		
+		initialize: function() {
+			this.model.on('change', this.render, this);
+			this.model.on('remove', this.remove, this);
+			setInterval($.proxy(this.updateTime, this), 20000)
+		},
+		
+		updateTime: function() {
+		    this.$('.timeframe').html(this.model.minutesFromNow());
+		},
+		
 		render: function() {
+		    this.mapPositions = []
+		    
 			this.$el.html(this.template({
 				routeId: this.model.get('route_id'),
 				destination: this.model.get('destination'),
@@ -122,7 +137,56 @@ $(function(){
 				adherence: this.model.adherenceDescription(),
 				arriveMinutes: this.model.minutesFromNow()
 			}));
+			
+			this.map = new google.maps.Map(this.$('.mapcanvas')[0], {
+				zoom: 15,
+				mapTypeControl: false,
+				navigationControlOptions: { style: google.maps.NavigationControlStyle.SMALL },
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			});
+			
+			var stopPosition = new google.maps.LatLng(this.options.stop.get('location')[1], this.options.stop.get('location')[0]);
+			this.mapPositions.push(stopPosition);
+			
+			this.stopMarker = new google.maps.Marker({
+				position: stopPosition,
+				map: this.map,
+				animation: google.maps.Animation.DROP,
+				icon: './img/busstop.png'
+			});
+			
+			if(this.model.has('busPosition')) {
+    			var busPosition = new google.maps.LatLng(this.model.get('busPosition')[1], this.model.get('busPosition')[0]);
+    			this.mapPositions.push(busPosition);
+    			
+    			var directionStr = this.model.get('direction_id') ? 'inbound' : 'outbound';
+    			var icon = './img/bus-' + directionStr + '.png';
+			
+    			this.busMarker = new google.maps.Marker({
+    				position: busPosition,
+    				map: this.map,
+    				animation: google.maps.Animation.DROP,
+    				title: 'Bus ' + this.model.get('busId'),
+    				icon: icon
+    			});
+			}
+			
 			return this;
+		},
+		
+		showMap: function() {
+			if(this.$('.mapcanvas').is(':visible')) {
+				this.$('.mapcanvas').hide();
+			} else {
+				this.$('.mapcanvas').show();
+				google.maps.event.trigger(this.map, 'resize');
+				
+				this.bounds = new google.maps.LatLngBounds();
+				for(var i=0; i<this.mapPositions.length; i++) {
+				    this.bounds.extend(this.mapPositions[i]);
+				}
+				this.map.fitBounds(this.bounds);
+			}
 		}
 	});
 	

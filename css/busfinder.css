@@ -173,7 +173,7 @@ h1, h2, h3, h4, h5, p, a {
 	color:white;
 }
 
-.route, .timeframe{
+.route, .timeframe {
 	height: 50px;
 	line-height: 50px;
 	color: white;
@@ -244,11 +244,11 @@ h1, h2, h3, h4, h5, p, a {
 		margin: 0px;
 	}
 	
-	.schedule {
+	.schedule > .row-fluid {
 		height: 60px;
 	}
 	
-	.schedule > div {
+	.schedule > .row-fluid > div {
 		position: absolute;
 	}
 	
@@ -274,12 +274,13 @@ h1, h2, h3, h4, h5, p, a {
 		padding-right: 3px;
     }
 
-	.half > p:not(:first-child) {
-        display: none;  	
-    }
-
 	.destination p:first-child {
 		line-height: normal;
+		margin-bottom: 3px;
+	}
+	
+	.destination {
+	    padding-top: 7px;
 	}
 }
 
