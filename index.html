@@ -24,6 +24,7 @@
 
 </head>
 <body>
+	<div id="mask"></div>
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
@@ -38,12 +39,30 @@
 				</div>
 			</div>
 		</div>
+		<div id="old-map"> 
+			<a href="http://map.hrtb.us/busfinder/"><p>We're testing a new look.</br><span>Click here for the older interface</span></a>
+		</div>
 	</div>
 
 	<div id="loading">
 		<img src="./img/466.gif" alt="">
 	 	<p>HRT Bus Finder is loading.</p>
 	</div>
+
+	
+	<div id="about">
+		<div id="about-trigger">
+			About
+			<div id="exit">X</div>
+		</div>	
+		<div id="about-text">
+		<p>HRT Bus Finder was developed by volunteers from <a href="http://codeforhamptonroads.org">Code for Hampton Roads</a> in cooperation with <a href="http://gohrt.com">Hampton Roads Transit.</a></p>
+		<p>For help using this app or to answer any questions, contact us using <a href="http://hrtbus.uservoice.com">Uservoice</a>.
+		<p>We've worked hard to make the data delivered by HRT Bus Finder as accurate as possible, but we can't be held responsible for any innaccurate information.</p>
+		</div>
+	</div>
+
+	
 
 	<div class="app-container container">
 		<div id="stops"></div>
@@ -82,5 +101,28 @@
 		</div>
 		<div class="span2 timeframe quarter"><%= arriveMinutes %></div>
 	</script>
+
+	<script>
+		
+		$('#old-map').slideDown('slow').delay(15000).slideUp();
+		$('#about-trigger').click(function() {
+			$('#about-text').slideToggle(function(){
+				$('#exit').fadeToggle("fast");
+				$('#mask').fadeToggle("fast");
+			});
+		});
+		$("#mask").click(function() {
+			$('#exit').fadeToggle("fast");
+			$("#about-text").slideToggle();
+			$('#mask').fadeToggle("fast");
+		});
+		$('.btn-info').click(function(){
+			$('#about-text').slideUp(function(){
+				$('#exit').fadeOut();
+			});
+		});
+
+	</script>
 </body>
 </html>
+

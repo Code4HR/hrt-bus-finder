@@ -11,7 +11,7 @@
 }
 
 .navbar {
-	box-shadow: 0px 1px 10px rgba(0, 0, 0, 1);
+	box-shadow: 0px 1px 10px rgba(0, 0, 0, .5);
 }
 
 .navbar-inner {
@@ -33,7 +33,7 @@
 	margin-top: 7px !important;
 }
 
-.navbar-inner 
+.navbar-inner {}
 
 input {
 	border: 2px solid white !important;
@@ -44,6 +44,13 @@ button.btn-info {
 	background-image: none;
 	background-color: #A7BFCC;
 	border: 2px solid white;
+	position: relative;
+	z-index: 3;
+
+}
+
+button.btn-info:focus {
+	background-color: #82A6BA;
 }
 
 i.icon-search {
@@ -184,6 +191,11 @@ h1, h2, h3, h4, h5, p, a {
 	background-color:#DB5051;
 }
 
+.departed {
+	background-color: transparent;
+	border: 3px solid #DDC6AA;
+}
+
 .destination {
 	font-size: 1em;
 	text-align: center;
@@ -287,18 +299,130 @@ Loading Message
 	z-index: -5;
 	display: block;
 	position: absolute;
-	top: 45%;
+	top: 40%;
 	width: 100%;
 }
 
 #loading p {
 	text-align: center;
 	display: block;
-
+	font-size: 1.25em;
+	margin: 1em;
 }
 
 #loading img {
 	display: block;
 	margin: 0 auto;
 	margin-bottom: 5px;
+}
+
+/************************
+About Page 
+************************/
+
+div#about {
+	background-color: white;
+	padding: 1.5;
+	padding-top: 0px;
+	position: fixed;
+	bottom: 0;
+	width:100%;
+	margin: 0 auto;
+	z-index: 10;
+}
+
+@media screen and (min-width: 768px) {
+
+	div#about {
+
+	}
+
+}
+
+div#mask {
+	position: absolute;
+	display: none;
+	height: 100%;
+	width: 100%;
+	z-index: 2;
+	
+}
+
+div#about-text {
+	display: none;
+
+}
+
+div#about-trigger {
+	font-size: 1.25em;
+	font-weight: 700;
+	color: #DB5051;
+	padding: 5px 5px;
+	position: relative;
+}
+
+div#exit {
+	display: none;
+	position: absolute;
+	-webkit-border-radius: 999px;
+    -moz-border-radius: 999px;
+    border-radius: 999px;
+    height: 24px;
+    width: 24px;
+    font-size: 12px;
+    text-align: center;
+    padding: .25em 0;
+   	border-color: #dfdfdf;
+    border-bottom: none;
+	top:-10px;
+	right:10px;
+	background-color: white;
+	font-weight: 300;
+	color: gray;
+	box-shadow: 0em .125em .125em rgba(0,0,0,.125);
+}
+
+div#about-text {
+	margin: 0 auto;
+	padding: 1em 2em;
+}
+
+div#about-text p {
+	margin-bottom: .5em;
+	font-size: 90%;
+	line-height: 1.25em;
+	text-align: justify;	
+}
+
+div#about-text a {
+	font-weight: bold;
+	color: #DB5051;
+}
+
+/************************
+Link to map version.
+************************/
+
+#old-map {
+	background-color: #DB5051;
+	/*height: 36px;*/
+	display: none;
+	padding: .5em;
+}
+
+#old-map p {
+	font-size: 18px;
+	line-height: 18px;
+	text-align: center;
+	color: white;
+}
+
+#old-map p span {
+	font-size: 11px;
+}
+
+#old-map a {
+	color: white !important;
+	font-style: italic;
+	font-weight: bold;
 }
