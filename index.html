@@ -39,8 +39,8 @@
 				</div>
 			</div>
 		</div>
-		<div id="old-map">
-			<a href="http://map.hrtb.us/busfinder/"><p>Click for the map view.</p></a>
+		<div id="old-map"> 
+			<a href="http://map.hrtb.us/busfinder/"><p>We're testing a new look.</br><span>Click here for the older interface</span></a>
 		</div>
 	</div>
 
@@ -52,7 +52,7 @@
 	
 	<div id="about">
 		<div id="about-trigger">
-			Help!
+			About
 			<div id="exit">X</div>
 		</div>	
 		<div id="about-text">
@@ -104,7 +104,7 @@
 
 	<script>
 		
-		$('#old-map').slideDown('slow').delay(5000).slideUp();
+		$('#old-map').slideDown('slow').delay(15000).slideUp();
 		$('#about-trigger').click(function() {
 			$('#about-text').slideToggle(function(){
 				$('#exit').fadeToggle("fast");

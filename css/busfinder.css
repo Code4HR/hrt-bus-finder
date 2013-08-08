@@ -405,18 +405,20 @@ Link to map version.
 
 #old-map {
 	background-color: #DB5051;
-	height: 36px;
+	/*height: 36px;*/
 	display: none;
+	padding: .5em;
 }
 
 #old-map p {
-	line-height: 36px;
+	font-size: 18px;
+	line-height: 18px;
 	text-align: center;
 	color: white;
 }
 
-#old-map p:after {
-	content: ">>";
+#old-map p span {
+	font-size: 11px;
 }
 
 #old-map a {
