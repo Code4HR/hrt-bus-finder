@@ -38,6 +38,11 @@
 
 .navbar-inner {}
 
+a.brand {
+	
+}
+
+
 input {
 	border: 2px solid white !important;
 	border-right: none !important;
