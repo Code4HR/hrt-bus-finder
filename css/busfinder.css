@@ -27,6 +27,9 @@
 	font-style: italic;
 	color: white;
 	text-transform: uppercase;
+	position: absolute;
+	left: 50%;
+	margin-left: -63px;
 }
 
 .navbar-inner button {
@@ -49,6 +52,7 @@ button.btn-info {
 	right: 5px;
 
 }
+
 
 button.btn-info:focus {
 	background-color: #82A6BA;
