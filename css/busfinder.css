@@ -44,8 +44,9 @@ button.btn-info {
 	background-image: none;
 	background-color: #A7BFCC;
 	border: 2px solid white;
-	position: relative;
+	position: absolute;
 	z-index: 3;
+	right: 5px;
 
 }
 
