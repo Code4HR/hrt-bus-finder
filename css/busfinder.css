@@ -21,12 +21,15 @@
 }
 
 .navbar-inner h1 {
-	font-size: 16px;
+	font-size: 14px;
 	line-height:52px;
 	display: inline;
 	font-style: italic;
 	color: white;
 	text-transform: uppercase;
+	position: absolute;
+	left: 50%;
+	margin-left: -63px;
 }
 
 .navbar-inner button {
@@ -34,6 +37,11 @@
 }
 
 .navbar-inner {}
+
+a.brand {
+	
+}
+
 
 input {
 	border: 2px solid white !important;
@@ -44,10 +52,12 @@ button.btn-info {
 	background-image: none;
 	background-color: #A7BFCC;
 	border: 2px solid white;
-	position: relative;
+	position: absolute;
 	z-index: 3;
+	right: 5px;
 
 }
+
 
 button.btn-info:focus {
 	background-color: #82A6BA;
