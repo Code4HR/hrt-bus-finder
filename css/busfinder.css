@@ -12,7 +12,7 @@
 
 .navbar {
 	box-shadow: 0px 1px 10px rgba(0, 0, 0, .5);
-}
+}	
 
 .navbar-inner {
 	background-image: none !important;
@@ -21,12 +21,15 @@
 }
 
 .navbar-inner h1 {
-	font-size: 16px;
+	font-size: 14px;
 	line-height:52px;
 	display: inline;
 	font-style: italic;
 	color: white;
 	text-transform: uppercase;
+	position: absolute;
+	left: 50%;
+	margin-left: -63px;
 }
 
 .navbar-inner button {
@@ -34,6 +37,11 @@
 }
 
 .navbar-inner {}
+
+a.brand {
+	
+}
+
 
 input {
 	border: 2px solid white !important;
@@ -44,10 +52,12 @@ button.btn-info {
 	background-image: none;
 	background-color: #A7BFCC;
 	border: 2px solid white;
-	position: relative;
+	position: absolute;
 	z-index: 3;
+	right: 5px;
 
 }
+
 
 button.btn-info:focus {
 	background-color: #82A6BA;
@@ -358,8 +368,10 @@ div#about-trigger {
 	font-size: 1.25em;
 	font-weight: 700;
 	color: #DB5051;
-	padding: 5px 5px;
+	padding-left: 5px;
+	line-height: 45px;
 	position: relative;
+	height: 45px;
 }
 
 div#exit {
@@ -370,6 +382,7 @@ div#exit {
     border-radius: 999px;
     height: 24px;
     width: 24px;
+    line-height: 24px;
     font-size: 12px;
     text-align: center;
     padding: .25em 0;
