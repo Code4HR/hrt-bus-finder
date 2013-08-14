@@ -12,7 +12,7 @@
 
 .navbar {
 	box-shadow: 0px 1px 10px rgba(0, 0, 0, .5);
-}
+}	
 
 .navbar-inner {
 	background-image: none !important;
@@ -368,8 +368,10 @@ div#about-trigger {
 	font-size: 1.25em;
 	font-weight: 700;
 	color: #DB5051;
-	padding: 5px 5px;
+	padding-left: 5px;
+	line-height: 45px;
 	position: relative;
+	height: 45px;
 }
 
 div#exit {
@@ -380,6 +382,7 @@ div#exit {
     border-radius: 999px;
     height: 24px;
     width: 24px;
+    line-height: 24px;
     font-size: 12px;
     text-align: center;
     padding: .25em 0;
