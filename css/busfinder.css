@@ -12,7 +12,7 @@
 
 .navbar {
 	box-shadow: 0px 1px 10px rgba(0, 0, 0, .5);
-}
+}	
 
 .navbar-inner {
 	background-image: none !important;
@@ -183,7 +183,7 @@ h1, h2, h3, h4, h5, p, a {
 	color:white;
 }
 
-.route, .timeframe{
+.route, .timeframe {
 	height: 50px;
 	line-height: 50px;
 	color: white;
@@ -254,11 +254,11 @@ h1, h2, h3, h4, h5, p, a {
 		margin: 0px;
 	}
 	
-	.schedule {
+	.schedule > .row-fluid {
 		height: 60px;
 	}
 	
-	.schedule > div {
+	.schedule > .row-fluid > div {
 		position: absolute;
 	}
 	
@@ -284,12 +284,13 @@ h1, h2, h3, h4, h5, p, a {
 		padding-right: 3px;
     }
 
-	.half > p:not(:first-child) {
-        display: none;  	
-    }
-
 	.destination p:first-child {
 		line-height: normal;
+		margin-bottom: 3px;
+	}
+	
+	.destination {
+	    padding-top: 7px;
 	}
 }
 
@@ -367,8 +368,10 @@ div#about-trigger {
 	font-size: 1.25em;
 	font-weight: 700;
 	color: #DB5051;
-	padding: 5px 5px;
+	padding-left: 5px;
+	line-height: 45px;
 	position: relative;
+	height: 45px;
 }
 
 div#exit {
@@ -379,6 +382,7 @@ div#exit {
     border-radius: 999px;
     height: 24px;
     width: 24px;
+    line-height: 24px;
     font-size: 12px;
     text-align: center;
     padding: .25em 0;

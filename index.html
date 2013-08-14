@@ -94,12 +94,15 @@
 	</script>
 	
 	<script type="text/template" id="arrival-template">
-		<div class="span2 route quarter"><%= routeId %></div>
-		<div class="span8 destination half">
-			<p><%= destination %></p>
-			<p><%= arriveTime %> - <%= adherence %></p>
+		<div class="row-fluid">
+			<div class="span2 route quarter"><%= routeId %></div>
+			<div class="span8 destination half">
+				<p><%= destination %></p>
+				<p><%= arriveTime %> - <%= adherence %></p>
+			</div>
+			<div class="span2 timeframe quarter"><%= arriveMinutes %></div>
 		</div>
-		<div class="span2 timeframe quarter"><%= arriveMinutes %></div>
+		<div class="mapcanvas" style="display:none; height: 400px; width: 100%;"></div>
 	</script>
 
 	<script>
