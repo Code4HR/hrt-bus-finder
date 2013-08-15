@@ -21,7 +21,7 @@
 }
 
 .navbar-inner h1 {
-	font-size: 14px;
+	font-size: 16px;
 	line-height:52px;
 	display: inline;
 	font-style: italic;
@@ -29,7 +29,7 @@
 	text-transform: uppercase;
 	position: absolute;
 	left: 50%;
-	margin-left: -63px;
+	margin-left: -74px;
 }
 
 .navbar-inner button {
@@ -37,6 +37,10 @@
 }
 
 .navbar-inner {}
+
+.navbar-inner .container {
+	position: relative;
+}
 
 a.brand {
 	
@@ -53,9 +57,8 @@ button.btn-info {
 	background-color: #A7BFCC;
 	border: 2px solid white;
 	position: absolute;
+	right:0;
 	z-index: 3;
-	right: 5px;
-
 }
 
 
