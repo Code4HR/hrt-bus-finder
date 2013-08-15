@@ -29,10 +29,22 @@ $(function(){
 			} else if(adherence && adherence > 0) {
 				description = adherence + ' min early';
 			} else if(!adherence) {
-				description = 'adherence unknown';
+				description = 'scheduled';
 			}
 			
 			return description;
+		},
+		
+		lastCheckinTimeDescription: function() {
+		    var date = new Date(Date.parseUtc(this.get('busCheckinTime')));
+			var timePassed = new Date(new Date().getTime() - date).getTime() / 1000 / 60 | 0;
+			
+			if (timePassed == 0)
+			    return 'just now';
+			else if (timePassed == 1)
+			    return '1 minute ago';
+			
+			return timePassed + ' minutes ago';
 		}
 	});
 	
@@ -135,7 +147,9 @@ $(function(){
 				destination: this.model.get('destination'),
 				arriveTime: this.model.localTime(),
 				adherence: this.model.adherenceDescription(),
-				arriveMinutes: this.model.minutesFromNow()
+				arriveMinutes: this.model.minutesFromNow(),
+				busId: this.model.get('busId'),
+				lastUpdate: this.model.lastCheckinTimeDescription()
 			}));
 			
 			this.map = new google.maps.Map(this.$('.mapcanvas')[0], {
@@ -176,8 +190,10 @@ $(function(){
 		
 		showMap: function() {
 			if(this.$('.mapcanvas').is(':visible')) {
+				this.$('.extended-info').hide();
 				this.$('.mapcanvas').hide();
 			} else {
+			    this.$('.extended-info').show();
 				this.$('.mapcanvas').show();
 				google.maps.event.trigger(this.map, 'resize');
 				
