@@ -147,6 +147,10 @@ h1, h2, h3, h4, h5, p, a {
 .schedule {
 	border-bottom: 1px dotted #aaa;
 	padding: 10px;
+	background-image:url(../img/arrow-down.png);
+	background-position: 50% 95%;
+	background-repeat: no-repeat;
+	background-size: 16px;
 }
 
 .head-label {
@@ -234,7 +238,7 @@ h1, h2, h3, h4, h5, p, a {
 	background-color: #efefef;
 	color: #444;
 	font-style: italic;
-	line-height: 2em;
+	line-height: 2rem;
 }
 
 .extended-info strong {
