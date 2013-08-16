@@ -36,6 +36,8 @@ $(function(){
 		},
 		
 		lastCheckinTimeDescription: function() {
+		    if(!this.has('busCheckinTime')) return '';
+		    
 		    var date = new Date(Date.parseUtc(this.get('busCheckinTime')));
 			var timePassed = new Date(new Date().getTime() - date).getTime() / 1000 / 60 | 0;
 			
