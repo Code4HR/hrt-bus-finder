@@ -21,22 +21,20 @@ $(function(){
 		},
 		
 		adherenceDescription: function() {
-			var adherence = this.get('busAdherence');
-			var description = 'on time';
-			
-			if(adherence && adherence < 0) {
-				description = (adherence * -1) + ' min late';
-			} else if(adherence && adherence > 0) {
-				description = adherence + ' min early';
-			} else if(!adherence) {
-				description = 'scheduled';
-			}
-			
-			return description;
+			if(!this.has('busAdherence'))
+		        return 'scheduled';
+		    
+		    var adherence = this.get('busAdherence');
+		    if(adherence > 0) 
+    		    return adherence + ' min early';
+			if(adherence < 0)
+				return (adherence * -1) + ' min late';
+			return 'on time'
 		},
 		
 		lastCheckinTimeDescription: function() {
-		    if(!this.has('busCheckinTime')) return '';
+		    if(!this.has('busCheckinTime'))
+		        return '';
 		    
 		    var date = new Date(Date.parseUtc(this.get('busCheckinTime')));
 			var timePassed = new Date(new Date().getTime() - date).getTime() / 1000 / 60 | 0;
