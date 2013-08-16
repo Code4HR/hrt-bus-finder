@@ -36,6 +36,8 @@ $(function(){
 		},
 		
 		lastCheckinTimeDescription: function() {
+		    if(!this.has('busCheckinTime')) return '';
+		    
 		    var date = new Date(Date.parseUtc(this.get('busCheckinTime')));
 			var timePassed = new Date(new Date().getTime() - date).getTime() / 1000 / 60 | 0;
 			
@@ -203,7 +205,7 @@ $(function(){
 				}
 				this.map.fitBounds(this.bounds);
 				
-				$('html,body').animate({scrollTop: this.$el.offset().top - 100}, 'slow');
+				$('html,body').animate({scrollTop: this.$el.offset().top - 50}, 'slow');
 			}
 		}
 	});

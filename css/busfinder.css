@@ -166,6 +166,10 @@ h1, h2, h3, h4, h5, p, a {
 	line-height: 20px;
 }
 
+#stops {
+    margin-bottom: 60px;
+}
+
 .stop-name {
 	background-color: #a7bfcc;
 	padding: 1em;
