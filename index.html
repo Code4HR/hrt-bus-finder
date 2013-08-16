@@ -102,10 +102,11 @@
 			</div>
 			<div class="span2 timeframe quarter"><%= arriveMinutes %></div>
 		</div>
-		<div class="extended-info" style="display:none;">
-			<span>Location of Bus <%= busId %> as of <%= lastUpdate %>.</span>
-		</div>
+
 		<div class="mapcanvas" style="display:none; height: 400px; width: 100%;"></div>
+		<div class="extended-info" style="display:none;">
+			<span>Location of <strong>Bus <%= busId %></strong> as of <strong><%= lastUpdate %></strong>.</span>
+		</div>
 	</script>
 
 	<script>
