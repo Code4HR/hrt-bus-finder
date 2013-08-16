@@ -205,7 +205,7 @@ $(function(){
 				}
 				this.map.fitBounds(this.bounds);
 				
-				$('html,body').animate({scrollTop: this.$el.offset().top - 100}, 'slow');
+				$('html,body').animate({scrollTop: this.$el.offset().top - 50}, 'slow');
 			}
 		}
 	});
