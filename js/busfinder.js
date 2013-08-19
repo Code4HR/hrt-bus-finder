@@ -69,6 +69,7 @@ $(function(){
 		},
 		
 		render: function() {
+			$('#loading').remove();
 			this.collection.each(this.addStop, this);
 		},
 		
@@ -126,7 +127,8 @@ $(function(){
 		template: _.template($('#arrival-template').html()),
 		
 		events: {
-			'click .row-fluid': 'showMap'
+			'click .row-fluid': 'showMap',
+			'click .arrow': 'showMap'
 		},
 		
 		initialize: function() {
@@ -192,8 +194,12 @@ $(function(){
 			if(this.$('.mapcanvas').is(':visible')) {
 				this.$('.extended-info').hide();
 				this.$('.mapcanvas').hide();
+				this.$('.arrow > img').attr('src', './img/arrow-down.png');
 			} else {
+				var mapHeight = window.innerHeight - 170; //map height is height of screen less the height of about bar .schedule
+				console.log(mapHeight);
 			    this.$('.extended-info').show();
+				this.$('.mapcanvas').height(mapHeight);
 				this.$('.mapcanvas').show();
 				google.maps.event.trigger(this.map, 'resize');
 				
@@ -203,7 +209,8 @@ $(function(){
 				}
 				this.map.fitBounds(this.bounds);
 				
-				$('html,body').animate({scrollTop: this.$el.offset().top - 50}, 'slow');
+				$('html,body').animate({scrollTop: this.$el.offset().top}, 'slow');
+				this.$('.arrow > img').attr('src', './img/arrow-up.png');
 			}
 		}
 	});

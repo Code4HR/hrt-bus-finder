@@ -150,10 +150,19 @@ h1, h2, h3, h4, h5, p, a {
 .schedule {
 	border-bottom: 1px dotted #aaa;
 	padding: 10px;
-	background-image:url(../img/arrow-down.png);
+	padding-bottom: 0;
 	background-position: 50% 95%;
 	background-repeat: no-repeat;
 	background-size: 16px;
+}
+
+.arrow {
+	background-color: rgba(0,0,0,.05);
+	height: :;
+}
+
+.arrow img {
+	width: 10px;
 }
 
 .head-label {
@@ -463,4 +472,13 @@ Link to map version.
 	color: white !important;
 	font-style: italic;
 	font-weight: bold;
+}
+
+/*********************
+map canvas
+*********************/
+
+.mapcanvas {
+	display: none;
+	width: 100%;
 }
