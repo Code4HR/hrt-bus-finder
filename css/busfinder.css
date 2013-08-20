@@ -12,6 +12,7 @@
 
 .navbar {
 	box-shadow: 0px 1px 10px rgba(0, 0, 0, .5);
+	position: fixed;
 }	
 
 .navbar-inner {
@@ -150,10 +151,19 @@ h1, h2, h3, h4, h5, p, a {
 .schedule {
 	border-bottom: 1px dotted #aaa;
 	padding: 10px;
-	background-image:url(../img/arrow-down.png);
+	padding-bottom: 0;
 	background-position: 50% 95%;
 	background-repeat: no-repeat;
 	background-size: 16px;
+}
+
+.arrow {
+	background-color: rgba(0,0,0,.05);
+	height: :;
+}
+
+.arrow img {
+	width: 10px;
 }
 
 .head-label {
@@ -253,10 +263,10 @@ h1, h2, h3, h4, h5, p, a {
 	color: #1a1a1a;
 }
 
-
 @media (max-width: 767px) {
 	body {
 		padding: 0px;
+		padding-top: 60px;
 	}
 	
 	.navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {
@@ -355,24 +365,6 @@ Loading Message
 About Page 
 ************************/
 
-div#about {
-	background-color: white;
-	padding: 1.5;
-	padding-top: 0px;
-	position: fixed;
-	bottom: 0;
-	width:100%;
-	margin: 0 auto;
-	z-index: 10;
-}
-
-@media screen and (min-width: 768px) {
-
-	div#about {
-
-	}
-
-}
 
 div#mask {
 	position: absolute;
@@ -383,20 +375,6 @@ div#mask {
 	
 }
 
-div#about-text {
-	display: none;
-
-}
-
-div#about-trigger {
-	font-size: 1.25em;
-	font-weight: 700;
-	color: #DB5051;
-	padding-left: 5px;
-	line-height: 45px;
-	position: relative;
-	height: 45px;
-}
 
 div#exit {
 	display: none;
@@ -420,9 +398,29 @@ div#exit {
 	box-shadow: 0em .125em .125em rgba(0,0,0,.125);
 }
 
+div#about {
+	position: fixed;
+	bottom: 0;
+	z-index: 100;
+}
+
+div#about-trigger {
+	font-size: 1.125em;
+	font-weight: 700;
+	color: #DB5051;
+	line-height: 35px;
+	position: relative;
+	height: 35px;
+	background-color: white;
+	width: 70px;
+	text-align: center;
+}
+
 div#about-text {
+	display: none;
 	margin: 0 auto;
 	padding: 1em 2em;
+	background-color: white;
 }
 
 div#about-text p {
@@ -463,4 +461,13 @@ Link to map version.
 	color: white !important;
 	font-style: italic;
 	font-weight: bold;
+}
+
+/*********************
+map canvas
+*********************/
+
+.mapcanvas {
+	display: none;
+	width: 100%;
 }
