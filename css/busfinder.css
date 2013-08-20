@@ -365,24 +365,6 @@ Loading Message
 About Page 
 ************************/
 
-div#about {
-	background-color: white;
-	padding: 1.5;
-	padding-top: 0px;
-	position: fixed;
-	bottom: 0;
-	width:100%;
-	margin: 0 auto;
-	z-index: 10;
-}
-
-@media screen and (min-width: 768px) {
-
-	div#about {
-
-	}
-
-}
 
 div#mask {
 	position: absolute;
@@ -393,20 +375,6 @@ div#mask {
 	
 }
 
-div#about-text {
-	display: none;
-
-}
-
-div#about-trigger {
-	font-size: 1.25em;
-	font-weight: 700;
-	color: #DB5051;
-	padding-left: 5px;
-	line-height: 45px;
-	position: relative;
-	height: 45px;
-}
 
 div#exit {
 	display: none;
@@ -430,9 +398,29 @@ div#exit {
 	box-shadow: 0em .125em .125em rgba(0,0,0,.125);
 }
 
+div#about {
+	position: fixed;
+	bottom: 0;
+	z-index: 100;
+}
+
+div#about-trigger {
+	font-size: 1.125em;
+	font-weight: 700;
+	color: #DB5051;
+	line-height: 35px;
+	position: relative;
+	height: 35px;
+	background-color: white;
+	width: 70px;
+	text-align: center;
+}
+
 div#about-text {
+	display: none;
 	margin: 0 auto;
 	padding: 1em 2em;
+	background-color: white;
 }
 
 div#about-text p {
