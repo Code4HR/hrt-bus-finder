@@ -196,7 +196,7 @@ $(function(){
 				this.$('.mapcanvas').hide();
 				this.$('.arrow > img').attr('src', './img/arrow-down.png');
 			} else {
-				var mapHeight = window.innerHeight - 170; //map height is height of screen less the height of about bar .schedule
+				var mapHeight = window.innerHeight - 220; //map height is height of screen less the height of about bar .schedule
 				console.log(mapHeight);
 			    this.$('.extended-info').show();
 				this.$('.mapcanvas').height(mapHeight);
@@ -209,7 +209,7 @@ $(function(){
 				}
 				this.map.fitBounds(this.bounds);
 				
-				$('html,body').animate({scrollTop: this.$el.offset().top}, 'slow');
+				$('html,body').animate({scrollTop: this.$el.offset().top - 50 }, 'slow');
 				this.$('.arrow > img').attr('src', './img/arrow-up.png');
 			}
 		}

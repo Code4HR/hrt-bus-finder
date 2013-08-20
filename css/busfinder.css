@@ -12,6 +12,7 @@
 
 .navbar {
 	box-shadow: 0px 1px 10px rgba(0, 0, 0, .5);
+	position: fixed;
 }	
 
 .navbar-inner {
@@ -262,10 +263,10 @@ h1, h2, h3, h4, h5, p, a {
 	color: #1a1a1a;
 }
 
-
 @media (max-width: 767px) {
 	body {
 		padding: 0px;
+		padding-top: 60px;
 	}
 	
 	.navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {
