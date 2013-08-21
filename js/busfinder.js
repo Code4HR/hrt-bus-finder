@@ -215,7 +215,9 @@ $(function(){
 		}
 	});
 	
-	var AppView = Backbone.View.extend({
+	var HomeView = Backbone.View.extend({
+	    id: 'stops',
+	    
 		initialize: function() {
 			_.bindAll(this);
 			
@@ -235,7 +237,34 @@ $(function(){
 		getStopList: function(location) {
 			var stopList = new StopList;
 			stopList.location = location;
-			var stopsListView = new StopListView({el: '#stops', collection: stopList});
+			var stopsListView = new StopListView({el: this.el, collection: stopList});
+		}
+	});
+	
+	var ContentView = Backbone.View.extend({
+		el: $(".app-container"),
+		
+		setSubView: function(subView) {
+			this.subView && this.subView.remove();
+			this.subView = subView;
+			this.$el.html(this.subView.render().el);
+			this.$el.trigger('create');
+			this.trigger('contentChanged');
+		}
+	});
+	
+	var Router = Backbone.Router.extend({
+		 routes: {
+			"": "home",
+			"stops/*stopIds": "stops"
+		 },
+		
+		home: function() {
+			App.ContentView.setSubView(new HomeView);
+		},
+		
+		stops: function(stopIds) {
+		    console.log(stopIds)
 		}
 	});
 	
@@ -285,5 +314,9 @@ $(function(){
 	}
 	
 	var DowntownNorfolk = new google.maps.LatLng(36.863794,-76.285608);
-	var App = new AppView;
+	var App = {
+		ContentView: new ContentView,
+		Router: new Router
+	};
+	Backbone.history.start({ root: '/hrt-bus-finder/' });
 });
