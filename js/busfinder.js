@@ -48,17 +48,24 @@ $(function(){
 		}
 	});
 	
+	var API_URL = 'http://lit-inlet-3610.herokuapp.com/api/'
 	var ArrivalList = Backbone.Collection.extend({ 
 		model: Arrival,
 		
 		url: function() {
-			return 'http://lit-inlet-3610.herokuapp.com/api/stop_times/' + this.stopId + '/';
+			return API_URL + 'stop_times/' + this.stopId + '/';
 		}
 	});
 	
-	var StopList = Backbone.Collection.extend({ 
+	var StopList = Backbone.Collection.extend({
 		url: function() {
-			return 'http://lit-inlet-3610.herokuapp.com/api/stops/near/' + this.location.lat() + '/' + this.location.lng() + '/';
+		    if(this.location) {
+		        return API_URL + 'stops/near/' + this.location.lat() + '/' + this.location.lng(); 
+		    }
+		    
+		    if(this.stopIds){
+		        return API_URL + 'stops/id/' + this.stopIds;
+		    }
 		}
 	});
 	
@@ -215,7 +222,9 @@ $(function(){
 		}
 	});
 	
-	var AppView = Backbone.View.extend({
+	var HomeView = Backbone.View.extend({
+	    id: 'stops',
+	    
 		initialize: function() {
 			_.bindAll(this);
 			
@@ -235,7 +244,44 @@ $(function(){
 		getStopList: function(location) {
 			var stopList = new StopList;
 			stopList.location = location;
-			var stopsListView = new StopListView({el: '#stops', collection: stopList});
+			var stopsListView = new StopListView({el: this.el, collection: stopList});
+		}
+	});
+	
+	var StopsByIdView = Backbone.View.extend({
+	    id: 'stops',
+		
+		initialize: function() {
+			var stopList = new StopList;
+			stopList.stopIds = this.options.stopIds;
+			var stopsListView = new StopListView({el: this.el, collection: stopList});
+		}
+	});
+	
+	var ContentView = Backbone.View.extend({
+		el: $(".app-container"),
+		
+		setSubView: function(subView) {
+			this.subView && this.subView.remove();
+			this.subView = subView;
+			this.$el.html(this.subView.render().el);
+			this.$el.trigger('create');
+			this.trigger('contentChanged');
+		}
+	});
+	
+	var Router = Backbone.Router.extend({
+		 routes: {
+			"": "home",
+			"stops/*stopIds": "stops"
+		 },
+		
+		home: function() {
+			App.ContentView.setSubView(new HomeView);
+		},
+		
+		stops: function(stopIds) {
+		    App.ContentView.setSubView(new StopsByIdView({stopIds: stopIds}));
 		}
 	});
 	
@@ -285,5 +331,10 @@ $(function(){
 	}
 	
 	var DowntownNorfolk = new google.maps.LatLng(36.863794,-76.285608);
-	var App = new AppView;
+	var App = {
+		ContentView: new ContentView,
+		Router: new Router
+	};
+	var root = document.URL.indexOf('/hrt-bus-finder') == -1 ? '/' : '/hrt-bus-finder/';
+	Backbone.history.start({ root: root });
 });
