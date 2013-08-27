@@ -335,5 +335,6 @@ $(function(){
 		ContentView: new ContentView,
 		Router: new Router
 	};
-	Backbone.history.start({ root: '/hrt-bus-finder/' });
+	var root = document.URL.indexOf('/hrt-bus-finder') == -1 ? '/' : '/hrt-bus-finder/';
+	Backbone.history.start({ root: root });
 });
