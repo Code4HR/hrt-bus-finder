@@ -195,10 +195,11 @@ $(function(){
 		
 		updateTime: function() {
 		    this.$('.timeframe').html(this.model.minutesFromNow());
+		    this.$('.lastUpdate').html(this.model.lastCheckinTimeDescription());
 		},
 		
 		render: function() {
-		    this.mapPositions = []
+		    var mapShowing = this.$('.mapcanvas').is(':visible');
 		    
 			this.$el.html(this.template({
 				routeId: this.model.get('route_id'),
@@ -210,15 +211,21 @@ $(function(){
 				lastUpdate: this.model.lastCheckinTimeDescription()
 			}));
 			
+			if(mapShowing) {
+			    this.showMap(null);
+			}
+		    
 			return this;
 		},
 		
-		showMap: function() {
+		showMap: function(scroll) {
+		    var mapShowing = this.$('.mapcanvas').is(':visible');
+		    
 			$('.extended-info').hide();
 			$('.mapcanvas').hide();
 			$('.arrow > img').attr('src', './img/arrow-down.png');
 				
-			if(!this.$('.mapcanvas').is(':visible')) {
+			if(!mapShowing) {
 				var mapHeight = window.innerHeight - 220; //map height is height of screen less the height of about bar .schedule
 				App.MapView.clear();
 				App.MapView.createStopMarker(this.options.stop);
@@ -226,13 +233,15 @@ $(function(){
     			App.MapView.$el.height(mapHeight);
     			this.$('.mapcanvas').html(App.MapView.el);
 				
+				this.$('.arrow > img').attr('src', './img/arrow-up.png');
 			    this.$('.extended-info').show();
 				this.$('.mapcanvas').show();
 				App.MapView.resize();
 				App.MapView.setBounds();
 				
-				$('html,body').animate({scrollTop: this.$el.offset().top - 50 }, 'slow');
-				this.$('.arrow > img').attr('src', './img/arrow-up.png');
+				if(scroll) {
+				    $('html,body').animate({scrollTop: this.$el.offset().top - 50 }, 'slow');
+			    }
 			}
 		}
 	});
