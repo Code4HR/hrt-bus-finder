@@ -128,6 +128,55 @@ $(function(){
 		}
 	});
 	
+	var MapView = Backbone.View.extend({
+		initialize: function() {
+			this.map = new google.maps.Map(this.$el[0]);
+			this.markers = [];
+		},
+	    
+	    clear: function() {
+	        while(this.markers.length) {
+	            this.markers.pop().setMap(null);
+            }
+	    },
+	    
+	    createStopMarker: function(stop) {
+	        var stopPosition = new google.maps.LatLng(stop.get('location')[1], stop.get('location')[0]);
+			var stopMarker = new google.maps.Marker({
+				position: stopPosition,
+				map: this.map,
+				icon: './img/busstop.png'
+			});
+			this.markers.push(stopMarker);
+	    },
+	    
+	    createBusMarker: function(bus) {
+	        if(bus.has('busPosition')) {
+    			var busPosition = new google.maps.LatLng(bus.get('busPosition')[1], bus.get('busPosition')[0]);
+    			var directionStr = bus.get('direction_id') ? 'inbound' : 'outbound';
+    			var icon = './img/bus-' + directionStr + '.png';
+    			var busMarker = new google.maps.Marker({
+    				position: busPosition,
+    				map: this.map,
+    				icon: icon
+    			});
+    			this.markers.push(busMarker);
+			}
+	    },
+	    
+	    setBounds: function() {
+	        var bounds = new google.maps.LatLngBounds();
+			for(var i=0; i<this.markers.length; i++) {
+			    bounds.extend(this.markers[i].getPosition());
+			}
+			this.map.fitBounds(bounds);
+	    },
+	    
+	    resize: function() {
+			google.maps.event.trigger(this.map, 'resize');
+	    }
+    });
+	
 	var ArrivalView = Backbone.View.extend({
 		className: 'schedule row-fluid',
 		
@@ -161,39 +210,6 @@ $(function(){
 				lastUpdate: this.model.lastCheckinTimeDescription()
 			}));
 			
-			this.map = new google.maps.Map(this.$('.mapcanvas')[0], {
-				zoom: 15,
-				mapTypeControl: false,
-				navigationControlOptions: { style: google.maps.NavigationControlStyle.SMALL },
-				mapTypeId: google.maps.MapTypeId.ROADMAP
-			});
-			
-			var stopPosition = new google.maps.LatLng(this.options.stop.get('location')[1], this.options.stop.get('location')[0]);
-			this.mapPositions.push(stopPosition);
-			
-			this.stopMarker = new google.maps.Marker({
-				position: stopPosition,
-				map: this.map,
-				animation: google.maps.Animation.DROP,
-				icon: './img/busstop.png'
-			});
-			
-			if(this.model.has('busPosition')) {
-    			var busPosition = new google.maps.LatLng(this.model.get('busPosition')[1], this.model.get('busPosition')[0]);
-    			this.mapPositions.push(busPosition);
-    			
-    			var directionStr = this.model.get('direction_id') ? 'inbound' : 'outbound';
-    			var icon = './img/bus-' + directionStr + '.png';
-			
-    			this.busMarker = new google.maps.Marker({
-    				position: busPosition,
-    				map: this.map,
-    				animation: google.maps.Animation.DROP,
-    				title: 'Bus ' + this.model.get('busId'),
-    				icon: icon
-    			});
-			}
-			
 			return this;
 		},
 		
@@ -204,17 +220,16 @@ $(function(){
 				this.$('.arrow > img').attr('src', './img/arrow-down.png');
 			} else {
 				var mapHeight = window.innerHeight - 220; //map height is height of screen less the height of about bar .schedule
-				console.log(mapHeight);
-			    this.$('.extended-info').show();
-				this.$('.mapcanvas').height(mapHeight);
-				this.$('.mapcanvas').show();
-				google.maps.event.trigger(this.map, 'resize');
+				App.MapView.clear();
+				App.MapView.createStopMarker(this.options.stop);
+    			App.MapView.createBusMarker(this.model);
+    			App.MapView.$el.height(mapHeight);
+    			this.$('.mapcanvas').html(App.MapView.el);
 				
-				this.bounds = new google.maps.LatLngBounds();
-				for(var i=0; i<this.mapPositions.length; i++) {
-				    this.bounds.extend(this.mapPositions[i]);
-				}
-				this.map.fitBounds(this.bounds);
+			    this.$('.extended-info').show();
+				this.$('.mapcanvas').show();
+				App.MapView.resize();
+				App.MapView.setBounds();
 				
 				$('html,body').animate({scrollTop: this.$el.offset().top - 50 }, 'slow');
 				this.$('.arrow > img').attr('src', './img/arrow-up.png');
@@ -333,7 +348,8 @@ $(function(){
 	var DowntownNorfolk = new google.maps.LatLng(36.863794,-76.285608);
 	var App = {
 		ContentView: new ContentView,
-		Router: new Router
+		Router: new Router,
+		MapView: new MapView
 	};
 	var root = document.URL.indexOf('/hrt-bus-finder') == -1 ? '/' : '/hrt-bus-finder/';
 	Backbone.history.start({ root: root });
