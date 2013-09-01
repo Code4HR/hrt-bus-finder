@@ -214,11 +214,11 @@ $(function(){
 		},
 		
 		showMap: function() {
-			if(this.$('.mapcanvas').is(':visible')) {
-				this.$('.extended-info').hide();
-				this.$('.mapcanvas').hide();
-				this.$('.arrow > img').attr('src', './img/arrow-down.png');
-			} else {
+			$('.extended-info').hide();
+			$('.mapcanvas').hide();
+			$('.arrow > img').attr('src', './img/arrow-down.png');
+				
+			if(!this.$('.mapcanvas').is(':visible')) {
 				var mapHeight = window.innerHeight - 220; //map height is height of screen less the height of about bar .schedule
 				App.MapView.clear();
 				App.MapView.createStopMarker(this.options.stop);
