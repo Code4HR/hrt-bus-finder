@@ -130,7 +130,7 @@ $(function(){
 	
 	var MapView = Backbone.View.extend({
 		initialize: function() {
-			this.map = new google.maps.Map(this.$el[0]);
+			this.map = new google.maps.Map(this.$el[0], {disableDefaultUI: true});
 			this.markers = [];
 		},
 	    
