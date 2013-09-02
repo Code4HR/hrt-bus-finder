@@ -151,6 +151,7 @@ $(function(){
 	            this.markers.pop().setMap(null);
             }
             this.oldBusMarkers = this.busMarkers;
+            this.busMarkers = {};
             $.each(this.oldBusMarkers, function(key, value) {
                 value.setMap(null);
             });
@@ -183,11 +184,46 @@ $(function(){
     			var icon = './img/bus-' + directionStr + '.png';
     			var busMarker = new google.maps.Marker({
     				position: position,
-    				map: this.map,
     				icon: icon
     			});
+    			
+    			if(bus.get('busId') in this.oldBusMarkers){
+    			    this.moveMarker(this.oldBusMarkers[bus.get('busId')], busMarker);
+			    } else {
+			        busMarker.setMap(this.map);
+			    }
     			this.busMarkers[bus.get('busId')] = busMarker;
 			}
+	    },
+	    
+	    moveMarker: function(oldMarker, newMarker) {
+	        var frames = 50;
+	        var start = oldMarker.getPosition();
+	        var destination = newMarker.getPosition();
+	        
+	        if(start.lat() == destination.lat() && start.lng() == destination.lng()) {
+	            newMarker.setMap(this.map);
+	            return;
+	        }
+	        
+	        var latStep = (destination.lat() - start.lat()) / frames;
+	        var lngStep = (destination.lng() - start.lng()) / frames;
+	        
+	        newMarker.setPosition(start);
+	        newMarker.setMap(this.map);
+	        
+	        move = function(frame, marker, latS, lngS, dest) {
+	            var curPos = marker.getPosition();
+	            var newPos = new google.maps.LatLng(curPos.lat() + latS, curPos.lng() + lngS);
+	            marker.setPosition(newPos);
+	            if(frame < frames) {
+	                setTimeout(function(){move(frame + 1, marker, latS, lngS, dest);}, 100);
+	            } else {
+	                marker.setPosition(dest);
+	            }
+	        }
+	        
+	        move(1, newMarker, latStep, lngStep, destination);
 	    },
 	    
 	    setBounds: function() {
