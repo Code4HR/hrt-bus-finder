@@ -83,6 +83,10 @@ $(function(){
 		}
 	});
 	
+	var ActiveRoutesList = Backbone.Collection.extend({
+		url: API_URL + 'routes/active'
+	});
+	
 	var StopListView = Backbone.View.extend({
 		initialize: function() {
 			this.collection.on('reset', this.render, this);
@@ -352,19 +356,35 @@ $(function(){
 	});
 	
 	var RouteView = Backbone.View.extend({
-	    className: 'mapcanvas',
+	    id: 'route-view',
 	    
+	    template: _.template($('#route-view-template').html()),
+	    
+	    events: {
+			'change #route': 'routeSelected'
+		},
+		
 	    initialize: function() {
 	        this.firstUpdate = true;
+			
+			this.collection = new BusList({}, {routeIds: this.options.routeIds});
 			this.collection.on('reset', this.addBuses, this);
+			
+			this.activeRoutesList = new ActiveRoutesList();
+			this.activeRoutesList.on('reset', this.render, this);
+			this.activeRoutesList.fetch({reset: true, dataType: 'jsonp'});
+			
 			this.updateBuses();
 			App.Intervals.push(setInterval($.proxy(this.updateBuses, this), 20000));
 		},
 		
 		render: function() {
+		    this.$el.html(this.template({ routes: this.activeRoutesList.toJSON() }));
+		    this.setSelectedRoutes(this.options.routeIds && this.options.routeIds.split('/'));
+		    
 		    App.MapView.$el.height(window.innerHeight - 220);
-			this.$el.html(App.MapView.el);
-			this.$el.show();
+			this.$('.mapcanvas').html(App.MapView.el);
+			this.$('.mapcanvas').show();
 			App.MapView.resize();
 			return this;
 		},
@@ -384,6 +404,32 @@ $(function(){
 		
 		updateBuses: function() {
 			this.collection.fetch({reset: true, dataType: 'jsonp'});
+		},
+		
+		routeSelected: function() {
+		    var routes = '';
+		    var selectedVals = this.$('select').val();
+		    if(selectedVals.length > 0 && selectedVals.indexOf('') == -1) {
+		        routes = selectedVals.join('/');
+		    }
+		    
+			App.Router.navigate('routes/' + routes, {trigger: true});
+		},
+		
+		setSelectedRoutes: function(routes) {
+		    if(routes == null || routes == "") {
+		        this.$('select option')[0].selected = true;
+		        return;
+		    }
+		    
+		    var indexOfEmpty = routes.indexOf('');
+		    if(indexOfEmpty != -1) {
+		        routes.splice(indexOfEmpty, 1);
+		    }
+		    
+		    this.$('select option').each(function(index, option) {
+		        option.selected = routes.indexOf(option.value) != -1;
+		    });
 		}
 	});
 	
@@ -418,10 +464,7 @@ $(function(){
 		
 		routeView: function(routeIds) {
 		    this.clearIntervals();
-		    App.ContentView.setSubView(new RouteView({
-		        routeIds: routeIds,
-		        collection: new BusList({}, {routeIds: routeIds})
-		    }));
+		    App.ContentView.setSubView(new RouteView({routeIds: routeIds}));
 		},
 		
 		clearIntervals: function() {

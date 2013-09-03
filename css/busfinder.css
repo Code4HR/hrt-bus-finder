@@ -298,6 +298,10 @@ h1, h2, h3, h4, h5, p, a {
 	color: #1a1a1a;
 }
 
+#route-view select {
+    width: 100%;
+}
+
 @media (max-width: 767px) {
 	body {
 		padding: 0px;

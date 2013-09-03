@@ -113,8 +113,16 @@
 		<div class="arrow">
 			<img src="img/arrow-down.png"/>
 		</div>
-
-
+	</script>
+	
+	<script type="text/template" id="route-view-template">
+		<select multiple id="route">
+			<option selected="selected" value="">All Routes</option>
+			<% _.each(routes, function(route) { %>
+				<option value="<%= route.route_id %>"><%= route.route_short_name %> - <%= route.route_long_name %></option>
+			<% }); %>
+		</select>
+		<div class="mapcanvas"></div>
 	</script>
 
 	<script>
