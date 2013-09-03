@@ -33,13 +33,13 @@
 			<div class="container">
 				<a class="brand"><img alt="HRT Bus Logo" width="75" src="./img/logo-small.png" ></a>
 				<h1 id="title">HRT Bus Finder</h1>
-				<button class="btn-current-location btn btn-info btn-address pull-right"><i class=""></i><img height="25" width="25" src="./img/location.png" alt="Update Location"></button>
-				<div class="navbar-inner-form">
-					<div class="input-append">
-						<input type="text" placeholder="Search..." value="">
-						<button class="btn add-on"> <i class="icon-search"></i></button>
-					</div>
-				</div>
+				<button class="btn-current-location btn btn-info btn-address pull-right menu-trigger"><i class="icon-th-list icon-white"></i></button>
+				<nav id="menu" style="display: none">
+        			<ul>
+        			    <li><a href="#/">Home</a></li>
+        				<li><a href="#/routes/">Routes</a></li>
+        			</ul>
+        		</nav>
 			</div>
 		</div>
 		<div id="old-map"> 
@@ -71,6 +71,7 @@
 	</div>
 		
 	<script src="./js/jquery-2.0.2.js"></script>
+	<script src="./js/jquery.jpanelmenu.js"></script>
 	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 	<script src="./js/underscore-min.js"></script>
 	<script src="./js/backbone.js"></script>

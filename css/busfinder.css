@@ -10,6 +10,52 @@
 	}
 }
 
+.jPanelMenu-panel {
+    background-image: url("../img/ps_neutral.png") !important;
+}
+
+#jPanelMenu-menu {
+    padding-top: 100px;
+    background: #3b3b3b;
+    overflow-y: hidden !important;
+}
+
+#jPanelMenu-menu ul {
+    border-bottom: 1px solid #484848;
+}
+
+#jPanelMenu-menu li a {
+    background: #3b3b3b;
+    background: -o-linear-gradient(top, #3e3e3e, #383838);
+    background: -ms-linear-gradient(top, #3e3e3e, #383838);
+    background: -moz-linear-gradient(top, #3e3e3e, #383838);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #3e3e3e), color-stop(1, #383838));
+    background: -webkit-linear-gradient(#3e3e3e, #383838);
+    background: linear-gradient(top, #3e3e3e, #383838);
+    font-family: "museo-sans","Museo Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 300;
+    font-weight: 700;
+    display: block;
+    padding: 0.5em 5%;
+    border-top: 1px solid #484848;
+    border-bottom: 1px solid #2e2e2e;
+    text-decoration: none;
+    text-shadow: 0 -1px 2px #222;
+    color: #f7f7f7;
+    font-size: 16px;
+    line-height: 2em;
+}
+
+nav ul, nav ol {
+    list-style: none;
+    list-style-image: none;
+}
+
+ul, ol, dd {
+    margin: 0;
+    padding: 0;
+}
+
 .navbar {
 	box-shadow: 0px 1px 10px rgba(0, 0, 0, .5);
 	position: fixed;
@@ -36,17 +82,9 @@
 .navbar-inner button {
 	margin-top: 7px !important;
 }
-
-.navbar-inner {}
-
 .navbar-inner .container {
 	position: relative;
 }
-
-a.brand {
-	
-}
-
 
 input {
 	border: 2px solid white !important;
@@ -61,7 +99,6 @@ button.btn-info {
 	right:0;
 	z-index: 3;
 }
-
 
 button.btn-info:focus {
 	background-color: #82A6BA;
@@ -85,7 +122,6 @@ button.add-on {
 button.add-on:hover {
 	background-color: #82A6BA !important;
 }
-
 
 .input-append {
 	height: 37px;
@@ -325,14 +361,6 @@ h1, h2, h3, h4, h5, p, a {
 	.destination {
 	    padding-top: 7px;
 	}
-}
-
-/************************
-Hiding Search Bar
-************************/
-
-div.navbar-inner-form {
-	display: none;
 }
 
 /************************

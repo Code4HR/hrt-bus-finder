@@ -476,6 +476,9 @@ $(function(){
 	  return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
 	}
 	
+	var jPM = $.jPanelMenu({direction: 'right'});
+	jPM.on();
+	
 	var DowntownNorfolk = new google.maps.LatLng(36.863794,-76.285608);
 	var App = {
 		ContentView: new ContentView,
