@@ -196,8 +196,48 @@ $(function(){
 			    } else {
 			        busMarker.setMap(this.map);
 			    }
+			    
+			    if(bus.has('location')) {
+			        var infoWindow = new google.maps.InfoWindow({ 
+        				content: this.getInfoWindowMsg(bus) 
+        			});
+        			this.setupInfoWindow(busMarker, infoWindow);
+			    }
+			    
     			this.busMarkers[bus.get('busId')] = busMarker;
 			}
+	    },
+	    
+	    setupInfoWindow: function(marker, info) {
+	        var map = this.map;
+	        google.maps.event.addListener(marker, 'click', function() {
+		        info.open(map, marker);
+		    });
+	    },
+	    
+	    getInfoWindowMsg: function(bus) {
+			var msg = '';
+			msg += 'Bus #' + bus.get('busId') + ' traveling ';
+			msg += bus.get('direction') == 0 ? 'outbound' : 'inbound';
+			
+			var adherence = bus.get('adherence');
+			if (adherence != null) msg += '<br>is ';
+			if (adherence == null) msg += '<br>has no adherence'
+			else if (adherence == 0) msg += 'on time';
+			else if (adherence == 1) msg += '1 minute early';
+			else if (adherence > 0) msg += adherence + ' minutes early';
+			else if (adherence == -1) msg += '1 minute late';
+			else msg += (adherence * -1) + ' minutes late';
+			
+			var date = new Date(Date.parseUtc(bus.get('time')));
+			var timePassed = new Date(new Date().getTime() - date).getTime() / 1000 / 60 | 0;
+
+			msg += '<br>as of ';
+			if (timePassed == 0) msg += 'just now.';
+			else if (timePassed == 1) msg += '1 minute ago.';
+			else msg += timePassed + ' minutes ago.';
+
+			return msg;
 	    },
 	    
 	    moveMarker: function(oldMarker, newMarker) {
