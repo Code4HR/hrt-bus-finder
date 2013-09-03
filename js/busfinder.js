@@ -53,7 +53,7 @@ $(function(){
 		model: Arrival,
 		
 		url: function() {
-			return API_URL + 'stop_times/' + this.stopId + '/';
+			return API_URL + 'stop_times/' + this.stopId;
 		}
 	});
 	
@@ -67,6 +67,24 @@ $(function(){
 		        return API_URL + 'stops/id/' + this.stopIds;
 		    }
 		}
+	});
+	
+	var BusList = Backbone.Collection.extend({
+	    initialize: function(models, options) {
+	        this.routeIds = options.routeIds;
+	    },
+	    
+		url: function() {
+		    var url = API_URL + 'buses/routes';
+		    if(this.routeIds) {
+		        url += '/' + this.routeIds;
+	        }
+			return url;
+		}
+	});
+	
+	var ActiveRoutesList = Backbone.Collection.extend({
+		url: API_URL + 'routes/active'
 	});
 	
 	var StopListView = Backbone.View.extend({
@@ -83,7 +101,6 @@ $(function(){
 		addStop: function(stop) {
 			var stopView = new StopView({model: stop});
 			this.$el.append(stopView.render().$el);
-			console.log(stop);
 		}
 	});
 	
@@ -91,15 +108,13 @@ $(function(){
 		template: _.template($('#stop-template').html()),
 		
 		initialize: function() {
-			this.arrivalViews = [];
-			
 			this.collection = new ArrivalList;
 			this.collection.stopId = this.model.get('stopId');
 			this.collection.on('add', this.addArrival, this);
 			this.collection.on('sync', this.checkForEmpty, this);
 			
 			this.updateArrivalList();
-			setInterval($.proxy(this.updateArrivalList, this), 20000);
+			App.Intervals.push(setInterval($.proxy(this.updateArrivalList, this), 20000));
 		},
 		
 		updateArrivalList: function() {
@@ -124,7 +139,6 @@ $(function(){
 		addArrival: function(arrival) {
 			var arrivalView = new ArrivalView({model: arrival, stop: this.model});
 			this.$('.arrivals .table').append(arrivalView.render().$el);
-			this.arrivalViews.push(arrivalView);
 		}
 	});
 	
@@ -132,12 +146,27 @@ $(function(){
 		initialize: function() {
 			this.map = new google.maps.Map(this.$el[0], {disableDefaultUI: true});
 			this.markers = [];
+			this.busMarkers = {};
+			this.oldBusMarkers = {};
 		},
 	    
 	    clear: function() {
 	        while(this.markers.length) {
 	            this.markers.pop().setMap(null);
             }
+            this.oldBusMarkers = this.busMarkers;
+            this.busMarkers = {};
+            $.each(this.oldBusMarkers, function(key, value) {
+                value.setMap(null);
+            });
+	    },
+	    
+	    createUserMarker: function(location) {
+	        var userMarker = new google.maps.Marker({
+				position: location,
+				map: this.map
+			});
+			this.markers.push(userMarker);
 	    },
 	    
 	    createStopMarker: function(stop) {
@@ -151,17 +180,94 @@ $(function(){
 	    },
 	    
 	    createBusMarker: function(bus) {
-	        if(bus.has('busPosition')) {
-    			var busPosition = new google.maps.LatLng(bus.get('busPosition')[1], bus.get('busPosition')[0]);
-    			var directionStr = bus.get('direction_id') ? 'inbound' : 'outbound';
+	        var location = bus.get('busPosition') || bus.get('location');
+	        var direction = bus.get('direction_id') || bus.get('direction');
+	        if(location) {
+    			var position = new google.maps.LatLng(location[1], location[0]);
+    			var directionStr = direction ? 'inbound' : 'outbound';
     			var icon = './img/bus-' + directionStr + '.png';
     			var busMarker = new google.maps.Marker({
-    				position: busPosition,
-    				map: this.map,
+    				position: position,
     				icon: icon
     			});
-    			this.markers.push(busMarker);
+    			
+    			if(bus.get('busId') in this.oldBusMarkers){
+    			    this.moveMarker(this.oldBusMarkers[bus.get('busId')], busMarker);
+			    } else {
+			        busMarker.setMap(this.map);
+			    }
+			    
+			    if(bus.has('location')) {
+			        var infoWindow = new google.maps.InfoWindow({ 
+        				content: this.getInfoWindowMsg(bus) 
+        			});
+        			this.setupInfoWindow(busMarker, infoWindow);
+			    }
+			    
+    			this.busMarkers[bus.get('busId')] = busMarker;
 			}
+	    },
+	    
+	    setupInfoWindow: function(marker, info) {
+	        var map = this.map;
+	        google.maps.event.addListener(marker, 'click', function() {
+		        info.open(map, marker);
+		    });
+	    },
+	    
+	    getInfoWindowMsg: function(bus) {
+			var msg = '';
+			msg += 'Bus #' + bus.get('busId') + ' traveling ';
+			msg += bus.get('direction') == 0 ? 'outbound' : 'inbound';
+			
+			var adherence = bus.get('adherence');
+			if (adherence != null) msg += '<br>is ';
+			if (adherence == null) msg += '<br>has no adherence'
+			else if (adherence == 0) msg += 'on time';
+			else if (adherence == 1) msg += '1 minute early';
+			else if (adherence > 0) msg += adherence + ' minutes early';
+			else if (adherence == -1) msg += '1 minute late';
+			else msg += (adherence * -1) + ' minutes late';
+			
+			var date = new Date(Date.parseUtc(bus.get('time')));
+			var timePassed = new Date(new Date().getTime() - date).getTime() / 1000 / 60 | 0;
+
+			msg += '<br>as of ';
+			if (timePassed == 0) msg += 'just now.';
+			else if (timePassed == 1) msg += '1 minute ago.';
+			else msg += timePassed + ' minutes ago.';
+
+			return msg;
+	    },
+	    
+	    moveMarker: function(oldMarker, newMarker) {
+	        var frames = 50;
+	        var start = oldMarker.getPosition();
+	        var destination = newMarker.getPosition();
+	        
+	        if(start.lat() == destination.lat() && start.lng() == destination.lng()) {
+	            newMarker.setMap(this.map);
+	            return;
+	        }
+	        
+	        var latStep = (destination.lat() - start.lat()) / frames;
+	        var lngStep = (destination.lng() - start.lng()) / frames;
+	        
+	        newMarker.setPosition(start);
+	        newMarker.setMap(this.map);
+	        
+	        move = function(frame, marker, latS, lngS, dest) {
+	            var curPos = marker.getPosition();
+	            var newPos = new google.maps.LatLng(curPos.lat() + latS, curPos.lng() + lngS);
+	            marker.setPosition(newPos);
+	            if(frame < frames) {
+	                setTimeout(function(){move(frame + 1, marker, latS, lngS, dest);}, 100);
+	            } else {
+	                marker.setPosition(dest);
+	            }
+	        }
+	        
+	        move(1, newMarker, latStep, lngStep, destination);
 	    },
 	    
 	    setBounds: function() {
@@ -169,7 +275,14 @@ $(function(){
 			for(var i=0; i<this.markers.length; i++) {
 			    bounds.extend(this.markers[i].getPosition());
 			}
+			$.each(this.busMarkers, function(key, value) {
+                bounds.extend(value.getPosition());
+            });
 			this.map.fitBounds(bounds);
+	    },
+	    
+	    center: function(location) {
+	        this.map.setCenter(location);
 	    },
 	    
 	    resize: function() {
@@ -190,7 +303,7 @@ $(function(){
 		initialize: function() {
 			this.model.on('change', this.render, this);
 			this.model.on('remove', this.remove, this);
-			setInterval($.proxy(this.updateTime, this), 20000)
+			App.Intervals.push(setInterval($.proxy(this.updateTime, this), 20000));
 		},
 		
 		updateTime: function() {
@@ -282,6 +395,84 @@ $(function(){
 		}
 	});
 	
+	var RouteView = Backbone.View.extend({
+	    id: 'route-view',
+	    
+	    template: _.template($('#route-view-template').html()),
+	    
+	    events: {
+			'change #route': 'routeSelected'
+		},
+		
+	    initialize: function() {
+	        this.firstUpdate = true;
+			
+			this.collection = new BusList({}, {routeIds: this.options.routeIds});
+			this.collection.on('reset', this.addBuses, this);
+			
+			this.activeRoutesList = new ActiveRoutesList();
+			this.activeRoutesList.on('reset', this.render, this);
+			this.activeRoutesList.fetch({reset: true, dataType: 'jsonp'});
+			
+			this.updateBuses();
+			App.Intervals.push(setInterval($.proxy(this.updateBuses, this), 20000));
+		},
+		
+		render: function() {
+		    this.$el.html(this.template({ routes: this.activeRoutesList.toJSON() }));
+		    this.setSelectedRoutes(this.options.routeIds && this.options.routeIds.split('/'));
+		    
+		    App.MapView.$el.height(window.innerHeight - $('.navbar').outerHeight(true) - this.$('select').outerHeight(true) - 10);
+			this.$('.mapcanvas').html(App.MapView.el);
+			this.$('.mapcanvas').show();
+			App.MapView.resize();
+			return this;
+		},
+		
+		addBuses: function() {
+			App.MapView.clear();
+			App.MapView.createUserMarker(DowntownNorfolk);
+			this.collection.each(function(bus){
+			    App.MapView.createBusMarker(bus);
+			});
+			App.MapView.resize();
+			if(this.firstUpdate){
+			    App.MapView.setBounds();
+			    this.firstUpdate = false;
+		    }
+	    },
+		
+		updateBuses: function() {
+			this.collection.fetch({reset: true, dataType: 'jsonp'});
+		},
+		
+		routeSelected: function() {
+		    var routes = '';
+		    var selectedVals = this.$('select').val();
+		    if(selectedVals.length > 0 && selectedVals.indexOf('') == -1) {
+		        routes = selectedVals.join('/');
+		    }
+		    
+			App.Router.navigate('routes/' + routes, {trigger: true});
+		},
+		
+		setSelectedRoutes: function(routes) {
+		    if(routes == null || routes == "") {
+		        this.$('select option')[0].selected = true;
+		        return;
+		    }
+		    
+		    var indexOfEmpty = routes.indexOf('');
+		    if(indexOfEmpty != -1) {
+		        routes.splice(indexOfEmpty, 1);
+		    }
+		    
+		    this.$('select option').each(function(index, option) {
+		        option.selected = routes.indexOf(option.value) != -1;
+		    });
+		}
+	});
+	
 	var ContentView = Backbone.View.extend({
 		el: $(".app-container"),
 		
@@ -296,16 +487,33 @@ $(function(){
 	
 	var Router = Backbone.Router.extend({
 		 routes: {
-			"": "home",
-			"stops/*stopIds": "stops"
+			"": "homeView",
+			"stops/*stopIds": "stopView",
+			"routes/*routeIds": "routeView"
 		 },
 		
-		home: function() {
+		homeView: function() {
+		    this.clearIntervals();
+		    jPM.close();
 			App.ContentView.setSubView(new HomeView);
 		},
 		
-		stops: function(stopIds) {
+		stopView: function(stopIds) {
+		    this.clearIntervals();
+		    jPM.close();
 		    App.ContentView.setSubView(new StopsByIdView({stopIds: stopIds}));
+		},
+		
+		routeView: function(routeIds) {
+		    this.clearIntervals();
+		    jPM.close();
+		    App.ContentView.setSubView(new RouteView({routeIds: routeIds}));
+		},
+		
+		clearIntervals: function() {
+		    while(App.Intervals.length) {
+		        clearInterval(App.Intervals.pop());
+		    }
 		}
 	});
 	
@@ -354,11 +562,15 @@ $(function(){
 	  return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
 	}
 	
+	var jPM = $.jPanelMenu({direction: 'right'});
+	jPM.on();
+	
 	var DowntownNorfolk = new google.maps.LatLng(36.863794,-76.285608);
 	var App = {
 		ContentView: new ContentView,
 		Router: new Router,
-		MapView: new MapView
+		MapView: new MapView,
+		Intervals: []
 	};
 	var root = document.URL.indexOf('/hrt-bus-finder') == -1 ? '/' : '/hrt-bus-finder/';
 	Backbone.history.start({ root: root });
