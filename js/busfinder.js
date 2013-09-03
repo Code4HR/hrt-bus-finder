@@ -454,16 +454,19 @@ $(function(){
 		
 		homeView: function() {
 		    this.clearIntervals();
+		    jPM.close();
 			App.ContentView.setSubView(new HomeView);
 		},
 		
 		stopView: function(stopIds) {
 		    this.clearIntervals();
+		    jPM.close();
 		    App.ContentView.setSubView(new StopsByIdView({stopIds: stopIds}));
 		},
 		
 		routeView: function(routeIds) {
 		    this.clearIntervals();
+		    jPM.close();
 		    App.ContentView.setSubView(new RouteView({routeIds: routeIds}));
 		},
 		
