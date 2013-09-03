@@ -422,7 +422,7 @@ $(function(){
 		    this.$el.html(this.template({ routes: this.activeRoutesList.toJSON() }));
 		    this.setSelectedRoutes(this.options.routeIds && this.options.routeIds.split('/'));
 		    
-		    App.MapView.$el.height(window.innerHeight - 220);
+		    App.MapView.$el.height(window.innerHeight - $('.navbar').outerHeight(true) - this.$('select').outerHeight(true) - 10);
 			this.$('.mapcanvas').html(App.MapView.el);
 			this.$('.mapcanvas').show();
 			App.MapView.resize();
