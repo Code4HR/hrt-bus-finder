@@ -163,6 +163,7 @@ $(function(){
 			
 			this.map = new google.maps.Map(this.$('.mapcanvas')[0], {
 				zoom: 15,
+				draggable: false,
 				mapTypeControl: false,
 				navigationControlOptions: { style: google.maps.NavigationControlStyle.SMALL },
 				mapTypeId: google.maps.MapTypeId.ROADMAP
