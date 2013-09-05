@@ -3,7 +3,7 @@ HRT-BUS-FINDER
 
 Introduction
 ---------------
-
+HRTB.US uses the GTFS Feed from HRT to return the current active buses in Hampton Roads. The application can be used on your smartphone or computer, anytime, anywhere. 	
 
 Quick Start
 -------------
