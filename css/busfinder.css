@@ -434,6 +434,8 @@ div#about {
 	position: fixed;
 	bottom: 0;
 	z-index: 100;
+	margin-left: 0;
+
 }
 
 div#about-trigger {
@@ -446,6 +448,7 @@ div#about-trigger {
 	background-color: white;
 	width: 70px;
 	text-align: center;
+	z-index:1;
 }
 
 div#about-text {
@@ -453,6 +456,7 @@ div#about-text {
 	margin: 0 auto;
 	padding: 1em 2em;
 	background-color: white;
+	z-index:2;
 }
 
 div#about-text p {
