@@ -290,7 +290,10 @@ $(function(){
 	    },
 	    
 	    setDraggable: function(flag) {
-	        this.map.setOptions({draggable: flag, scrollwheel: flag});
+	        this.map.setOptions({
+	            draggable: flag, 
+	            scrollwheel: flag,
+	            disableDoubleClickZoom: !flag});
 	    }
     });
 	
