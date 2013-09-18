@@ -287,6 +287,10 @@ $(function(){
 	    
 	    resize: function() {
 			google.maps.event.trigger(this.map, 'resize');
+	    },
+	    
+	    setDraggable: function(flag) {
+	        this.map.setOptions({draggable: flag, scrollwheel: flag});
 	    }
     });
 	
@@ -496,18 +500,21 @@ $(function(){
 		    this.clearIntervals();
 		    jPM.close();
 			App.ContentView.setSubView(new HomeView);
+			App.MapView.setDraggable(false);
 		},
 		
 		stopView: function(stopIds) {
 		    this.clearIntervals();
 		    jPM.close();
 		    App.ContentView.setSubView(new StopsByIdView({stopIds: stopIds}));
+		    App.MapView.setDraggable(false);
 		},
 		
 		routeView: function(routeIds) {
 		    this.clearIntervals();
 		    jPM.close();
 		    App.ContentView.setSubView(new RouteView({routeIds: routeIds}));
+		    App.MapView.setDraggable(true);
 		},
 		
 		clearIntervals: function() {
