@@ -180,6 +180,7 @@ h1, h2, h3, h4, h5, p, a {
 .schedule {
 	border-bottom: 1px dotted #aaa;
 	padding: 10px;
+	padding-top: 0px;
 	padding-bottom: 0;
 	background-position: 50% 95%;
 	background-repeat: no-repeat;
@@ -330,6 +331,11 @@ h1, h2, h3, h4, h5, p, a {
 	
 	.schedule > .row-fluid > div {
 		position: absolute;
+	}
+
+	.destination > p:nth-child(2) {
+		font-size: 12px;
+		font-style: italic;
 	}
 	
 	.quarter {
