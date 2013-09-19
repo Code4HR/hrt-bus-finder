@@ -255,6 +255,10 @@ h1, h2, h3, h4, h5, p, a {
 	border: 3px solid #DDC6AA;
 }
 
+.imminent {
+	box-shadow: 0em 0em 1em black;
+}
+
 .destination {
 	font-size: 1em;
 	text-align: center;
