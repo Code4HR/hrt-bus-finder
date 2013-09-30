@@ -32,8 +32,7 @@
     padding: 0.5em 5%;
     border-bottom: 3px solid #eed9bf;
     text-decoration: none;
-    color: white;
-    text-shadow: 1px 1px #1a1a1a;
+    color: #555;
     letter-spacing: 1px;
     font-size: 16px;
     line-height: 2em;
@@ -181,6 +180,7 @@ h1, h2, h3, h4, h5, p, a {
 .schedule {
 	border-bottom: 1px dotted #aaa;
 	padding: 10px;
+	padding-top: 6px;
 	padding-bottom: 0;
 	background-position: 50% 95%;
 	background-repeat: no-repeat;
@@ -256,6 +256,10 @@ h1, h2, h3, h4, h5, p, a {
 	border: 3px solid #DDC6AA;
 }
 
+.imminent {
+	box-shadow: 0em 0em 1em black;
+}
+
 .destination {
 	font-size: 1em;
 	text-align: center;
@@ -285,6 +289,7 @@ h1, h2, h3, h4, h5, p, a {
 	color: #444;
 	font-style: italic;
 	line-height: 2rem;
+	padding-bottom: 1.25em;
 }
 
 .extended-info strong {
@@ -327,6 +332,11 @@ h1, h2, h3, h4, h5, p, a {
 	
 	.schedule > .row-fluid > div {
 		position: absolute;
+	}
+
+	.destination > p:nth-child(2) {
+		font-size: 12px;
+		font-style: italic;
 	}
 	
 	.quarter {
@@ -424,43 +434,37 @@ div#exit {
 }
 
 div#about {
+	background: rgba(255,255,255, .85);
 	position: fixed;
 	bottom: 0;
 	z-index: 100;
 	margin-left: 0;
-
+	box-shadow: 0 0 .5em rgba(0,0,0,.125);
 }
 
 div#about-trigger {
-	font-size: 1.125em;
-	font-weight: 700;
-	color: #DB5051;
-	line-height: 35px;
-	position: relative;
-	height: 35px;
-	background-color: white;
-	width: 70px;
-	text-align: center;
-	z-index:1;
+	font-size: 1.5em;
+	padding: .125em 0;
+	border-top: 2px solid #A7BFCC;
+
+}
+
+div#about-trigger span {
+	background-color: #A7BFCC;
+	color: white;
+	padding: 0 .5em;
 }
 
 div#about-text {
+	padding: 1em;
 	display: none;
-	margin: 0 auto;
-	padding: 1em 2em;
-	background-color: white;
-	z-index:2;
 }
 
 div#about-text p {
-	margin-bottom: .5em;
-	font-size: 90%;
 	line-height: 1.25em;
-	text-align: justify;	
 }
 
 div#about-text a {
-	font-weight: bold;
 	color: #DB5051;
 }
 
