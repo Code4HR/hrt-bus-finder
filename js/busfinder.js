@@ -115,7 +115,7 @@ $(function(){
 			this.collection = new ArrivalList;
 			this.collection.stopId = this.model.get('stopId');
 			this.collection.on('add', this.addArrival, this);
-			this.collection.on('sort', this.addAllArrivals, this);
+			this.collection.on('sort', this.checkOrder, this);
 			this.collection.on('sync', this.checkForEmpty, this);
 			
 			this.updateArrivalList();
@@ -139,6 +139,21 @@ $(function(){
 						text: 'No scheduled stops'
 					}));
 			}
+		},
+		
+		checkOrder: function() {
+		    var dom = this.$('.arrivals .table .schedule');
+		    if(dom.length != this.collection.length) {
+		        this.addAllArrivals();
+		        return;
+		    }
+		    
+		    for(var i=0; i<this.collection.length; i++) {
+		        if($(dom[i]).attr('data-id') != this.collection.at(i).id) {
+		            this.addAllArrivals();
+    		        return;
+		        }
+		    }
 		},
 		
 		addAllArrivals: function() {
@@ -347,6 +362,8 @@ $(function(){
 				busId: this.model.get('busId'),
 				lastUpdate: this.model.lastCheckinTimeDescription()
 			}));
+			
+			this.$el.attr('data-id', this.model.id);
 			
 			if(mapShowing) {
 			    this.showMap(null);
