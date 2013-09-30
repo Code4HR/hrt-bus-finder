@@ -52,6 +52,10 @@ $(function(){
 	var ArrivalList = Backbone.Collection.extend({ 
 		model: Arrival,
 		
+		comparator: function(arrival) {
+		    return arrival.minutesFromNow();
+        },
+        
 		url: function() {
 			return API_URL + 'stop_times/' + this.stopId;
 		}
@@ -111,6 +115,7 @@ $(function(){
 			this.collection = new ArrivalList;
 			this.collection.stopId = this.model.get('stopId');
 			this.collection.on('add', this.addArrival, this);
+			this.collection.on('sort', this.checkOrder, this);
 			this.collection.on('sync', this.checkForEmpty, this);
 			
 			this.updateArrivalList();
@@ -134,6 +139,26 @@ $(function(){
 						text: 'No scheduled stops'
 					}));
 			}
+		},
+		
+		checkOrder: function() {
+		    var dom = this.$('.arrivals .table .schedule');
+		    if(dom.length != this.collection.length) {
+		        this.addAllArrivals();
+		        return;
+		    }
+		    
+		    for(var i=0; i<this.collection.length; i++) {
+		        if($(dom[i]).attr('data-id') != this.collection.at(i).id) {
+		            this.addAllArrivals();
+    		        return;
+		        }
+		    }
+		},
+		
+		addAllArrivals: function() {
+		    this.$('.arrivals .table').empty();
+		    this.collection.each(this.addArrival, this);
 		},
 		
 		addArrival: function(arrival) {
@@ -314,26 +339,39 @@ $(function(){
 		},
 		
 		updateTime: function() {
-		    this.$('.timeframe').html(this.model.minutesFromNow());
+		    this.$('.timeframe').html(this.minutesFromNowToString(this.model.minutesFromNow()));
 		    this.$('.lastUpdate').html(this.model.lastCheckinTimeDescription());
+		},
+		
+		minutesFromNowToString: function(minutesFromNow) {
+		    if(minutesFromNow == 0) return 'Now';
+		    if(minutesFromNow < 0) return 'Gone';
+		    return minutesFromNow;
 		},
 		
 		render: function() {
 		    var mapShowing = this.$('.mapcanvas').is(':visible');
+		    var minutesToArrival = this.model.minutesFromNow();
 		    
 			this.$el.html(this.template({
 				routeId: this.model.get('route_id'),
 				destination: this.model.get('destination'),
 				arriveTime: this.model.localTime(),
 				adherence: this.model.adherenceDescription(),
-				arriveMinutes: this.model.minutesFromNow(),
+				arriveMinutes: this.minutesFromNowToString(minutesToArrival),
 				busId: this.model.get('busId'),
 				lastUpdate: this.model.lastCheckinTimeDescription()
 			}));
 			
+			this.$el.attr('data-id', this.model.id);
+			
 			if(mapShowing) {
 			    this.showMap(null);
 			}
+			
+			if(minutesToArrival < 0) {
+		        this.$el.addClass('departed');
+		    }
 		    
 			return this;
 		},

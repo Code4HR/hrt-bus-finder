@@ -252,8 +252,7 @@ h1, h2, h3, h4, h5, p, a {
 }
 
 .departed {
-	background-color: transparent;
-	border: 3px solid #DDC6AA;
+	opacity: 0.75;
 }
 
 .imminent {
