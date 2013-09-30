@@ -492,13 +492,7 @@ $(function(){
 		},
 		
 		routeSelected: function() {
-		    var routes = '';
-		    var selectedVals = this.$('select').val();
-		    if(selectedVals.length > 0 && selectedVals.indexOf('') == -1) {
-		        routes = selectedVals.join('/');
-		    }
-		    
-			App.Router.navigate('routes/' + routes, {trigger: true});
+			App.Router.navigate('routes/' + this.$('select option:selected').val(), {trigger: true});
 		},
 		
 		setSelectedRoutes: function(routes) {
