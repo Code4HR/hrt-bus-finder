@@ -324,8 +324,14 @@ $(function(){
 		},
 		
 		updateTime: function() {
-		    this.$('.timeframe').html(this.model.minutesFromNow());
+		    this.$('.timeframe').html(this.minutesFromNowToString(this.model.minutesFromNow()));
 		    this.$('.lastUpdate').html(this.model.lastCheckinTimeDescription());
+		},
+		
+		minutesFromNowToString: function(minutesFromNow) {
+		    if(minutesFromNow == 0) return 'Now';
+		    if(minutesFromNow < 0) return 'Gone';
+		    return minutesFromNow;
 		},
 		
 		render: function() {
@@ -337,7 +343,7 @@ $(function(){
 				destination: this.model.get('destination'),
 				arriveTime: this.model.localTime(),
 				adherence: this.model.adherenceDescription(),
-				arriveMinutes: minutesToArrival,
+				arriveMinutes: this.minutesFromNowToString(minutesToArrival),
 				busId: this.model.get('busId'),
 				lastUpdate: this.model.lastCheckinTimeDescription()
 			}));
