@@ -52,6 +52,10 @@ $(function(){
 	var ArrivalList = Backbone.Collection.extend({ 
 		model: Arrival,
 		
+		comparator: function(arrival) {
+		    return arrival.minutesFromNow();
+        },
+        
 		url: function() {
 			return API_URL + 'stop_times/' + this.stopId;
 		}
@@ -111,6 +115,7 @@ $(function(){
 			this.collection = new ArrivalList;
 			this.collection.stopId = this.model.get('stopId');
 			this.collection.on('add', this.addArrival, this);
+			this.collection.on('sort', this.addAllArrivals, this);
 			this.collection.on('sync', this.checkForEmpty, this);
 			
 			this.updateArrivalList();
@@ -134,6 +139,11 @@ $(function(){
 						text: 'No scheduled stops'
 					}));
 			}
+		},
+		
+		addAllArrivals: function() {
+		    this.$('.arrivals .table').empty();
+		    this.collection.each(this.addArrival, this);
 		},
 		
 		addArrival: function(arrival) {
