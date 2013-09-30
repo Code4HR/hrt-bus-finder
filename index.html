@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title>HRT Bus Finder</title>
-    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<script type="text/javascript">
 
 	  var _gaq = _gaq || [];
@@ -110,7 +110,7 @@
 	</script>
 	
 	<script type="text/template" id="route-view-template">
-		<select multiple id="route">
+		<select id="route">
 			<option selected="selected" value="">All Routes</option>
 			<% _.each(routes, function(route) { %>
 				<option value="<%= route.route_id %>"><%= route.route_short_name %> - <%= route.route_long_name %></option>
