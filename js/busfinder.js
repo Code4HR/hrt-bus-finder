@@ -330,13 +330,14 @@ $(function(){
 		
 		render: function() {
 		    var mapShowing = this.$('.mapcanvas').is(':visible');
+		    var minutesToArrival = this.model.minutesFromNow();
 		    
 			this.$el.html(this.template({
 				routeId: this.model.get('route_id'),
 				destination: this.model.get('destination'),
 				arriveTime: this.model.localTime(),
 				adherence: this.model.adherenceDescription(),
-				arriveMinutes: this.model.minutesFromNow(),
+				arriveMinutes: minutesToArrival,
 				busId: this.model.get('busId'),
 				lastUpdate: this.model.lastCheckinTimeDescription()
 			}));
@@ -344,6 +345,10 @@ $(function(){
 			if(mapShowing) {
 			    this.showMap(null);
 			}
+			
+			if(minutesToArrival < 0) {
+		        this.$el.addClass('departed');
+		    }
 		    
 			return this;
 		},
