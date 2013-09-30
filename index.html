@@ -51,13 +51,11 @@
 
 	<div class="container">
 		<div class="span6" id="about">
-			<div id="about-trigger">
-				About
-			</div>	
+			<div id="about-trigger"><span>About</span></div>
 			<div id="about-text">
-			<p>HRT Bus Finder was developed by volunteers from <a href="http://codeforhamptonroads.org">Code for Hampton Roads</a> in cooperation with <a href="http://gohrt.com">Hampton Roads Transit.</a></p>
-			<p>For help using this app or to answer any questions, contact us using <a href="http://hrtbus.uservoice.com">UserVoice</a>.
-			<p>We've worked hard to make the data delivered by HRT Bus Finder as accurate as possible, but we can't be held responsible for any inaccurate information.</p>
+				<p>HRT Bus Finder was developed by volunteers from <a href="http://codeforhamptonroads.org">Code for Hampton Roads</a> in cooperation with <a href="http://gohrt.com">Hampton Roads Transit.</a></p>
+				<p>For help using this app or to answer any questions, contact us using <a href="http://hrtbus.uservoice.com">UserVoice</a>.
+				<p>We've worked hard to make the data delivered by HRT Bus Finder as accurate as possible, but we can't be held responsible for any inaccurate information.</p>
 			</div>
 		</div>
 	</div>
@@ -97,7 +95,6 @@
 			<div class="span2 route quarter"><%= routeId %></div>
 			<div class="span8 destination half">
 				<p><%= destination %></p>
-				<p><%= arriveTime %> - <%= adherence %></p>
 			</div>
 			<div class="span2 timeframe quarter"><%= arriveMinutes %></div>
 		</div>
@@ -105,6 +102,7 @@
 		<div class="mapcanvas"></div>
 		<div class="extended-info" style="display:none;">
 			<span>Location of <strong>Bus <%= busId %></strong> as of <strong><span class='lastUpdate'><%= lastUpdate %></span></strong>.</span>
+			<p class="arrival-time">Scheduled Arrival: <strong><%= arriveTime %></strong> - <%= adherence %></p>
 		</div>
 		<div class="arrow">
 			<img src="img/arrow-down.png"/>
@@ -122,6 +120,11 @@
 	</script>
 
 	<script>
+
+		$(document).ready(function() {
+			$('#about-text').hide();		
+		});
+
 		$('#about-trigger').click(function() {
 			$('#about-text').slideToggle(function(){
 				$('#exit').fadeToggle("fast");
