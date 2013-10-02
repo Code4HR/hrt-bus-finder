@@ -370,7 +370,7 @@ $(function(){
 			}
 			
 			if(minutesToArrival < 0) {
-		        this.$el.addClass('departed');
+		        this.$el.find('.timeframe').addClass('departed');
 		    }
 		    
 			return this;
