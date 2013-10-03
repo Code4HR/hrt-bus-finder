@@ -384,7 +384,11 @@ $(function(){
 			$('.arrow > img').attr('src', './img/arrow-down.png');
 				
 			if(!mapShowing) {
-				var mapHeight = window.innerHeight - 228; //map height is height of screen less the height of about bar .schedule
+				var scheduleHeight = $('.schedule').height(),
+					headerHeight = $('.navbar').height(),
+					stopHeight = $('.stop-name').height(),
+					headHeight = $('.head-label').height();
+				var mapHeight = window.innerHeight - (headerHeight + scheduleHeight + stopHeight + headHeight); //map height is height of screen less the height of about bar .schedule
 				App.MapView.clear();
 				App.MapView.createStopMarker(this.options.stop);
     			App.MapView.createBusMarker(this.model);

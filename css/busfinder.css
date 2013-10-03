@@ -307,7 +307,7 @@ h1, h2, h3, h4, h5, p, a {
 @media (max-width: 767px) {
 	body {
 		padding: 0px;
-		padding-top: 60px;
+		
 	}
 	
 	.navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {

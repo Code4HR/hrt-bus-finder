@@ -116,28 +116,6 @@
 
 	<script>
 
-		$(document).ready(function() {
-			$('#about-text').hide();		
-		});
-
-		$('#about-trigger').click(function() {
-			$('#about-text').slideToggle(function(){
-				$('#exit').fadeToggle("fast");
-				$('#mask').fadeToggle("fast");
-			});
-		});
-
-		$("#mask").click(function() {
-			$('#exit').fadeToggle("fast");
-			$("#about-text").slideToggle();
-			$('#mask').fadeToggle("fast");
-		});
-		$('.btn-info').click(function(){
-			$('#about-text').slideUp(function(){
-				$('#exit').fadeOut();
-			});
-		});
-
 	</script>
 </body>
 </html>
