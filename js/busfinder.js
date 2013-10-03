@@ -546,7 +546,7 @@ $(function(){
 		 routes: {
 			"": "homeView",
 			"stops/*stopIds": "stopView",
-			"routes/*routeIds": "routeView"
+			"routes(/*routeIds)": "routeView",
 		 },
 		
 		homeView: function() {
