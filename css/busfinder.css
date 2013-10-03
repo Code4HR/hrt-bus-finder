@@ -83,7 +83,7 @@ input {
 	border-right: none !important;
 }
 
-button.btn-info {
+.navbar button.btn-info {
 	background-image: none;
 	background-color: #A7BFCC;
 	border: 2px solid white;
@@ -93,7 +93,7 @@ button.btn-info {
 	height: 36px;
 }
 
-button.btn-info:focus {
+.navbar button.btn-info:focus {
 	background-color: #82A6BA;
 }
 
