@@ -527,6 +527,12 @@ $(function(){
 	var ContentView = Backbone.View.extend({
 		el: $(".app-container"),
 		
+		initialize: function() {
+		    $('#jPanelMenu-menu').click(function() {
+		        jPM.close();
+		    });
+		},
+		
 		setSubView: function(subView) {
 			this.subView && this.subView.remove();
 			this.subView = subView;
@@ -545,21 +551,18 @@ $(function(){
 		
 		homeView: function() {
 		    this.clearIntervals();
-		    jPM.close();
 			App.ContentView.setSubView(new HomeView);
 			App.MapView.setDraggable(false);
 		},
 		
 		stopView: function(stopIds) {
 		    this.clearIntervals();
-		    jPM.close();
 		    App.ContentView.setSubView(new StopsByIdView({stopIds: stopIds}));
 		    App.MapView.setDraggable(false);
 		},
 		
 		routeView: function(routeIds) {
 		    this.clearIntervals();
-		    jPM.close();
 		    App.ContentView.setSubView(new RouteView({routeIds: routeIds}));
 		    App.MapView.setDraggable(true);
 		},
