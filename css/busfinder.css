@@ -246,7 +246,7 @@ h1, h2, h3, h4, h5, p, a {
 	background-color: #A7BFCC;
 	font-weight: 700;
 }
-
+.
 .timeframe {
 	background-color: #A7BFCC;
 }
@@ -261,6 +261,10 @@ h1, h2, h3, h4, h5, p, a {
 
 .imminent {
 	background: #DB5051;
+}
+
+.enroute {
+	background: #A7BFCC;
 }
 
 .destination {
@@ -288,7 +292,9 @@ h1, h2, h3, h4, h5, p, a {
 }
 
 .extended-info {
-	background-color: #efefef;
+	border-left: #dfdfdf;
+	border-right: #dfdfdf;
+	background-color: rgba(255,255,255, .25);
 	color: #444;
 	font-style: italic;
 	line-height: 2rem;
