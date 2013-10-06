@@ -24,7 +24,7 @@ $(function(){
 			if(!this.has('busAdherence'))
 		        return 'scheduled';
 		    
-		    var adherence = this.get('busAdherence');
+		    var adherence = tffhis.get('busAdherence');
 		    if(adherence > 0) 
     		    return adherence + ' min early';
 			if(adherence < 0)
@@ -370,7 +370,7 @@ $(function(){
 			}
 			
 			if(minutesToArrival < 0) {
-		        this.$el.find('.timeframe').addClass('departed');
+		        this.$('.timeframe').addClass('departed');
 		    }
 		    
 			return this;
@@ -384,11 +384,11 @@ $(function(){
 			$('.arrow > img').attr('src', './img/arrow-down.png');
 				
 			if(!mapShowing) {
-				var scheduleHeight = $('.schedule').height(),
-					headerHeight = $('.navbar').height(),
-					stopHeight = $('.stop-name').height(),
-					headHeight = $('.head-label').height();
-				var mapHeight = window.innerHeight - (headerHeight + scheduleHeight + stopHeight + headHeight); //map height is height of screen less the height of about bar .schedule
+				var scheduleHeight = $('.schedule').height();
+				var	headerHeight = $('.navbar').height();
+				var	stopHeight = $('.stop-name').height();
+				var	headHeight = $('.head-label').height();
+				var mapHeight = window.innerHeight - (headerHeight + scheduleHeight + stopHeight + headHeight);
 				App.MapView.clear();
 				App.MapView.createStopMarker(this.options.stop);
     			App.MapView.createBusMarker(this.model);
