@@ -17,7 +17,7 @@ $(function(){
 			}
 			
 			var arriveTimeFromNow = new Date(arriveTime - new Date().getTime());
-			return (arriveTimeFromNow.getTime() / 1000 / 60 | 0) + 1;
+			return (arriveTimeFromNow.getTime() / 1000 / 60 | 0);
 		},
 		
 		adherenceDescription: function() {
