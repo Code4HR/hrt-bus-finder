@@ -17,7 +17,7 @@ $(function(){
 			}
 			
 			var arriveTimeFromNow = new Date(arriveTime - new Date().getTime());
-			return (arriveTimeFromNow.getTime() / 1000 / 60 | 0) + 1;
+			return (arriveTimeFromNow.getTime() / 1000 / 60 | 0);
 		},
 		
 		adherenceDescription: function() {
@@ -339,8 +339,19 @@ $(function(){
 		},
 		
 		updateTime: function() {
-		    this.$('.timeframe').html(this.minutesFromNowToString(this.model.minutesFromNow()));
+		    var minutesToArrival = this.model.minutesFromNow();
+		    
+		    this.$('.timeframe').html(this.minutesFromNowToString(minutesToArrival));
 		    this.$('.lastUpdate').html(this.model.lastCheckinTimeDescription());
+		    this.$('.timeframe').removeClass('departed imminent enroute');
+		    
+		    if(minutesToArrival < 0) {
+		        this.$('.timeframe').addClass('departed');
+		    } else if (minutesToArrival >= 0 && minutesToArrival <= 5) {
+		    	this.$('.timeframe').addClass('imminent');
+		    } else {
+		    	this.$('.timeframe').addClass('enroute');
+		    }
 		},
 		
 		minutesFromNowToString: function(minutesFromNow) {
@@ -363,19 +374,12 @@ $(function(){
 				lastUpdate: this.model.lastCheckinTimeDescription()
 			}));
 			
+			this.updateTime();
 			this.$el.attr('data-id', this.model.id);
 			
 			if(mapShowing) {
 			    this.showMap(null);
 			}
-			
-			if(minutesToArrival <= 0) {
-		        this.$('.timeframe').addClass('departed');
-		    } else if (minutesToArrival > 0 && minutesToArrival <= 5) {
-		    	this.$('.timeframe').addClass('imminent');
-		    } else {
-		    	this.$('.timeframe').addClass('enroute');
-		    }
 		    
 			return this;
 		},
