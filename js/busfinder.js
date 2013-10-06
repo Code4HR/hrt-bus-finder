@@ -369,8 +369,12 @@ $(function(){
 			    this.showMap(null);
 			}
 			
-			if(minutesToArrival < 0) {
-		        this.$el.addClass('departed');
+			if(minutesToArrival <= 0) {
+		        this.$('.timeframe').addClass('departed');
+		    } else if (minutesToArrival > 0 && minutesToArrival <= 5) {
+		    	this.$('.timeframe').addClass('imminent');
+		    } else {
+		    	this.$('.timeframe').addClass('enroute');
 		    }
 		    
 			return this;
@@ -384,7 +388,11 @@ $(function(){
 			$('.arrow > img').attr('src', './img/arrow-down.png');
 				
 			if(!mapShowing) {
-				var mapHeight = window.innerHeight - 228; //map height is height of screen less the height of about bar .schedule
+				var scheduleHeight = $('.schedule').height();
+				var	headerHeight = $('.navbar').height();
+				var	stopHeight = $('.stop-name').height();
+				var	headHeight = $('.head-label').height();
+				var mapHeight = window.innerHeight - (headerHeight + scheduleHeight + stopHeight + headHeight);
 				App.MapView.clear();
 				App.MapView.createStopMarker(this.options.stop);
     			App.MapView.createBusMarker(this.model);
