@@ -371,6 +371,8 @@ $(function(){
 			
 			if(minutesToArrival < 0) {
 		        this.$('.timeframe').addClass('departed');
+		    } else if (minutesToArrival > 0 && minutesToArrival <= 5) {
+		    	this.$('.timeframe').addClass('imminent');
 		    }
 		    
 			return this;
