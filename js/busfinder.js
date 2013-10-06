@@ -24,7 +24,7 @@ $(function(){
 			if(!this.has('busAdherence'))
 		        return 'scheduled';
 		    
-		    var adherence = tffhis.get('busAdherence');
+		    var adherence = this.get('busAdherence');
 		    if(adherence > 0) 
     		    return adherence + ' min early';
 			if(adherence < 0)
@@ -369,10 +369,12 @@ $(function(){
 			    this.showMap(null);
 			}
 			
-			if(minutesToArrival < 0) {
+			if(minutesToArrival <= 0) {
 		        this.$('.timeframe').addClass('departed');
 		    } else if (minutesToArrival > 0 && minutesToArrival <= 5) {
 		    	this.$('.timeframe').addClass('imminent');
+		    } else {
+		    	this.$('.timeframe').addClass('enroute');
 		    }
 		    
 			return this;
