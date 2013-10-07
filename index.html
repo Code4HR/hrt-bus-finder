@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
     <title>HRT Bus Finder</title>
@@ -111,6 +111,25 @@
 				<option value="<%= route.route_id %>"><%= route.route_short_name %> - <%= route.route_long_name %></option>
 			<% }); %>
 		</select>
+		<div class="mapcanvas"></div>
+	</script>
+	
+	<script type="text/template" id="find-stops-view-template">
+	    <div id="find-options" style="height: 100%">
+	        <form class="form-inline">
+    	        <input id="intersection" type="text" placeholder="Intersection" style="height: 100%">
+                <select id="city">
+                    <option>Chesapeake</option>
+                    <option>Hampton</option>
+                    <option>Newport News</option>
+                    <option>Norfolk</option>
+                    <option>Portsmouth</option>
+                    <option>Virginia Beach</option>
+                </select>
+                <button id="search" class="btn btn-primary">Search</button>
+                <button id="locate" class="btn btn-info">Current Location</button>
+            </form>
+	    </div>
 		<div class="mapcanvas"></div>
 	</script>
 
