@@ -4,12 +4,6 @@
 	background-image: url("../img/ps_neutral.png");
 }
 
-@media (max-width: 979px) {
-	.app-container {
-		margin-top: 0px;
-	}
-}
-
 .jPanelMenu-panel {
     background-image: url("../img/ps_neutral.png") !important;
 }
