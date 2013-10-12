@@ -757,6 +757,11 @@ $(function(){
 		MapView: new MapView,
 		Intervals: []
 	};
+	
+	App.Router.on('route', function() {
+	    _gaq.push(['_trackPageview', location.pathname + location.hash]);
+	});
+	
 	var root = document.URL.indexOf('/hrt-bus-finder') == -1 ? '/' : '/hrt-bus-finder/';
 	Backbone.history.start({ root: root });
 });
