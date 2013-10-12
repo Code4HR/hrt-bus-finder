@@ -370,6 +370,12 @@ $(function(){
 			'click .arrow': 'showMap'
 		},
 		
+		routeType: {
+		    '0': 'light-rail',
+		    '3': 'bus',
+		    '4': 'ferry'
+		},
+		
 		initialize: function() {
 			this.model.on('change', this.render, this);
 			this.model.on('remove', this.remove, this);
@@ -414,6 +420,7 @@ $(function(){
 			
 			this.updateTime();
 			this.$el.attr('data-id', this.model.id);
+			this.$el.addClass(this.routeType[this.model.get('routeType')] + '-route');
 			
 			if(mapShowing) {
 			    this.showMap(null);
