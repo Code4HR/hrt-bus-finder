@@ -481,4 +481,16 @@ Modal Disclaimer
 	text-shadow: none;
 }
 
-	
+/*********************
+Different Transit Types
+*********************/
+
+.light-rail-route {
+	background: url(../img/light-rail.png) 30% 5px no-repeat;
+}
+
+.ferry-route {
+	background: url(../img/ferry.png) 30% 5px no-repeat;
+}
+
+
