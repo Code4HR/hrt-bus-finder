@@ -199,7 +199,7 @@ h1, h2, h3, h4, h5, p, a {
 
 .head-label > div > p {
 	color: white;
-	line-height: 40px;
+	line-height: 16px;
 }
 
 #stops {
@@ -320,7 +320,7 @@ h1, h2, h3, h4, h5, p, a {
 	}
 	
 	.head-label {
-		height: 40px;
+		height: 25px;
 	}
 	
 	.head-label > div {
@@ -444,4 +444,18 @@ map canvas
 .mapcanvas {
 	display: none;
 	width: 100%;
+}
+
+/*********************
+Modal Disclaimer
+*********************/
+
+#disclaimer h3 {
+	color: #DB5051;
+	text-align: center;
+	font-weight: 300;
+}
+
+#disclaimer p {
+	line-height: 1.1em;
 }
