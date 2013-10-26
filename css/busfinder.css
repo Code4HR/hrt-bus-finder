@@ -379,7 +379,7 @@ Loading Message
 #loading {
 	z-index: -5;
 	display: block;
-	position: absolute;
+	position: fixed;
 	top: 40%;
 	width: 100%;
 }
@@ -401,15 +401,6 @@ Loading Message
 About Page 
 ************************/
 
-
-div#mask {
-	position: absolute;
-	display: none;
-	height: 100%;
-	width: 100%;
-	z-index: 2;
-	
-}
 
 li#about {
 	padding: 1em;
