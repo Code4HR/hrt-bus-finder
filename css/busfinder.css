@@ -450,8 +450,12 @@ map canvas
 Modal Disclaimer
 *********************/
 
+#disclaimer {
+	border-radius: 0px;
+}
+
 #disclaimer h3 {
-	color: #DB5051;
+	color: white;
 	text-align: center;
 	font-weight: 300;
 }
@@ -459,3 +463,22 @@ Modal Disclaimer
 #disclaimer p {
 	line-height: 1.1em;
 }
+
+#disclaimer .modal-header {
+	background: #A7BFCC;
+}
+
+#disclaimer .modal-footer {
+	background: #EEDFCC;
+	border-top: none;
+}
+
+#disclaimer .modal-footer .btn {
+	background: #DB5051;
+	border-radius: 2px;
+	border: 2px solid white;
+	color: white;
+	text-shadow: none;
+}
+
+	
