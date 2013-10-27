@@ -25,10 +25,27 @@
 	<link href="./css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="./css/busfinder.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	<link rel="apple-touch-icon" href="./img/favicon.png">
+	<link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico" />
 
 </head>
 <body>
-	<div id="mask"></div>
+	
+	<div id="disclaimer" class="modal fade in">
+		<div class="modal-header">
+			<h3>Disclaimer</h3>
+		</div>
+		<div class="modal-body">
+			<p>Hampton Roads Transit (HRT) is providing real time data contained [in this app] on an experimental basis. HRT cannot be held responsible for the accuracy of this data. Any applications using this data are not made by HRT, and HRT does not sell or license the apps. They are written by third parties unless otherwise noted.
+			HRT shall not be held responsible for the content of third party websites or any issue arising from the use of third party applications. HRT neither endorses any third party products that use this data nor makes any guarantees or representations as to accuracy or reliability. Proceed with care and understand any usage charges that may apply to you. HRT reserves the right to remove/modify this real time data listing without notice. </p>
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn" data-dismiss="modal">I accept.</a>
+		</div>
+	</div>
+
+	<div class="modal-backdrop fade in"></div>
+
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
@@ -43,7 +60,6 @@
         					<h3>About</h3>
         					<p>HRT Bus Finder was developed by volunteers from <a href="http://codeforhamptonroads.org">Code for Hampton Roads</a> in cooperation with <a href="http://gohrt.com">Hampton Roads Transit.</a></p>
 							<p>For help using this app or to answer any questions, contact us using <a href="http://hrtbus.uservoice.com">UserVoice</a>.</p>
-							<p>We've worked hard to make the data delivered by HRT Bus Finder as accurate as possible, but we can't be held responsible for any inaccurate information.</p>
         				</li>
         			</ul>
         		</nav>
@@ -135,7 +151,14 @@
 	</script>
 
 	<script>
+		$(function ()    
+			{ $("#disclaimer").modal();    
+		}); 
 
+		$('#disclaimer').find('a').click(function() {
+			$('#disclaimer').fadeOut('fast');
+			$('.modal-backdrop').fadeOut('fast');
+		});
 	</script>
 </body>
 </html>

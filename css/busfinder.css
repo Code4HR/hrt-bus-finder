@@ -43,7 +43,6 @@ ul, ol, dd {
 }
 
 .navbar {
-	box-shadow: 0px 1px 10px rgba(0, 0, 0, .5);
 	position: fixed;
 }	
 
@@ -199,7 +198,7 @@ h1, h2, h3, h4, h5, p, a {
 
 .head-label > div > p {
 	color: white;
-	line-height: 40px;
+	line-height: 16px;
 }
 
 #stops {
@@ -249,8 +248,8 @@ h1, h2, h3, h4, h5, p, a {
 	background-color: transparent;
 	border: 4px solid #A7BFCC;
 	color: #A7BFCC;
-	font-weight: 700;
-	line-height: 2em;
+	font-size: 16px;
+	line-height: 42px;
 }
 
 .imminent {
@@ -320,7 +319,7 @@ h1, h2, h3, h4, h5, p, a {
 	}
 	
 	.head-label {
-		height: 40px;
+		height: 25px;
 	}
 	
 	.head-label > div {
@@ -345,7 +344,6 @@ h1, h2, h3, h4, h5, p, a {
 	.quarter {
         width: 20% !important;
 		top: 0px;
-		margin-top: 5px;
 		margin-bottom: 5px;
     }
 
@@ -381,7 +379,7 @@ Loading Message
 #loading {
 	z-index: -5;
 	display: block;
-	position: absolute;
+	position: fixed;
 	top: 40%;
 	width: 100%;
 }
@@ -403,15 +401,6 @@ Loading Message
 About Page 
 ************************/
 
-
-div#mask {
-	position: absolute;
-	display: none;
-	height: 100%;
-	width: 100%;
-	z-index: 2;
-	
-}
 
 li#about {
 	padding: 1em;
@@ -445,3 +434,52 @@ map canvas
 	display: none;
 	width: 100%;
 }
+
+/*********************
+Modal Disclaimer
+*********************/
+
+#disclaimer {
+	border-radius: 0px;
+}
+
+#disclaimer h3 {
+	color: white;
+	text-align: center;
+	font-weight: 300;
+}
+
+#disclaimer p {
+	line-height: 1.1em;
+}
+
+#disclaimer .modal-header {
+	background: #A7BFCC;
+}
+
+#disclaimer .modal-footer {
+	background: #EEDFCC;
+	border-top: none;
+}
+
+#disclaimer .modal-footer .btn {
+	background: #DB5051;
+	border-radius: 2px;
+	border: 2px solid white;
+	color: white;
+	text-shadow: none;
+}
+
+/*********************
+Different Transit Types
+*********************/
+
+.light-rail-route {
+	background: url(../img/light-rail.png) 30% 5px no-repeat;
+}
+
+.ferry-route {
+	background: url(../img/ferry.png) 30% 5px no-repeat;
+}
+
+
