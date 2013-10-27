@@ -45,12 +45,14 @@ ul, ol, dd {
 
 .navbar {
 	position: fixed;
+	height: 52px;
 }	
 
 .navbar-inner {
 	background-image: none !important;
 	background-color:#82A6BA !important;
 	border-bottom: none;
+	min-height: 52px;
 }
 
 .navbar-inner h1 {
@@ -65,9 +67,6 @@ ul, ol, dd {
 	margin-left: -74px;
 }
 
-.navbar-inner button {
-	margin-top: 7px !important;
-}
 .navbar-inner .container {
 	position: relative;
 }
@@ -82,7 +81,7 @@ input {
 	background-color: #A7BFCC;
 	border: 2px solid white;
 	position: absolute;
-	right:0;
+	right: 5px;
 	z-index: 3;
 	height: 36px;
 }
@@ -161,6 +160,7 @@ h1, h2, h3, h4, h5, p, a {
 	background-color: #82a6ba;
 	color: white;
 	padding: 5px 5px;
+	position: relative;
 }
 
 .head-label .span1 {
@@ -195,6 +195,7 @@ h1, h2, h3, h4, h5, p, a {
 
 .head-label p {
 	color: white;
+	font-size: 12px;
 }
 
 .head-label > div > p {
@@ -303,7 +304,6 @@ h1, h2, h3, h4, h5, p, a {
 @media (max-width: 767px) {
 	body {
 		padding: 0px;
-		
 	}
 	
 	.navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {
@@ -317,6 +317,8 @@ h1, h2, h3, h4, h5, p, a {
 	
 	.head-label {
 		height: 25px;
+		padding: 0 10px;
+		position: relative;
 	}
 	
 	.head-label > div {
@@ -341,16 +343,34 @@ h1, h2, h3, h4, h5, p, a {
 	.quarter {
         width: 20% !important;
 		top: 0px;
-		margin-bottom: 5px;
+    }
+	
+	.brand img {
+		width: 45px;
+		max-width: 45px;
+	}
+
+	.brand {
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+		line-height: 52px;
+	}
+
+    .head-label .quarter:first-child {
+    	left: 10px;
     }
 
-	.quarter:first-child {
+    .head-label .quarter:last-child {
+    	right: 10px;
+    }
+
+	.schedule .quarter:first-child {
 		left: 0px;
     }
 
-	.quarter:last-child {
+	.schedule .quarter:last-child {
 		right: 0px;
-    }
+	}
 
     .half {
         width: 60% !important;
