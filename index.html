@@ -66,6 +66,7 @@
         			<ul>
         			    <li><a href="#/">Home</a></li>
         				<li><a href="#/routes/">Routes</a></li>
+        				<li><a href="#/findStops/">Stop Finder</a></li>
         				<li id="about">
         					<h3>About</h3>
         					<p>HRT Bus Finder was developed by volunteers from <a href="http://codeforhamptonroads.org">Code for Hampton Roads</a> in cooperation with <a href="http://gohrt.com">Hampton Roads Transit.</a></p>
@@ -147,6 +148,7 @@
 	        <form class="form-inline">
     	        <input id="intersection" type="text" placeholder="Intersection" style="height: 100%">
                 <select id="city">
+                	<option selected>City</option>
                     <option>Chesapeake</option>
                     <option>Hampton</option>
                     <option>Newport News</option>
@@ -154,8 +156,8 @@
                     <option>Portsmouth</option>
                     <option>Virginia Beach</option>
                 </select>
-                <button id="search" class="btn btn-primary">Search</button>
-                <button id="locate" class="btn btn-info">Current Location</button>
+                <button id="search" class="btn">Search</button>
+                <button id="locate" class="btn">Current Location</button>
             </form>
 	    </div>
 		<div class="mapcanvas"></div>
