@@ -16,6 +16,7 @@
 
 #jPanelMenu-menu ul {
     /*border-bottom: 1px solid #eedfcc;*/
+    margin-top: 16px;
 }
 
 #jPanelMenu-menu li a {
@@ -23,7 +24,7 @@
     font-family: "Arvo", Helvetica Neue,Helvetica,Arial,sans-serif;
     font-weight: 700;
     display: block;
-    padding: 0.5em 5%;
+    padding: 0.25em 5%;
     border-bottom: 3px solid #eed9bf;
     text-decoration: none;
     color: #555;
@@ -268,10 +269,6 @@ h1, h2, h3, h4, h5, p, a {
 	padding-left:10px;
 }
 
-.destination p:first-child {
-	line-height: 30px;
-}
-
 .arrivals .table > div {
 	background-color: white;
 }
@@ -364,11 +361,11 @@ h1, h2, h3, h4, h5, p, a {
 
 	.destination p:first-child {
 		line-height: normal;
-		margin-bottom: 3px;
+
 	}
 	
 	.destination {
-	    padding-top: 7px;
+	    
 	}
 }
 
@@ -408,6 +405,9 @@ li#about {
 
 li#about h3 {
 	margin-bottom: 16px;
+	font-size: 21px;
+	color: #DB5051;
+	font-weight: 400;
 }
 
 li#about p {
@@ -450,16 +450,33 @@ Modal Disclaimer
 }
 
 #disclaimer p {
+	font-size: 12px;
 	line-height: 1.1em;
+	padding: 0;
 }
 
 #disclaimer .modal-header {
 	background: #A7BFCC;
+	padding: 0 !important;
+}
+
+#disclaimer .modal-header h3 {
+	line-height: 30px;
+	font-size: 14px;
+	text-transform: uppercase;
+	font-weight: 700;
+	letter-spacing: 1px;
+	font-style: italic;
+}
+
+#disclaimer .modal-body {
+	padding: 6px;
 }
 
 #disclaimer .modal-footer {
 	background: #EEDFCC;
 	border-top: none;
+	padding: .5em;	
 }
 
 #disclaimer .modal-footer .btn {
@@ -469,6 +486,7 @@ Modal Disclaimer
 	color: white;
 	text-shadow: none;
 }
+
 
 /*********************
 Different Transit Types
