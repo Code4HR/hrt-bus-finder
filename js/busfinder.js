@@ -173,7 +173,17 @@ $(function(){
 	
 	var MapView = Backbone.View.extend({
 		initialize: function() {
-			this.map = new google.maps.Map(this.$el[0], {disableDefaultUI: true});
+			this.map = new google.maps.Map(this.$el[0], {
+			    disableDefaultUI: true,
+			    styles: [
+                    {
+                        featureType: "poi",
+                        stylers: [
+                            { visibility: "off" }
+                        ]
+                    }
+                ]
+			});
 			this.markers = [];
 			this.busMarkers = {};
 			this.oldBusMarkers = {};
