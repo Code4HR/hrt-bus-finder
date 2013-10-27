@@ -441,7 +441,7 @@ $(function(){
 				var	headerHeight = $('.navbar').height();
 				var	stopHeight = $('.stop-name').height();
 				var	headHeight = $('.head-label').height();
-				var mapHeight = window.innerHeight - (headerHeight + scheduleHeight + stopHeight + headHeight);
+				var mapHeight = window.innerHeight - (headerHeight + scheduleHeight + stopHeight + headHeight + 12);
 				App.MapView.clear();
 				App.MapView.createStopMarker(this.options.stop);
     			App.MapView.createBusMarker(this.model);
