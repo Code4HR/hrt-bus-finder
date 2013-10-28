@@ -159,7 +159,7 @@ h1, h2, h3, h4, h5, p, a {
 .head-label {
 	background-color: #82a6ba;
 	color: white;
-	padding: 5px 5px;
+	padding: 0px 5px;
 	position: relative;
 }
 
@@ -200,7 +200,7 @@ h1, h2, h3, h4, h5, p, a {
 
 .head-label > div > p {
 	color: white;
-	line-height: 16px;
+	line-height: 25px;
 }
 
 #stops {
@@ -329,8 +329,6 @@ h1, h2, h3, h4, h5, p, a {
 	
 	.head-label > div {
 		position: absolute;
-		top: 25%;
-		margin: 0px;
 	}
 	
 	.schedule > .row-fluid {
@@ -405,6 +403,10 @@ h1, h2, h3, h4, h5, p, a {
 @media (min-width: 768px) {
 	.navbar button.btn-info {
 		right: 10px;
+	}
+
+	div.head-label.row-fluid {
+		height: 25px;
 	}
 }
 
