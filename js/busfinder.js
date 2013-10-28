@@ -83,9 +83,9 @@ $(function(){
 	    },
 	    
 		url: function() {
-		    var url = API_URL + 'buses/routes/';
+		    var url = API_URL + 'buses/routes';
 		    if(this.routeIds) {
-		        url += this.routeIds + '/';
+		        url += '/' + this.routeIds + '/';
 	        }
 			return url;
 		}
