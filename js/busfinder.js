@@ -389,6 +389,7 @@ $(function(){
 		initialize: function() {
 			this.model.on('change', this.render, this);
 			this.model.on('remove', this.remove, this);
+			$(window).resize($.proxy(this.resize, this));
 			App.Intervals.push(setInterval($.proxy(this.updateTime, this), 20000));
 		},
 		
@@ -447,15 +448,10 @@ $(function(){
 			$('.arrow > img').attr('src', './img/arrow-down.png');
 				
 			if(!mapShowing) {
-				var scheduleHeight = $('.schedule').height();
-				var	headerHeight = $('.navbar').height();
-				var	stopHeight = $('.stop-name').height();
-				var	headHeight = $('.head-label').height();
-				var mapHeight = window.innerHeight - (headerHeight + scheduleHeight + stopHeight + headHeight + 6);
 				App.MapView.clear();
 				App.MapView.createStopMarker(this.options.stop);
     			App.MapView.createBusMarker(this.model);
-    			App.MapView.$el.height(mapHeight);
+    			this.resize(true);
     			this.$('.mapcanvas').html(App.MapView.el);
 				
 				this.$('.arrow > img').attr('src', './img/arrow-up.png');
@@ -468,6 +464,20 @@ $(function(){
 				    $('html,body').animate({scrollTop: this.$el.offset().top - 50 }, 'slow');
 			    }
 			}
+		},
+		
+		resize: function(force) {
+		    var mapShowing = this.$('.mapcanvas').is(':visible');
+		    if(force || mapShowing) {
+		        var scheduleHeight = $('.schedule').height();
+				var	headerHeight = $('.navbar').height();
+				var	stopHeight = $('.stop-name').height();
+				var	headHeight = $('.head-label').height();
+				var mapHeight = window.innerHeight - (headerHeight + scheduleHeight + stopHeight + headHeight + 6);
+				App.MapView.$el.height(mapHeight);
+				App.MapView.resize();
+				App.MapView.setBounds();
+	        }
 		}
 	});
 	
@@ -530,17 +540,23 @@ $(function(){
 			
 			this.updateBuses();
 			App.Intervals.push(setInterval($.proxy(this.updateBuses, this), 20000));
+			
+			$(window).resize($.proxy(this.resize, this));
 		},
 		
 		render: function() {
 		    this.$el.html(this.template({ routes: this.activeRoutesList.toJSON() }));
 		    this.setSelectedRoutes(this.options.routeIds && this.options.routeIds.split('/'));
 		    
-		    App.MapView.$el.height(window.innerHeight - $('.navbar').outerHeight(true) - this.$('select').outerHeight(true) - 10);
-			this.$('.mapcanvas').html(App.MapView.el);
+		    this.resize();
+		    this.$('.mapcanvas').html(App.MapView.el);
 			this.$('.mapcanvas').show();
-			App.MapView.resize();
+			
 			return this;
+		},
+		
+		resize: function() {
+		    App.MapView.$el.height(window.innerHeight - $('.navbar').outerHeight(true) - this.$('select').outerHeight(true) - 10);
 		},
 		
 		addBuses: function() {
@@ -598,6 +614,7 @@ $(function(){
 	        
 	        App.MapView.clear();
 	        App.MapView.setOnCenterChangedEvent($.proxy(this.findClosestStops, this));
+	        $(window).resize($.proxy(this.resize, this));
 	        
 	        if(this.options.location) {
 	            App.ContentView.once('contentChanged', function() {
@@ -611,11 +628,15 @@ $(function(){
 		render: function() {
 		    this.$el.html(this.template());
 		    
-		    App.MapView.$el.height(window.innerHeight - $('.navbar').outerHeight(true) - this.$('#find-options').outerHeight(true));
-			this.$('.mapcanvas').html(App.MapView.el);
+		    this.resize();
+		    this.$('.mapcanvas').html(App.MapView.el);
 			this.$('.mapcanvas').show();
 			
 			return this;
+		},
+		
+		resize: function() {
+		    App.MapView.$el.height(window.innerHeight - $('.navbar').outerHeight(true) - this.$('#find-options').outerHeight(true));
 		},
 		
 		addStop: function(stop) {
