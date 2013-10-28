@@ -307,7 +307,11 @@ h1, h2, h3, h4, h5, p, a {
 	body {
 		padding: 0px;
 	}
-	
+
+	.container {
+		width: auto;
+	}
+
 	.navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {
 		margin-right: 0px;
 		margin-left: 0px;
@@ -390,7 +394,19 @@ h1, h2, h3, h4, h5, p, a {
 	    
 	}
 
+}
+
+@media (min-width: 768px) and (max-width:979px) {
+	.navbar .container {
+		width: 724px;
+	}
 } 
+
+@media (min-width: 768px) {
+	.navbar button.btn-info {
+		right: 10px;
+	}
+}
 
 /************************
 Loading Message 
