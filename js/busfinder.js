@@ -548,15 +548,18 @@ $(function(){
 		    this.$el.html(this.template({ routes: this.activeRoutesList.toJSON() }));
 		    this.setSelectedRoutes(this.options.routeIds && this.options.routeIds.split('/'));
 		    
-		    this.resize();
+		    App.MapView.$el.height(window.innerHeight - $('.navbar').outerHeight(true) - this.$('select').outerHeight(true) - 10);
 		    this.$('.mapcanvas').html(App.MapView.el);
 			this.$('.mapcanvas').show();
+			App.MapView.resize();
 			
 			return this;
 		},
 		
 		resize: function() {
 		    App.MapView.$el.height(window.innerHeight - $('.navbar').outerHeight(true) - this.$('select').outerHeight(true) - 10);
+		    App.MapView.resize();
+			App.MapView.setBounds();
 		},
 		
 		addBuses: function() {
@@ -637,6 +640,8 @@ $(function(){
 		
 		resize: function() {
 		    App.MapView.$el.height(window.innerHeight - $('.navbar').outerHeight(true) - this.$('#find-options').outerHeight(true));
+		    App.MapView.resize();
+			App.MapView.setBounds();
 		},
 		
 		addStop: function(stop) {
@@ -734,6 +739,7 @@ $(function(){
 		},
 		
 		clearIntervals: function() {
+		    $(window).off('resize');
 		    while(App.Intervals.length) {
 		        clearInterval(App.Intervals.pop());
 		    }
