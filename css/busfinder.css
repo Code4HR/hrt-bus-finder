@@ -507,7 +507,6 @@ Modal Disclaimer
 	text-shadow: none;
 }
 
-
 /*********************
 Different Transit Types
 *********************/
@@ -520,4 +519,60 @@ Different Transit Types
 	background: url(../img/ferry.png) 30% 5px no-repeat;
 }
 
+/*********************
+#findStops View
+*********************/
 
+#find-stops-view {
+	background: #EEDFCC;
+	padding: 10px;
+}
+
+#find-stops-view #intersection, #find-stops-view #city, #find-stops-view #search {
+	float: left;
+	height: 32px;
+}
+
+#find-stops-view #intersection {
+	width: 50%;
+	margin-right: 2.5%;
+}
+
+#find-stops-view #city {
+	width: 22.5%;
+	border: 2px solid white;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+}
+
+#find-stops-view #search {
+	width: 22.5%;
+	margin-left: 2.5%;
+	background: #DB5051;
+	border-radius: 2px;
+	border: 2px solid white;
+	color: white;
+	text-shadow: none;
+	text-align: center;
+	text-shadow: 1px 1px #1a1a1a;
+}
+
+#find-stops-view #locate {
+	position: relative;
+	top: 10px;
+	width: 50%;
+	margin: 0 auto;
+	background-image: none;
+	background-color: #A7BFCC;
+	border: 2px solid white;
+	color: white;
+	text-shadow: 1px 1px #1a1a1a;
+}
+
+/*********************
+#Routes View
+*********************/
+
+#route-view {
+	background: #EEDFCC;
+	padding: 10px;
+}
