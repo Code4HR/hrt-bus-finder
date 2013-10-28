@@ -123,7 +123,7 @@ $(function(){
 			this.collection.on('sync', this.checkForEmpty, this);
 			
 			this.updateArrivalList();
-			App.Intervals.push(setInterval($.proxy(this.updateArrivalList, this), 20000));
+			App.Intervals.push(setInterval($.proxy(this.updateArrivalList, this), 60000));
 		},
 		
 		updateArrivalList: function() {
@@ -390,7 +390,7 @@ $(function(){
 			this.model.on('change', this.render, this);
 			this.model.on('remove', this.remove, this);
 			$(window).resize($.proxy(this.resize, this));
-			App.Intervals.push(setInterval($.proxy(this.updateTime, this), 20000));
+			App.Intervals.push(setInterval($.proxy(this.updateTime, this), 10000));
 		},
 		
 		updateTime: function() {
@@ -539,7 +539,7 @@ $(function(){
 			this.activeRoutesList.fetch({reset: true, dataType: 'jsonp'});
 			
 			this.updateBuses();
-			App.Intervals.push(setInterval($.proxy(this.updateBuses, this), 20000));
+			App.Intervals.push(setInterval($.proxy(this.updateBuses, this), 30000));
 			
 			$(window).resize($.proxy(this.resize, this));
 		},
