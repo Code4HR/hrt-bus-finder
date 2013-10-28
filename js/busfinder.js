@@ -61,18 +61,18 @@ $(function(){
         },
         
 		url: function() {
-			return API_URL + 'stop_times/' + this.stopId;
+			return API_URL + 'stop_times/' + this.stopId + '/';
 		}
 	});
 	
 	var StopList = Backbone.Collection.extend({
 		url: function() {
 		    if(this.location) {
-		        return API_URL + 'stops/near/' + this.location.lat() + '/' + this.location.lng(); 
+		        return API_URL + 'stops/near/' + this.location.lat() + '/' + this.location.lng() + '/'; 
 		    }
 		    
 		    if(this.stopIds){
-		        return API_URL + 'stops/id/' + this.stopIds;
+		        return API_URL + 'stops/id/' + this.stopIds + '/';
 		    }
 		}
 	});
@@ -83,16 +83,16 @@ $(function(){
 	    },
 	    
 		url: function() {
-		    var url = API_URL + 'buses/routes';
+		    var url = API_URL + 'buses/routes/';
 		    if(this.routeIds) {
-		        url += '/' + this.routeIds;
+		        url += this.routeIds + '/';
 	        }
 			return url;
 		}
 	});
 	
 	var ActiveRoutesList = Backbone.Collection.extend({
-		url: API_URL + 'routes/active'
+		url: API_URL + 'routes/active/'
 	});
 	
 	var StopListView = Backbone.View.extend({
