@@ -482,14 +482,18 @@ $(function(){
 	});
 	
 	var LocateUser = function(onLocated) {
-	    var onSuccess = function(position) {
-	        onLocated(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-	    };
 	    
 	    var onFail = function() {
 	        onLocated(DowntownNorfolk);
 	    };
 	    
+	    var timeout = setTimeout(onFail, 5000);
+	    
+	    var onSuccess = function(position) {
+	        clearTimeout(timeout);
+	        onLocated(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+	    };
+        
 	    navigator.geolocation ?
 			navigator.geolocation.getCurrentPosition(onSuccess, onFail) : onFail();
 	};
@@ -503,6 +507,7 @@ $(function(){
 		},
 		
 		getStopList: function(location) {
+		    this.$el.empty();
 			var stopList = new StopList;
 			stopList.location = location;
 			var stopsListView = new StopListView({el: this.el, collection: stopList});
