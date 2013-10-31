@@ -137,11 +137,9 @@ $(function(){
 		
 		checkForEmpty: function() {
 			if(!this.collection.length) {
-				this.$('.arrivals')
-				    .html($('<div/>', {
-						class: 'no-arrivals', 
-						text: 'No scheduled stops'
-					}));
+                var noStopsDiv = $('<div/>', {text: 'No scheduled stops'});
+                noStopsDiv.addClass('no-arrivals');
+                this.$('.arrivals').html(noStopsDiv);
 			}
 		},
 		
