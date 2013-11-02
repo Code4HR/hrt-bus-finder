@@ -46,13 +46,15 @@ ul, ol, dd {
 .navbar {
 	position: fixed;
 	height: 52px;
+	
 }	
 
 .navbar-inner {
 	background-image: none !important;
-	background-color:#82A6BA !important;
+	background: #82A6BA !important;
 	border-bottom: none;
 	min-height: 52px;
+	filter: none;
 }
 
 .navbar-inner h1 {
