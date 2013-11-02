@@ -405,6 +405,10 @@ h1, h2, h3, h4, h5, p, a {
 		right: 10px;
 	}
 
+	.brand img {
+		width: 75px;
+	}
+
 	div.head-label.row-fluid {
 		height: 25px;
 	}
