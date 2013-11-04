@@ -1,5 +1,8 @@
-<!DOCTYPE HTML>
-<html lang="en">
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
     <title>HRT Bus Finder</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -31,6 +34,15 @@
 </head>
 <body>
 	
+	<!--[if lt IE 9]>
+		<div id="upgrade-message">
+		 	<div>
+				<img id="logo" src="img/favicon-rounded.png" alt="">
+	    		<p class="chromeframe">HRT Bus Finder works best with Chrome, Firefox, Safari, and Internet Explorer 9+.<br>Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+	    	</div>
+    	</div>
+    <![endif]-->
+
 	<div id="disclaimer" class="modal fade in" data-backdrop="static" data-keyboard="false" style="display: none;">
 	    <div class="modal-dialog">
             <div class="modal-content">
@@ -95,6 +107,8 @@
 	<script src="./js/backbone.js"></script>
 	<script src="./js/bootstrap.min.js"></script>
 	<script src="./js/busfinder.js"></script>
+	<script src="./js/modernizr.js"></script>
+
 	
 	<script type="text/template" id="stop-template">
 		<div class="stop-name"><h4><%= stopName %></h4> <p>(Stop <%= stopId %>)</p></div>
