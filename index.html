@@ -97,10 +97,13 @@
 	</div>
 
 	<div id="geolocation-failed" style="display: none" class="alert alert-info">
-		<p>Geolocation failed, but you can still find what you need by searching by Route or using the Stop Finder.</p>
-		<button class="btn-info">Route</button>
-		<button class="btn-info">Stop Finder</button>
-		<div class="clearfix"></div>
+		<p>There was an error and we couldn't find your location, but you can still find what you need by searching by Route or using the Stop Finder.</p>
+		<form action="#/routes/">
+			<button class="btn-info">Route</button>
+		</form>
+		<form action="#/findStops/">
+			<button class="btn-info">Stop Finder</button>
+		</form>
 	</div>
 
 	<div class="app-container container">
