@@ -511,7 +511,7 @@ $(function(){
 		
 		forceRefresh: function() {
 		    App.ContentView.trigger('forceRefresh');
-		    console.log('force refresh called');
+		    $('html,body').animate({scrollTop: this.$el.offset().top - 60 }, 'slow');
 		},
 
 		getStopList: function(location) {

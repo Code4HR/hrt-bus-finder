@@ -205,7 +205,7 @@ h1, h2, h3, h4, h5, p, a {
 }
 
 #stops {
-    margin-bottom: 60px;
+    margin-bottom: 30px;
 }
 
 .stop-name {
@@ -301,6 +301,18 @@ h1, h2, h3, h4, h5, p, a {
 
 #route-view select {
     width: 100%;
+}
+
+.loadMore {
+	width: 100%;
+	background: #DB5051;
+	border: none;
+	height: 50px;
+	color: white;
+	font-family: Arvo;
+	font-size: 1.5em;
+	text-transform: uppercase;
+	font-style: italic;
 }
 
 @media (max-width: 767px) {
@@ -654,3 +666,4 @@ if IE < 9 (please go upgrade)
 .chromeframe a {
 	color: #DB5051;
 }
+
