@@ -77,7 +77,7 @@ input {
 	border-right: none !important;
 }
 
-.navbar button.btn-info {
+button.btn-info {
 	background-image: none;
 	background-color: #A7BFCC;
 	border: 2px solid white;
@@ -87,7 +87,7 @@ input {
 	height: 36px;
 }
 
-.navbar button.btn-info:focus {
+button.btn-info:focus {
 	background-color: #82A6BA;
 }
 
@@ -676,5 +676,35 @@ if IE < 9 (please go upgrade)
 
 .chromeframe a {
 	color: #DB5051;
+}
+
+/**********************
+Geolocation Failure Alert
+**********************/
+
+#geolocation-failed {
+	background: #DB5051;
+	border: 1px solid #E2D4C2;
+
+}
+
+#geolocation-failed form {
+	display: inline;
+}
+
+#geolocation-failed p {
+	margin-bottom: 1em;
+	line-height: 1.25em;
+	color: white;
+	text-shadow: none;
+}
+
+#geolocation-failed .btn-info {
+	position: relative;
+	right: 0;
+}
+
+#geolocation-failed .btn-info {
+
 }
 
