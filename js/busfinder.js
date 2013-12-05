@@ -76,6 +76,21 @@ $(function(){
 		    }
 		}
 	});
+
+	var feedback = Backbone.Model.extend({
+		defaults: {
+			name: '',
+			emailAddress: '',
+			message: ''
+		},
+
+		validate: function(attribs) {
+			if(attribs.message === undefined) {
+				return "A message was not included.";
+			}
+		}
+	});
+
 	
 	var BusList = Backbone.Collection.extend({
 	    initialize: function(models, options) {
@@ -705,6 +720,16 @@ $(function(){
 		    App.Router.navigate('findStops/' + location.lat() + '/' + location.lng() + '/');
 		}
 	});
+
+	var FeedbackView = Backbone.View.extend({
+		tagName: 'div',
+		template: _.template($('#user-feedback-template').html()),
+		render: function() {
+		    this.$el.html(this.template());
+		    return this;
+		}
+
+	})
 	
 	var ContentView = Backbone.View.extend({
 		el: $(".app-container"),
@@ -729,7 +754,8 @@ $(function(){
 			"": "homeView",
 			"stops/*stopIds": "stopView",
 			"routes(/*routeIds)": "routeView",
-			"findStops(/:lat/:lng)(/)": "findStopsView"
+			"findStops(/:lat/:lng)(/)": "findStopsView",
+			"feedback(/)" : "feedbackView"
 		 },
 		
 		homeView: function() {
@@ -757,6 +783,12 @@ $(function(){
 		    App.ContentView.setSubView(new FindStopsView({location: location}));
 		    App.MapView.setDraggable(true);
 		    $('#loading').remove();
+		},
+
+		feedbackView: function() {
+			this.clearIntervals();
+			App.ContentView.setSubView(new FeedbackView);
+			console.log("were you trying to go to feedback?");
 		},
 		
 		clearIntervals: function() {
