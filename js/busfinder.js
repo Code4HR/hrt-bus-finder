@@ -748,6 +748,7 @@ $(function(){
 		    this.clearIntervals();
 		    App.ContentView.setSubView(new RouteView({routeIds: routeIds}));
 		    App.MapView.setDraggable(true);
+		    $('#loading').remove();
 		},
 		
 		findStopsView: function(lat, lng) {
@@ -755,6 +756,7 @@ $(function(){
 		    var location = lat && lng && new google.maps.LatLng(lat, lng);
 		    App.ContentView.setSubView(new FindStopsView({location: location}));
 		    App.MapView.setDraggable(true);
+		    $('#loading').remove();
 		},
 		
 		clearIntervals: function() {
