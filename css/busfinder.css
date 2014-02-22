@@ -13,7 +13,9 @@
     background: #EEDFCC;
     overflow-y: hidden !important;
 }
-
+#test {
+	display: none;
+	}
 #jPanelMenu-menu ul {
     /*border-bottom: 1px solid #eedfcc;*/
     margin-top: 16px;
