@@ -553,15 +553,15 @@ map canvas
 }
 
 /*********************
-Modal Disclaimer
+Automatic Disclaimer
 *********************/
 
 #disclaimer {
 	border-radius: 0px;
 }
 
-#disclaimer h3 {
-	color: white;
+#disclaimer h1 {
+	color: red;
 	text-align: center;
 	font-weight: 300;
 }
@@ -569,39 +569,8 @@ Modal Disclaimer
 #disclaimer p {
 	font-size: 12px;
 	line-height: 1.1em;
-	padding: 0;
-}
-
-#disclaimer .modal-header {
-	background: #A7BFCC;
-	padding: 0 !important;
-}
-
-#disclaimer .modal-header h3 {
-	line-height: 30px;
-	font-size: 14px;
-	text-transform: uppercase;
-	font-weight: 700;
-	letter-spacing: 1px;
-	font-style: italic;
-}
-
-#disclaimer .modal-body {
+	margin: 0px 50px;
 	padding: 6px;
-}
-
-#disclaimer .modal-footer {
-	background: #EEDFCC;
-	border-top: none;
-	padding: .5em;	
-}
-
-#disclaimer .modal-footer .btn {
-	background: #DB5051;
-	border-radius: 2px;
-	border: 2px solid white;
-	color: white;
-	text-shadow: none;
 }
 
 /*********************

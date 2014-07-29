@@ -43,21 +43,12 @@
     	</div>
     <![endif]-->
 
-	<div id="disclaimer" class="modal fade in" data-backdrop="static" data-keyboard="false" style="display: none;">
-	    <div class="modal-dialog">
-            <div class="modal-content">
-		        <div class="modal-header">
-        			<h3>Disclaimer</h3>
-        		</div>
-        		<div class="modal-body">
-        			<p>Hampton Roads Transit (HRT) is providing real time data contained [in this app] on an experimental basis. HRT cannot be held responsible for the accuracy of this data. Any applications using this data are not made by HRT, and HRT does not sell or license the apps. They are written by third parties unless otherwise noted.
-        			HRT shall not be held responsible for the content of third party websites or any issue arising from the use of third party applications. HRT neither endorses any third party products that use this data nor makes any guarantees or representations as to accuracy or reliability. Proceed with care and understand any usage charges that may apply to you. HRT reserves the right to remove/modify this real time data listing without notice. </p>
-        		</div>
-        		<div class="modal-footer">
-        			<a href="#" class="btn" data-dismiss="modal">I accept.</a>
-        		</div>
-        	</div>
-        </div>
+	<div id="disclaimer" style="display:none">
+		<br /><br /><br />
+		<h1>Disclaimer</h1>
+		<p>Hampton Roads Transit (HRT) is providing real time data contained [in this app] on an experimental basis. HRT cannot be held responsible for the accuracy of this data. Any applications using this data are not made by HRT, and HRT does not sell or license the apps. They are written by third parties unless otherwise noted.
+        			HRT shall not be held responsible for the content of third party websites or any issue arising from the use of third party applications. HRT neither endorses any third party products that use this data nor makes any guarantees or representations as to accuracy or reliability. Proceed with care and understand any usage charges that may apply to you. HRT reserves the right to remove/modify this real time data listing without notice.
+		<br /><br /><strong>We use a cookie so that you will not be <span style="text-decoration: line-through">@#$$*&</span> frustrated by seeing this message more than once a week.</strong> </p>
 	</div>
 
 	<div class="navbar navbar-fixed-top">
@@ -121,6 +112,7 @@
 	<script src="./js/bootstrap.min.js"></script>
 	<script src="./js/busfinder.js"></script>
 	<script src="./js/modernizr.js"></script>
+	<script src="./js/cookies.min.js"></script> <!-- load standards compliant cookie handler -->
 
 	
 	<script type="text/template" id="stop-template">
@@ -212,28 +204,16 @@
 	    <button class='loadMore'>Refresh</button>
 	</script>
 
-
-	<script>
-    	function supports_html5_storage() {
-            try {
-                return 'localStorage' in window && window['localStorage'] !== null;
-            } catch (e) {
-                return false;
-            }
-        }
-
-        $(function () {
-            if(!supports_html5_storage() || localStorage['disclaimer_accepted'] !== 'true') {
-                $("#disclaimer").modal('show');
-            }
-        }); 
-
-        $('#disclaimer a').click(function() {
-           $("#disclaimer").modal('hide');
-            if(supports_html5_storage()) {
-                localStorage['disclaimer_accepted'] = 'true';
-            }
-        });
+	<script type="text/javascript"> // Automatic DOM and cookie code
+		function init() {
+			$seenit = Cookies.get('disclaimer'); // read cookie
+			if ($seenit == null) { // if cookie is not there
+				Cookies.set('disclaimer','true', { expires: 604800 }); // create one week cookie
+				document.getElementById('disclaimer').style.display = 'block'; // show
+				setTimeout(function() {document.getElementById('disclaimer').style.display = 'none';}, 20000); // go away after 20000 ms
+			}
+		}
+		window.onload = init;
 	</script>
 </body>
 </html>
