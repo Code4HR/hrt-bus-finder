@@ -567,9 +567,10 @@ Modal Disclaimer
 }
 
 #disclaimer p {
-	font-size: 12px;
+	font-size: 1.25em;
 	line-height: 1.1em;
-	padding: 0;
+	text-align: center;
+	margin: 1em 0;
 }
 
 #disclaimer .modal-header {
@@ -594,6 +595,10 @@ Modal Disclaimer
 	background: #EEDFCC;
 	border-top: none;
 	padding: .5em;	
+}
+
+#disclaimer .modal-footer {
+	text-align: center;
 }
 
 #disclaimer .modal-footer .btn {
