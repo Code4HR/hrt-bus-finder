@@ -1,0 +1,25 @@
+{
+  "name": "hrt-bus-finder",
+  "version": "1.0.0",
+  "description": "Frontend for HRT Bus Finder",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Code4HR/hrt-bus-finder.git"
+  },
+  "keywords": [
+    "transit",
+    "open",
+    "data"
+  ],
+  "author": "B. Schoenfeld, B. Price",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Code4HR/hrt-bus-finder/issues"
+  },
+  "homepage": "https://github.com/Code4HR/hrt-bus-finder",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-connect": "^0.9.0",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}
