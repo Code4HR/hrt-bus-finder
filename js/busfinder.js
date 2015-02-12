@@ -298,6 +298,7 @@ $(function(){
 			var msg = '';
 			msg += 'Bus #' + bus.get('busId') + ' traveling ';
 			msg += bus.get('direction') == 0 ? 'outbound' : 'inbound';
+			msg += '<br>on route ' + bus.get('routeId');
 			
 			var adherence = bus.get('adherence');
 			if (adherence != null) msg += '<br>is ';
