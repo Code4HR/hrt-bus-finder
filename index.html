@@ -227,9 +227,9 @@
         }
 
         $(function () {
-            if(!supports_html5_storage() || localStorage['disclaimer_accepted'] !== 'true') {
+            //if(!supports_html5_storage() || localStorage['disclaimer_accepted'] !== 'true') {
                 $("#disclaimer").modal('show');
-            }
+            //}
         }); 
 
         $('#disclaimer a').click(function() {
