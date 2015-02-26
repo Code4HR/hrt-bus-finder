@@ -774,10 +774,10 @@ $(function(){
 	var Router = Backbone.Router.extend({
 		 routes: {
 			"": SNOW_ROUTES ? "snowRoute" : "homeView",
-			"stops/*stopIds": "stopView",
-			"routes(/*routeIds)": "routeView",
-			"findStops(/:lat/:lng)(/)": "findStopsView",
-			"feedback(/)" : "feedbackView"
+			"stops/*stopIds": SNOW_ROUTES ? "snowRoute" : "stopView",
+			"routes(/*routeIds)": SNOW_ROUTES ? "snowRoute" : "routeView",
+			"findStops(/:lat/:lng)(/)": SNOW_ROUTES ? "snowRoute" : "findStopsView",
+			"feedback(/)" : SNOW_ROUTES ? "snowRoute" : "feedbackView"
 		 },
 
 		homeView: function() {
