@@ -6,14 +6,13 @@
 <head>
     <title>HRT Bus Finder</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<script type="text/javascript">
+	  <script type="text/javascript">
 	    var _gaq = _gaq || [];
         var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
         _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
         _gaq.push(['_setAccount', 'UA-39303796-2']);
         // Don't track the page view here.
         // Track it in busfinder.js each time the router does it's thing.
-
         (function() {
             var ga = document.createElement('script');
             ga.type = 'text/javascript';
@@ -31,6 +30,19 @@
 	<link rel="apple-touch-icon" href="./img/favicon.png">
 	<link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico" />
 
+  <script type="text/template" id="snow-route-template">
+
+    <div id="snow-mode">
+      <div class="container">
+        <img id="logo" src="img/favicon-rounded.png" alt="hrt logo">
+        <h1>Due to the Severe Weather Forecast, Snow Routes will be activated on Thursday, February 26th.</h1>
+        <p>For more information, please visit goHRT.com.</p>
+        <p><a href="http://www.gohrt.com" class="btn btn-info">GoHRT.com</a></p>
+      </div>
+    </div>
+    
+  </script>
+
 </head>
 <body>
 
@@ -43,15 +55,7 @@
     	</div>
     <![endif]-->
 
-  <div id="snow-mode">
-    <div class="container">
-      <img id="logo" src="img/favicon-rounded.png" alt="hrt logo">
-      <h1>Due to the Severe Weather Forecast, Snow Routes will be activated on Thursday, February 26th.</h1>
-      <p>For more information, please visit goHRT.com.</p>
-      <p><a href="http://www.gohrt.com" class="btn btn-info">GoHRT.com</a></p>
 
-    </div>
-  </div>
 
 	<div id="disclaimer" class="modal fade in" data-backdrop="static" data-keyboard="false" style="display: none;">
 	    <div class="modal-dialog">
@@ -236,7 +240,7 @@
 
         $(function () {
             //if(!supports_html5_storage() || localStorage['disclaimer_accepted'] !== 'true') {
-                $("#disclaimer").modal('show');
+                // $("#disclaimer").modal('show');
             //}
         });
 

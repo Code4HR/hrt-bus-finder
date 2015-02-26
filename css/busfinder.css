@@ -763,6 +763,7 @@ Geolocation Failure Alert
   width: 100%;
   text-align: center;
   padding: 2em 1em;
+  overflow-y: scroll;
 }
 
 #snow-mode img {
