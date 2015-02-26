@@ -23,7 +23,7 @@
             s.parentNode.insertBefore(ga, s);
         })();
 	</script>
-	
+
 	<link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="./css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="./css/busfinder.css" rel="stylesheet">
@@ -33,7 +33,7 @@
 
 </head>
 <body>
-	
+
 	<!--[if lt IE 9]>
 		<div id="upgrade-message">
 		 	<div>
@@ -42,6 +42,16 @@
 	    	</div>
     	</div>
     <![endif]-->
+
+  <div id="snow-mode">
+    <div class="container">
+      <img id="logo" src="img/favicon-rounded.png" alt="hrt logo">
+      <h1>Due to the Severe Weather Forecast, Snow Routes will be activated on Thursday, February 26th.</h1>
+      <p>For more information, please visit goHRT.com.</p>
+      <p><a href="http://www.gohrt.com" class="btn btn-info">GoHRT.com</a></p>
+
+    </div>
+  </div>
 
 	<div id="disclaimer" class="modal fade in" data-backdrop="static" data-keyboard="false" style="display: none;">
 	    <div class="modal-dialog">
@@ -64,7 +74,7 @@
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				
+
 				<div class="span2 quarter">
 					<a class="brand"><img alt="HRT Bus Logo" width="75" src="./img/logo-small.png" ></a>
 				</div>
@@ -116,7 +126,7 @@
 	<div class="app-container container">
 		<div id="stops"></div>
 	</div>
-		
+
 	<script src="./js/jquery-2.0.2.js"></script>
 	<script src="./js/jquery.jpanelmenu.js"></script>
 	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
@@ -126,7 +136,6 @@
 	<script src="./js/busfinder.js"></script>
 	<script src="./js/modernizr.js"></script>
 
-	
 	<script type="text/template" id="stop-template">
 		<div class="stop-name"><h4><%= stopName %></h4> <p>(Stop <%= stopId %>)</p></div>
 		<div class="arrivals">
@@ -145,7 +154,7 @@
 			</div>
 		</div>
 	</script>
-	
+
 	<script type="text/template" id="arrival-template">
 		<div class="row-fluid">
 			<div class="span2 route quarter"><%= routeId %></div>
@@ -164,7 +173,7 @@
 			<img src="img/arrow-down.png"/>
 		</div>
 	</script>
-	
+
 	<script type="text/template" id="route-view-template">
 		<select id="route">
 			<option selected="selected" value="">All Routes</option>
@@ -174,7 +183,7 @@
 		</select>
 		<div class="mapcanvas"></div>
 	</script>
-	
+
 	<script type="text/template" id="find-stops-view-template">
 	    <div id="find-options" style="height: 100%">
 	        <form class="form-inline">
@@ -199,7 +208,7 @@
 	    <div id="feedback">
 	    	<h1>Feedback</h1>
 	    	<p>Having troubles? Have a feature idea? Just want to say thanks to the volunteers in Hampton Roads who built/support this site?</p>
-	    	<form action="mailto:code4hr-team@codeforamerica.org" method="post" enctype="text/plain">	
+	    	<form action="mailto:code4hr-team@codeforamerica.org" method="post" enctype="text/plain">
 	    		<input placeholder="Name" name="name" type="text">
 	    		<label for="name">Name</label>
 				<input placeholder="email address" name="email" type="text">
@@ -207,7 +216,7 @@
 				<textarea name="comment" placeholder="Your feedback here..." id="" cols="30" rows="5"></textarea>
 				<label for="feedback">Feedback</label>
 				<button type="submit" class="btn">Submit</button>
-	    	</form>	
+	    	</form>
 	    </div>
 	</script>
 
@@ -215,7 +224,6 @@
 	    <div id="stops"></div>
 	    <button class='loadMore'>Refresh</button>
 	</script>
-
 
 	<script>
     	function supports_html5_storage() {
@@ -230,7 +238,7 @@
             //if(!supports_html5_storage() || localStorage['disclaimer_accepted'] !== 'true') {
                 $("#disclaimer").modal('show');
             //}
-        }); 
+        });
 
         $('#disclaimer a').click(function() {
            $("#disclaimer").modal('hide');
@@ -241,4 +249,3 @@
 	</script>
 </body>
 </html>
-

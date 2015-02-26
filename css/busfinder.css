@@ -45,7 +45,7 @@ ul, ol, dd {
 .navbar {
 	position: fixed;
 	height: 52px;
-}	
+}
 
 .navbar-inner {
 	background-image: none !important;
@@ -100,7 +100,7 @@ i.icon-search {
 }
 
 .btn:hover, .btn-info:hover {
-	background-color:#82A6BA;	
+	background-color:#82A6BA;
 }
 
 button.add-on {
@@ -151,7 +151,7 @@ h1, h2, h3, h4, h5, p, a, body {
 	color: #444;
 }
 
-body { 
+body {
 	background-image: url("../img/ps_neutral.png");
 }
 
@@ -227,7 +227,7 @@ h1 {
 
 .stop-name:hover {
 	background-color: #A7BFCC;
-}  
+}
 
 .stop-name > h4 {
 	color:white;
@@ -374,25 +374,25 @@ h1 {
 		margin-right: 0px;
 		margin-left: 0px;
 	}
-	
+
 	#stops .row-fluid {
 		position: relative;
 	}
-	
+
 	.head-label {
 		height: 25px;
 		padding: 0 10px;
 		position: relative;
 	}
-	
+
 	.head-label > div {
 		position: absolute;
 	}
-	
+
 	.schedule > .row-fluid {
 		height: 56px;
 	}
-	
+
 	.schedule > .row-fluid > div {
 		position: absolute;
 	}
@@ -401,12 +401,12 @@ h1 {
 		font-size: 12px;
 		font-style: italic;
 	}
-	
+
 	.quarter {
         width: 20% !important;
 		top: 0px;
     }
-	
+
 	.brand img {
 		width: 45px;
 		max-width: 45px;
@@ -445,9 +445,9 @@ h1 {
 		line-height: normal;
 
 	}
-	
+
 	.destination {
-	    
+
 	}
 
 }
@@ -456,7 +456,7 @@ h1 {
 	.navbar .container {
 		width: 724px;
 	}
-} 
+}
 
 @media (min-width: 768px) {
 	.navbar button.btn-info {
@@ -473,7 +473,7 @@ h1 {
 }
 
 /************************
-Loading Message 
+Loading Message
 ************************/
 
 
@@ -509,7 +509,7 @@ Loading Message
 }
 
 /************************
-About Page 
+About Page
 ************************/
 
 
@@ -592,7 +592,7 @@ Modal Disclaimer
 #disclaimer .modal-footer {
 	background: #EEDFCC;
 	border-top: none;
-	padding: .5em;	
+	padding: .5em;
 }
 
 #disclaimer .modal-footer .btn {
@@ -753,3 +753,40 @@ Geolocation Failure Alert
 
 }
 
+#snow-mode {
+  background: url('../img/wet_snow.png');
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  padding: 2em 1em;
+}
+
+#snow-mode img {
+  display: block;
+  max-width: 33%;
+  margin: 0 auto .5em auto;
+}
+
+#snow-mode .container {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+#snow-mode h1 {
+  line-height: 1.5em;
+}
+
+#snow-mode p {
+  margin: 1em 0;
+  line-height: 1.5em;
+}
+
+#snow-mode .btn {
+  margin: 0 auto;
+  position: relative;
+  right: auto;
+}
