@@ -40,7 +40,7 @@
         <p><a href="http://gohrt.com/route/snow-routes/" class="btn btn-info">GoHRT.com</a></p>
       </div>
     </div>
-    
+
   </script>
 
 </head>
@@ -64,9 +64,8 @@
         			<h3>Disclaimer</h3>
         		</div>
         		<div class="modal-body">
-        			<p>Due to the Severe Weather Forecast, Snow Routes will be activated on Thursday, February 26th.  For more information, <a href="http://gohrt.com/route/snow-routes/">tap here to visit goHRT.com.</a></p>
-        		<!--	<p>Hampton Roads Transit (HRT) is providing real time data contained [in this app] on an experimental basis. HRT cannot be held responsible for the accuracy of this data. Any applications using this data are not made by HRT, and HRT does not sell or license the apps. They are written by third parties unless otherwise noted.
-        			HRT shall not be held responsible for the content of third party websites or any issue arising from the use of third party applications. HRT neither endorses any third party products that use this data nor makes any guarantees or representations as to accuracy or reliability. Proceed with care and understand any usage charges that may apply to you. HRT reserves the right to remove/modify this real time data listing without notice. </p> -->
+        		    <p>Hampton Roads Transit (HRT) is providing real time data contained [in this app] on an experimental basis. HRT cannot be held responsible for the accuracy of this data. Any applications using this data are not made by HRT, and HRT does not sell or license the apps. They are written by third parties unless otherwise noted.
+        			HRT shall not be held responsible for the content of third party websites or any issue arising from the use of third party applications. HRT neither endorses any third party products that use this data nor makes any guarantees or representations as to accuracy or reliability. Proceed with care and understand any usage charges that may apply to you. HRT reserves the right to remove/modify this real time data listing without notice. </p>
         		</div>
         		<div class="modal-footer">
         			<a href="#" class="btn" data-dismiss="modal">I accept.</a>
@@ -239,9 +238,9 @@
         }
 
         $(function () {
-            //if(!supports_html5_storage() || localStorage['disclaimer_accepted'] !== 'true') {
-                // $("#disclaimer").modal('show');
-            //}
+            if(!supports_html5_storage() || localStorage['disclaimer_accepted'] !== 'true') {
+                $("#disclaimer").modal('show');
+            }
         });
 
         $('#disclaimer a').click(function() {

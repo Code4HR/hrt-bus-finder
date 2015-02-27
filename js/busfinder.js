@@ -1,14 +1,6 @@
 $(function(){
 
-	var snowRouteStartTime = 1424930400000;
-	var currentTime = new Date();
-	var SNOW_ROUTES;
-
-	if (currentTime.getTime() > snowRouteStartTime) {
-		SNOW_ROUTES = true;
-	} else {
-		SNOW_ROUTES = false;
-	}
+	var SNOW_ROUTES = false;
 
 	var Arrival = Backbone.Model.extend({
 		idAttribute: "_id",
