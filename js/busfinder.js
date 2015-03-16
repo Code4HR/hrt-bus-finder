@@ -1,63 +1,16 @@
+var app = app || {};
+
 $(function(){
 
 	var SNOW_ROUTES = false;
 
-	var Arrival = Backbone.Model.extend({
-		idAttribute: "_id",
+  // moved Arrival model to models/arrival.js
 
-		date: function() {
-			return new Date(Date.parseUtc(this.get('arrival_time')));
-		},
-
-		localTime: function() {
-			return this.date().to12HourString();
-		},
-
-		minutesFromNow: function() {
-			var arriveTime = this.date();
-			if(this.get('busAdherence')) {
-				arriveTime = arriveTime.addMinutes(this.get('busAdherence') * -1);
-			}
-
-			var arriveTimeFromNow = new Date(arriveTime - new Date().getTime());
-			return (arriveTimeFromNow.getTime() / 1000 / 60 | 0);
-		},
-
-		adherenceDescription: function() {
-			if(!this.has('busAdherence'))
-		        return 'scheduled';
-
-		    var adherence = this.get('busAdherence');
-		    if(adherence > 0)
-    		    return adherence + ' min early';
-			if(adherence < 0)
-				return (adherence * -1) + ' min late';
-			return 'on time'
-		},
-
-		lastCheckinTimeDescription: function() {
-		    if(!this.has('busCheckinTime'))
-		        return '';
-
-		    var date = new Date(Date.parseUtc(this.get('busCheckinTime')));
-			var timePassed = new Date(new Date().getTime() - date).getTime() / 1000 / 60 | 0;
-
-			if (timePassed == 0)
-			    return 'just now';
-			else if (timePassed == 1)
-			    return '1 minute ago';
-
-			return timePassed + ' minutes ago';
-		}
-	});
-
-	var Stop = Backbone.Model.extend({
-		idAttribute: "_id"
-	});
+  // moved Stop to models/stop.js
 
 	var API_URL = 'http://lit-inlet-3610.herokuapp.com/api/'
 	var ArrivalList = Backbone.Collection.extend({
-		model: Arrival,
+		model: app.Arrival,   //changed Arrival to app.Arrival
 
 		comparator: function(arrival) {
 		    return arrival.minutesFromNow();
