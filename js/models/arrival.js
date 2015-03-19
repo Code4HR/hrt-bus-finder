@@ -1,8 +1,6 @@
 var app = app || {};
 
-$(function() {
-	
-  app.Arrival = Backbone.Model.extend({
+module.exports = Backbone.Model.extend({
 		idAttribute: "_id",
 
 		date: function() {
@@ -50,5 +48,3 @@ $(function() {
 			return timePassed + ' minutes ago';
 		}
 	});
-  
-});
