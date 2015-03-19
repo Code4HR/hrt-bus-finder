@@ -612,7 +612,7 @@ $(function(){
 		},
 
 	    initialize: function() {
-	        this.collection = new Backbone.Collection([], {model: Stop});
+	        this.collection = new Backbone.Collection([], {model: app.Stop});
 	        this.collection.on('add', this.addStop, this);
 	        this.collection.once('sync', function() {App.MapView.setBounds();}, this);
 
