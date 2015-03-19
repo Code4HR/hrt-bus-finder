@@ -44,6 +44,14 @@ module.exports = function(grunt) {
               spawn: false,
               livereload: true
             }
+          },
+          markup: {
+            files: ['index.html'],
+            tasks: ['browserify'],
+            options: {
+              spawn: false,
+              livereload: true
+            }
           }
         }
 
