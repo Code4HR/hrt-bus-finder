@@ -23,7 +23,11 @@ module.exports = function(grunt) {
         browserify: {
           dist: {
             files: {
-              'js/main.js': ['js/collections/*.js', 'js/models/*.js', 'js/views/*.js']
+              'dist/main.js': ['js/main.js']
+            },
+            options: {
+              transform: ['node-underscorify'],
+              debug: true,
             }
           }
         },
