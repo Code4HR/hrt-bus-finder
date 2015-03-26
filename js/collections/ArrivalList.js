@@ -1,5 +1,5 @@
 		module.exports = Backbone.Collection.extend({
-		model: app.Arrival,   //changed Arrival to app.Arrival
+		model: Arrival,   //changed Arrival to app.Arrival
 
 		comparator: function(arrival) {
 		    return arrival.minutesFromNow();
