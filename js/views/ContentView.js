@@ -1,4 +1,4 @@
-var ContentView = Backbone.View.extend({
+module.exports = Backbone.View.extend({
 		el: $(".app-container"),
 
 		initialize: function() {
