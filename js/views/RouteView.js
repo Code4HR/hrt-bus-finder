@@ -1,4 +1,4 @@
-	var RouteView = Backbone.View.extend({
+module.exports = Backbone.View.extend({
 	    id: 'route-view',
 
 	    template: _.template($('#route-view-template').html()),
@@ -18,7 +18,7 @@
 			this.activeRoutesList.fetch({reset: true, dataType: 'jsonp'});
 
 			this.updateBuses();
-			App.Intervals.push(setInterval($.proxy(this.updateBuses, this), 30000));
+			Intervals.push(setInterval($.proxy(this.updateBuses, this), 30000));
 
 			$(window).resize($.proxy(this.resize, this));
 		},
@@ -27,29 +27,29 @@
 		    this.$el.html(this.template({ routes: this.activeRoutesList.toJSON() }));
 		    this.setSelectedRoutes(this.options.routeIds && this.options.routeIds.split('/'));
 
-		    App.MapView.$el.height(window.innerHeight - $('.navbar').outerHeight(true) - this.$('select').outerHeight(true) - 10);
-		    this.$('.mapcanvas').html(App.MapView.el);
+		    MapView.$el.height(window.innerHeight - $('.navbar').outerHeight(true) - this.$('select').outerHeight(true) - 10);
+		    this.$('.mapcanvas').html(MapView.el);
 			this.$('.mapcanvas').show();
-			App.MapView.resize();
+			MapView.resize();
 
 			return this;
 		},
 
 		resize: function() {
-		    App.MapView.$el.height(window.innerHeight - $('.navbar').outerHeight(true) - this.$('select').outerHeight(true) - 10);
-		    App.MapView.resize();
-			App.MapView.setBounds();
+		    MapView.$el.height(window.innerHeight - $('.navbar').outerHeight(true) - this.$('select').outerHeight(true) - 10);
+		    MapView.resize();
+			MapView.setBounds();
 		},
 
 		addBuses: function() {
-			App.MapView.clear();
-			App.MapView.createUserMarker(DowntownNorfolk);
+			MapView.clear();
+			MapView.createUserMarker(DowntownNorfolk);
 			this.collection.each(function(bus){
-			    App.MapView.createBusMarker(bus);
+			    MapView.createBusMarker(bus);
 			});
-			App.MapView.resize();
+			MapView.resize();
 			if(this.firstUpdate){
-			    App.MapView.setBounds();
+			    MapView.setBounds();
 			    this.firstUpdate = false;
 		    }
 	    },
@@ -59,7 +59,7 @@
 		},
 
 		routeSelected: function() {
-			App.Router.navigate('routes/' + this.$('select option:selected').val(), {trigger: true});
+			Router.navigate('routes/' + this.$('select option:selected').val(), {trigger: true});
 		},
 
 		setSelectedRoutes: function(routes) {---

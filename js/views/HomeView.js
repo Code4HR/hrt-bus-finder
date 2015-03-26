@@ -1,4 +1,4 @@
-	var HomeView = Backbone.View.extend({
+module.exports = Backbone.View.extend({
 	    template: _.template($('#stop-list-template').html()),
 
 	    events: {

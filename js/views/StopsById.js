@@ -1,4 +1,4 @@
-var StopsByIdView = Backbone.View.extend({
+modules.exports = Backbone.View.extend({
 	    id: 'stops',
 
 		initialize: function() {

@@ -1,4 +1,4 @@
-	var StopListView = Backbone.View.extend({
+	module.exports = Backbone.View.extend({
 		initialize: function() {
 			this.collection.on('reset', this.render, this);
 			this.collection.fetch({reset: true, dataType: 'jsonp'});
