@@ -1,6 +1,4 @@
-var app = app || {};
-
-	module.exports = Backbone.Collection.extend({
+module.exports = Backbone.Collection.extend({
 	    initialize: function(models, options) {
 	        this.routeIds = options.routeIds;
 	    },
@@ -12,4 +10,4 @@ var app = app || {};
 	        }
 			return url;
 		}
-	});
+});
