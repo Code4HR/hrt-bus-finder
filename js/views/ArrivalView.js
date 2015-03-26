@@ -1,4 +1,4 @@
-	var ArrivalView = Backbone.View.extend({
+module.exports = Backbone.View.extend({
 		className: 'schedule row-fluid',
 
 		template: _.template($('#arrival-template').html()),

@@ -1,17 +1,17 @@
-	var StopView = Backbone.View.extend({
+module.exports = Backbone.View.extend({
 		template: _.template($('#stop-template').html()),
 
 		initialize: function() {
 			debugger;
-			this.collection = new app.ArrivalList;
+			this.collection = new ArrivalList;
 			this.collection.stopId = this.model.get('stopId');
 			this.collection.on('add', this.addArrival, this);
 			this.collection.on('sort', this.checkOrder, this);
 			this.collection.on('sync', this.checkForEmpty, this);
-			this.listenTo(App.ContentView, 'forceRefresh', this.updateArrivalList);
+			this.listenTo(ContentView, 'forceRefresh', this.updateArrivalList);
 
 			this.updateArrivalList();
-			App.Intervals.push(setInterval($.proxy(this.updateArrivalList, this), 60000));
+			Intervals.push(setInterval($.proxy(this.updateArrivalList, this), 60000));
 		},
 
 		updateArrivalList: function() {
@@ -53,6 +53,6 @@
 
 		addArrival: function(arrival) {
 			var arrivalView = new ArrivalView({model: arrival, stop: this.model});
-			this.$('.arrivals .table').append(arrivalView.render().$el);
+			this.$('.arrivals .table').nd(arrivalView.render().$el);
 		}
 	});

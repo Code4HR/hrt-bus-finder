@@ -1,4 +1,4 @@
-	var SnowRoute = Backbone.View.extend({
+	module.exports = Backbone.View.extend({
 		template: _.template($('#snow-route-template').html()),
 
 		render: function() {

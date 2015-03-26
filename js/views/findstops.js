@@ -11,14 +11,14 @@ module.exports = Backbone.View.extend({
 	    initialize: function() {
 	        this.collection = new Backbone.Collection([], {model: Stop});
 	        this.collection.on('add', this.addStop, this);
-	        this.collection.once('sync', function() {MapView.setBounds();}, this);
+	        this.collection.once('sync', function() {App.MapView.setBounds();}, this);
 
-	        MapView.clear();
-	        MapView.setOnCenterChangedEvent($.proxy(this.findClosestStops, this));
+	        App.MapView.clear();
+	        App.MapView.setOnCenterChangedEvent($.proxy(this.findClosestStops, this));
 	        $(window).resize($.proxy(this.resize, this));
 
 	        if(this.options.location) {
-	            ContentView.once('contentChanged', function() {
+	            App.ContentView.once('contentChanged', function() {
 	                this.onUserLocated(this.options.location);
 	            }, this);
 	        } else {
@@ -30,26 +30,26 @@ module.exports = Backbone.View.extend({
 		    this.$el.html(this.template());
 
 		    this.resize();
-		    this.$('.mapcanvas').html(MapView.el);
+		    this.$('.mapcanvas').html(App.MapView.el);
 			this.$('.mapcanvas').show();
 
 			return this;
 		},
 
 		resize: function() {
-		    MapView.$el.height(window.innerHeight - $('.navbar').outerHeight(true) - this.$('#find-options').outerHeight(true));
-		    MapView.resize();
-			MapView.setBounds();
+		    App.MapView.$el.height(window.innerHeight - $('.navbar').outerHeight(true) - this.$('#find-options').outerHeight(true));
+		    App.MapView.resize();
+			App.MapView.setBounds();
 		},
 
 		addStop: function(stop) {
-		    MapView.createStopMarker(stop, true, function() {
-		        Router.navigate('stops/' + stop.get('stopId'), {trigger: true});
+		    App.MapView.createStopMarker(stop, true, function() {
+		        App.Router.navigate('stops/' + stop.get('stopId'), {trigger: true});
 		    });
 		},
 
 		findClosestStops: function(location) {
-		    Router.navigate('findStops/' + location.lat() + '/' + location.lng() + '/');
+		    App.Router.navigate('findStops/' + location.lat() + '/' + location.lng() + '/');
 		    this.collection.url = API_URL + 'stops/near/' + location.lat() + '/' + location.lng() + '/';
 		    this.collection.fetch({remove: false, dataType: 'jsonp'});
 		},
@@ -59,11 +59,11 @@ module.exports = Backbone.View.extend({
 		},
 
 		onUserLocated: function(location) {
-		    Router.navigate('findStops/' + location.lat() + '/' + location.lng() + '/');
-	        MapView.createUserMarker(location, true);
-	        MapView.resize();
-	        MapView.center(location);
-	        MapView.zoom(17);
+		    App.Router.navigate('findStops/' + location.lat() + '/' + location.lng() + '/');
+	        App.MapView.createUserMarker(location, true);
+	        App.MapView.resize();
+	        App.MapView.center(location);
+	        App.MapView.zoom(17);
 	        this.findClosestStops(location);
 	    },
 
@@ -72,15 +72,15 @@ module.exports = Backbone.View.extend({
 		    var city = this.$('#city').val();
 		    if(intersection == '') return;
 
-		    MapView.clear();
+		    App.MapView.clear();
 		    this.collection.once('sync', this.onSearchFinished, this);
 		    this.collection.url = API_URL + 'stops/near/intersection/' + city + '/' + intersection + '/';
 		    this.collection.fetch({dataType: 'jsonp'});
 		},
 
 		onSearchFinished: function() {
-		    MapView.setBounds();
-		    var location = MapView.center();
-		    Router.navigate('findStops/' + location.lat() + '/' + location.lng() + '/');
+		    App.MapView.setBounds();
+		    var location = App.MapView.center();
+		    App.Router.navigate('findStops/' + location.lat() + '/' + location.lng() + '/');
 		}
 	});

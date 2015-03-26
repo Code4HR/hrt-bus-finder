@@ -1,5 +1,3 @@
-var app = app || {};
-
 		module.exports = Backbone.Collection.extend({
 		model: app.Arrival,   //changed Arrival to app.Arrival
 

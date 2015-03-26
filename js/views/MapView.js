@@ -1,4 +1,4 @@
-	var MapView = Backbone.View.extend({
+module.exports = Backbone.View.extend({
 		initialize: function() {
 			this.map = new google.maps.Map(this.$el[0], {
 			    disableDefaultUI: true,
