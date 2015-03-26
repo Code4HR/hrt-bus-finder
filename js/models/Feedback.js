@@ -1,4 +1,4 @@
-var feedback = Backbone.Model.extend({
+module.exports = Backbone.Model.extend({
 		defaults: {
 			name: '',
 			emailAddress: '',
