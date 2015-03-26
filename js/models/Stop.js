@@ -1,6 +1,3 @@
-$(function(){
-	app.Stop = Backbone.Model.extend({
-		idAttribute: "_id"
-	});
-
+module.exports = Backbone.Model.extend({
+  idAttribute: "_id"
 });
