@@ -1,6 +1,4 @@
-var app = app || {};
-
-	var StopList = Backbone.Collection.extend({
+module.exports = Backbone.Collection.extend({
 		url: function() {
 		    if(this.location) {
 		        return API_URL + 'stops/near/' + this.location.lat() + '/' + this.location.lng() + '/';
