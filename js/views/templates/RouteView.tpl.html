@@ -1,0 +1,7 @@
+<select id="route">
+  <option selected="selected" value="">All Routes</option>
+  <% _.each(routes, function(route) { %>
+    <option value="<%= route.route_id %>"><%= route.route_short_name %> - <%= route.route_long_name %></option>
+  <% }); %>
+</select>
+<div class="mapcanvas"></div>

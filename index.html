@@ -55,8 +55,6 @@
     	</div>
     <![endif]-->
 
-
-
 	<div id="disclaimer" class="modal fade in" data-backdrop="static" data-keyboard="false" style="display: none;">
 	    <div class="modal-dialog">
             <div class="modal-content">
@@ -142,95 +140,6 @@
   <srcipt src="./js/collections/arrivalList.js"></script>
   <script src="./js/busfinder.js"></script>
 	<script src="./js/libs/modernizr.js"></script>
-
-	<script type="text/template" id="stop-template">
-		<div class="stop-name"><h4><%= stopName %></h4> <p>(Stop <%= stopId %>)</p></div>
-		<div class="arrivals">
-			<div class="row-fluid head-label">
-				<div class="span2 quarter">
-					<p>Route</p>
-				</div>
-				<div class="span8 half">
-					<p>Destination</p>
-				</div>
-				<div class="span2 quarter">
-					<p>Minutes</p>
-				</div>
-			</div>
-			<div class="table">
-			</div>
-		</div>
-	</script>
-
-	<script type="text/template" id="arrival-template">
-		<div class="row-fluid">
-			<div class="span2 route quarter"><%= routeId %></div>
-			<div class="span8 destination half">
-				<p><%= destination %></p>
-			</div>
-			<div class="span2 timeframe quarter"><%= arriveMinutes %></div>
-		</div>
-
-		<div class="mapcanvas"></div>
-		<div class="extended-info" style="display:none;">
-			<span>Location of <strong>Bus <%= busId %></strong> as of <strong><span class='lastUpdate'><%= lastUpdate %></span></strong>.</span>
-			<p class="arrival-time">Scheduled Arrival: <strong><%= arriveTime %></strong> - <%= adherence %></p>
-		</div>
-		<div class="arrow">
-			<img src="img/arrow-down.png"/>
-		</div>
-	</script>
-
-	<script type="text/template" id="route-view-template">
-		<select id="route">
-			<option selected="selected" value="">All Routes</option>
-			<% _.each(routes, function(route) { %>
-				<option value="<%= route.route_id %>"><%= route.route_short_name %> - <%= route.route_long_name %></option>
-			<% }); %>
-		</select>
-		<div class="mapcanvas"></div>
-	</script>
-
-	<script type="text/template" id="find-stops-view-template">
-	    <div id="find-options" style="height: 100%">
-	        <form class="form-inline">
-    	        <input id="intersection" type="text" placeholder="Intersection" style="height: 100%">
-                <select id="city">
-                	<option selected>City</option>
-                    <option>Chesapeake</option>
-                    <option>Hampton</option>
-                    <option>Newport News</option>
-                    <option>Norfolk</option>
-                    <option>Portsmouth</option>
-                    <option>Virginia Beach</option>
-                </select>
-                <button id="search" class="btn">Search</button>
-                <button id="locate" class="btn">Current Location</button>
-            </form>
-	    </div>
-		<div class="mapcanvas"></div>
-	</script>
-
-	<script type="text/template" id="user-feedback-template">
-	    <div id="feedback">
-	    	<h1>Feedback</h1>
-	    	<p>Having troubles? Have a feature idea? Just want to say thanks to the volunteers in Hampton Roads who built/support this site?</p>
-	    	<form action="mailto:code4hr-team@codeforamerica.org" method="post" enctype="text/plain">
-	    		<input placeholder="Name" name="name" type="text">
-	    		<label for="name">Name</label>
-				<input placeholder="email address" name="email" type="text">
-				<label for="email">Email</label>
-				<textarea name="comment" placeholder="Your feedback here..." id="" cols="30" rows="5"></textarea>
-				<label for="feedback">Feedback</label>
-				<button type="submit" class="btn">Submit</button>
-	    	</form>
-	    </div>
-	</script>
-
-	<script type="text/template" id="stop-list-template">
-	    <div id="stops"></div>
-	    <button class='loadMore'>Refresh</button>
-	</script>
 
 	<script>
     	function supports_html5_storage() {

@@ -1,0 +1,16 @@
+<div class="row-fluid">
+  <div class="span2 route quarter"><%= routeId %></div>
+  <div class="span8 destination half">
+    <p><%= destination %></p>
+  </div>
+  <div class="span2 timeframe quarter"><%= arriveMinutes %></div>
+</div>
+
+<div class="mapcanvas"></div>
+<div class="extended-info" style="display:none;">
+  <span>Location of <strong>Bus <%= busId %></strong> as of <strong><span class='lastUpdate'><%= lastUpdate %></span></strong>.</span>
+  <p class="arrival-time">Scheduled Arrival: <strong><%= arriveTime %></strong> - <%= adherence %></p>
+</div>
+<div class="arrow">
+  <img src="img/arrow-down.png"/>
+</div>
