@@ -137,10 +137,14 @@
 	<script src="./js/libs/backbone.js"></script>
 	<script src="./js/libs/bootstrap.min.js"></script>
   <script src="./dist/main.js"></script>
-  <script src="./js/busfinder.js"></script>
+
+  <!--  Busfinder commented out 
+     <script src="./js/busfinder.js"></script> 
+                                               -->
 	<script src="./js/libs/modernizr.js"></script>
 
-	<script type="text/template" id="stop-template">
+  <!-- moved stop-template to views/templates/stop-template-tpl.html	
+    <script type="text/template" id="stop-template">
 		<div class="stop-name"><h4><%= stopName %></h4> <p>(Stop <%= stopId %>)</p></div>
 		<div class="arrivals">
 			<div class="row-fluid head-label">
@@ -158,6 +162,7 @@
 			</div>
 		</div>
 	</script>
+                -->
 
 	<script type="text/template" id="arrival-template">
 		<div class="row-fluid">

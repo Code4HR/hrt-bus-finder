@@ -1,5 +1,10 @@
+//added require statements
+var StopTemplate = require('./templates/stop-template-tpl.html');
+    LocateUser = require('../utilities/LocateUser');
+
 module.exports = Backbone.View.extend({
-	    template: _.template($('#stop-list-template').html()),
+	    template: StopTemplate, // changed to StopTemplate from 
+                          // old -- _.template($('#stop-list-template').html()),
 
 	    events: {
 		    'click .loadMore': 'forceRefresh'

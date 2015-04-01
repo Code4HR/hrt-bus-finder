@@ -23,7 +23,7 @@ module.exports = function(grunt) {
         browserify: {
           dist: {
             files: {
-              'dist/main.js': ['js/main.js']
+              'dist/main.js': ['js/busfinder.js'] //changed to busfinder.js just for testing
             },
             options: {
               transform: ['node-underscorify'],

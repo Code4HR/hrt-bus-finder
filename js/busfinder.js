@@ -1,26 +1,15 @@
+//added require lines for views used
+var ContentView = require('./views/ContentView'),
+    HomeView = require('./views/HomeView'),
+    MapView = require('./views/MapView');
+
 $(function(){
 
 	var SNOW_ROUTES = false;
 
 	var API_URL = 'http://lit-inlet-3610.herokuapp.com/api/'
 
-	var LocateUser = function(onLocated) {
-
-	    var onFail = function() {
-	        onLocated(DowntownNorfolk);
-	        $('#geolocation-failed').prependTo('#stops').fadeIn();
-	    };
-
-	    var timeout = setTimeout(onFail, 5000);
-
-	    var onSuccess = function(position) {
-	        clearTimeout(timeout);
-	        onLocated(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-	    };
-
-	    navigator.geolocation ?
-			navigator.geolocation.getCurrentPosition(onSuccess, onFail) : onFail();
-	};
+	//moved LocateUser to ./utilitiest/LocateUser.js
 
 	var Router = Backbone.Router.extend({
 		 routes: {
