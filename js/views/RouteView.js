@@ -1,7 +1,14 @@
+var Backbone = require('backbone'),
+		_ = require('underscore'),
+		$ = require('jquery'),
+		RouteViewTemplate = require('./templates/RouteView.tpl.html'),
+		BusList = require('./../collections/BusList'),
+		ActiveRoutesList = require('./../collections/ActiveRoutesList');
+
 module.exports = Backbone.View.extend({
 	    id: 'route-view',
 
-	    template: _.template($('#route-view-template').html()),
+	    template: RouteViewTemplate,
 
 	    events: {
 			'change #route': 'routeSelected'
@@ -62,7 +69,7 @@ module.exports = Backbone.View.extend({
 			Router.navigate('routes/' + this.$('select option:selected').val(), {trigger: true});
 		},
 
-		setSelectedRoutes: function(routes) {---
+		setSelectedRoutes: function(routes) {
 		    if(routes == null || routes == "") {
 		        this.$('select option')[0].selected = true;
 		        return;
