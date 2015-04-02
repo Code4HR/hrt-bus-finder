@@ -1,5 +1,5 @@
 var Backbone = require('backbone'),
-		_ = require('underscrore'),
+		_ = require('underscore'),
 		$ = require('jquery'),
 
 		FindStopsViewTemplate = require('./templates/FindStopsView.tpl.html'),
@@ -7,7 +7,7 @@ var Backbone = require('backbone'),
 		MapView = require('./../views/MapView'),
 		ContentView = require('./../utilities/contentView'),
 		Router = require('./../utilities/router'),
-		API_URL = require('./../utilties/apiUrl');
+		API_URL = require('./../utilities/apiUrl');
 
 module.exports = Backbone.View.extend({
 
