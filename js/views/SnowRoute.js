@@ -1,9 +1,14 @@
-	module.exports = Backbone.View.extend({
-		template: _.template($('#snow-route-template').html()),
+var Backbone = require('backbone'),
+		_ = require('underscore'),
+		$ = require('jquery');
+		// SnowRouteTemplate = require('./templates/SnowRoute.js');
 
-		render: function() {
-				this.$el.html(this.template());
-				return this;
-		},
+module.exports = Backbone.View.extend({
+	template: '<p>Missing template</p>',
 
-	});
+	render: function() {
+			this.$el.html(this.template());
+			return this;
+	},
+
+});
