@@ -1,3 +1,5 @@
+var API_URL = require('../utilities/apiUrl');
+
 module.exports = Backbone.View.extend({
 	    id: 'find-stops-view',
 

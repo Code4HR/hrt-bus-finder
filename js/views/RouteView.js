@@ -1,3 +1,5 @@
+var DowntownNorfolk = require('./DowntownNorfolk');
+
 module.exports = Backbone.View.extend({
 	    id: 'route-view',
 
