@@ -12,7 +12,7 @@ module.exports = Backbone.View.extend({
 	},
 
 	initialize: function() {
-	    _.bindAll(this);
+	    _.bindAll(this, 'forceRefresh', 'getStopList', 'render');
 	    LocateUser(this.getStopList);
 	},
 
