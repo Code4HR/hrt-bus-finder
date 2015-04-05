@@ -1,3 +1,5 @@
+var API_URL = require('../utilities/apiUrl');
+
 module.exports = Backbone.Collection.extend({
 		url: function() {
 		    if(this.location) {

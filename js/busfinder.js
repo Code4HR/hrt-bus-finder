@@ -2,26 +2,6 @@ $(function(){
 
 	var SNOW_ROUTES = false;
 
-	var API_URL = 'http://lit-inlet-3610.herokuapp.com/api/'
-
-	var LocateUser = function(onLocated) {
-
-	    var onFail = function() {
-	        onLocated(DowntownNorfolk);
-	        $('#geolocation-failed').prependTo('#stops').fadeIn();
-	    };
-
-	    var timeout = setTimeout(onFail, 5000);
-
-	    var onSuccess = function(position) {
-	        clearTimeout(timeout);
-	        onLocated(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-	    };
-
-	    navigator.geolocation ?
-			navigator.geolocation.getCurrentPosition(onSuccess, onFail) : onFail();
-	};
-
 	var Router = Backbone.Router.extend({
 		 routes: {
 			"": SNOW_ROUTES ? "snowRoute" : "homeView",
@@ -83,7 +63,6 @@ $(function(){
 	});
 	jPM.on();
 
-	var DowntownNorfolk = new google.maps.LatLng(36.863794,-76.285608);
 	var App = {
 		ContentView: new ContentView,
 		Router: new Router,
