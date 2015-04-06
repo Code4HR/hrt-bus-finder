@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 var Backbone = require('backbone'),
 		_ = require('underscore'),
 		$ = require('jquery');
 
-=======
->>>>>>> d9c9d0c4bc11ae09ef7557c75fd789a6f7b4ea24
 module.exports = Backbone.Model.extend({
 		idAttribute: "_id",
 

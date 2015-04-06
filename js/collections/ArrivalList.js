@@ -1,4 +1,8 @@
-var API_URL = require('../utilities/apiUrl');
+var Backbone = require('backbone'),
+		_ = require('underscore'),
+		$ = require('jquery'),
+		API_URL = require('./../utilities/apiUrl'),
+		Arrival = require('./../models/Arrival');
 
 module.exports = Backbone.Collection.extend({
 		model: Arrival,
@@ -8,6 +12,6 @@ module.exports = Backbone.Collection.extend({
         },
 
 		url: function() {
-			return API_URL + 'stop_times/' + this.stopId + '/';
+			return API_URL() + 'stop_times/' + this.stopId + '/';
 		}
 	});

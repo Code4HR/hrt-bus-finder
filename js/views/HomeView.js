@@ -2,7 +2,9 @@ var Backbone = require('backbone'),
 		_ = require('underscore'),
 		$ = require('jquery'),
 		StopListTemplate = require('./templates/StopList.tpl.html'),
-		StopList = require('./../collections/StopList');
+		StopList = require('./../collections/StopList'),
+		StopListView = require('./../views/StopListView'),
+		LocateUser = require('./../utilities/LocateUser');
 
 module.exports = Backbone.View.extend({
   template: StopListTemplate,

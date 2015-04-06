@@ -1,8 +1,14 @@
+var Backbone = require('backbone'),
+		_ = require('underscore'),
+		$ = require('jquery');
+		StopTemplate = require('./templates/Stop.tpl.html'),
+		ContentView = require('./../utilities/contentView'),
+		ArrivalList = require('./../collections/ArrivalList');
+
 module.exports = Backbone.View.extend({
-		template: _.template($('#stop-template').html()),
+		template: StopTemplate,
 
 		initialize: function() {
-			debugger;
 			this.collection = new ArrivalList;
 			this.collection.stopId = this.model.get('stopId');
 			this.collection.on('add', this.addArrival, this);

@@ -1,4 +1,5 @@
 module.exports = Backbone.View.extend({
+
 		el: $(".app-container"),
 
 		initialize: function() {
@@ -8,10 +9,12 @@ module.exports = Backbone.View.extend({
 		},
 
 		setSubView: function(subView) {
+			debugger;
 			this.subView && this.subView.remove();
 			this.subView = subView;
 			this.$el.html(this.subView.render().el);
 			this.$el.trigger('create');
 			this.trigger('contentChanged');
 		}
-	});
+
+});

@@ -1,6 +1,7 @@
 var Backbone = require('backbone'),
 		_ = require('underscore'),
-		$ = require('jquery');
+		$ = require('jquery'),
+		StopView = require('./../views/StopView');
 
 module.exports = Backbone.View.extend({
 
@@ -18,5 +19,5 @@ module.exports = Backbone.View.extend({
 		var stopView = new StopView({model: stop});
 		this.$el.append(stopView.render().$el);
 	}
-	
+
 });
