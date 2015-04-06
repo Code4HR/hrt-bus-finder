@@ -1,4 +1,4 @@
-var DowntownNorfolk = require('./DowntownNorfolk');
+var DowntownNorfolk = require('./../utilities/DowntownNorfolk');
 
 module.exports = function(onLocated) {
 
