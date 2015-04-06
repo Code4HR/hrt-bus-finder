@@ -3,7 +3,8 @@ var Backbone = require('backbone'),
 		$ = require('jquery'),
 		RouteViewTemplate = require('./templates/RouteView.tpl.html'),
 		BusList = require('./../collections/BusList'),
-		ActiveRoutesList = require('./../collections/ActiveRoutesList');
+		ActiveRoutesList = require('./../collections/ActiveRoutesList'),
+		DowntownNorfolk = require('./DowntownNorfolk');
 
 module.exports = Backbone.View.extend({
 	    id: 'route-view',

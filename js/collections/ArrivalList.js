@@ -1,5 +1,7 @@
+var API_URL = require('../utilities/apiUrl');
+
 module.exports = Backbone.Collection.extend({
-		model: Arrival,   //changed Arrival to app.Arrival
+		model: Arrival,
 
 		comparator: function(arrival) {
 		    return arrival.minutesFromNow();
