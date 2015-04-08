@@ -3,6 +3,9 @@ var Backbone = require('backbone'),
 		$ = require('jquery');
 
 		var Router = require('./utilities/router');
+		var dateUtils = require('./utilities/dateUtils');
+
+		dateUtils();
 
 Backbone.$ = $;
 

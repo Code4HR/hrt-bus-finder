@@ -3,13 +3,14 @@
 var Backbone = require('backbone'),
     $ = require('jquery'),
     _ = require('underscore'),
-    ContentView = require('./contentView'),
+    ContentView = require('./../utilities/contentView'),
     HomeView = require('./../views/HomeView'),
     StopsByIdView = require('./../views/StopsByIdView'),
     RouteView = require('./../views/RouteView'),
     FindStopsView = require('./../views/FindStopsView'),
     SnowRoute = require('./../views/SnowRoute'),
-    intervalService = require('./intervalService.js');
+    intervalService = require('./intervalService.js'),
+    contentView = new ContentView();
 
 var SNOW_ROUTES = false;
 
@@ -25,19 +26,19 @@ module.exports = Backbone.Router.extend({
 
 		homeView: function() {
   	  this.clearIntervals();
-  		ContentView.setSubView(new HomeView());
+  		contentView.setSubView(new HomeView());
   		// MapView.setDraggable(false);
 		},
 
 		stopView: function(stopIds) {
       this.clearIntervals();
-      ContentView.setSubView(new StopsByIdView({stopIds: stopIds}));
+      contentView.setSubView(new StopsByIdView({stopIds: stopIds}));
       // MapView.setDraggable(false);
 		},
 
 		routeView: function(routeIds) {
 	    this.clearIntervals();
-	    ContentView.setSubView(new RouteView({routeIds: routeIds}));
+	    contentView.setSubView(new RouteView({routeIds: routeIds}));
 	    // MapView.setDraggable(true);
 	    $('#loading').remove();
 		},
@@ -45,7 +46,7 @@ module.exports = Backbone.Router.extend({
 		findStopsView: function(lat, lng) {
 	    this.clearIntervals();
 	    var location = lat && lng && new google.maps.LatLng(lat, lng);
-	    ContentView.setSubView(new FindStopsView({location: location}));
+	    contentView.setSubView(new FindStopsView({location: location}));
 	    // MapView.setDraggable(true);
 	    $('#loading').remove();
 		},
@@ -58,7 +59,7 @@ module.exports = Backbone.Router.extend({
 		},
 
 		snowRoute: function() {
-  		ContentView.setSubView(new SnowRoute());
+  		contentView.setSubView(new SnowRoute());
 		}
 
 	});

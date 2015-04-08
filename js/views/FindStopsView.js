@@ -1,7 +1,6 @@
 var Backbone = require('backbone'),
 		_ = require('underscore'),
 		$ = require('jquery'),
-
 		FindStopsViewTemplate = require('./templates/FindStopsView.tpl.html'),
 		Stop = require('./../models/Stop'),
 		MapView = require('./../views/MapView'),

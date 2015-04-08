@@ -7,7 +7,7 @@ function getIntervals() {
 }
 
 function setIntervals(input) {
-
+  Intervals.push(input);
 }
 
 function clearIntervals() {
@@ -16,6 +16,6 @@ function clearIntervals() {
 
 module.exports =  {
   get: getIntervals,
-  set: setIntervals,
+  push: setIntervals,
   clear: clearIntervals
 };

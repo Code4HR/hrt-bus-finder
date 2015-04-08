@@ -3,7 +3,10 @@ var Backbone = require('backbone'),
 		$ = require('jquery');
 		StopTemplate = require('./templates/Stop.tpl.html'),
 		ContentView = require('./../utilities/contentView'),
-		ArrivalList = require('./../collections/ArrivalList');
+		ArrivalList = require('./../collections/ArrivalList'),
+		ArrivalView = require('./../views/ArrivalView'),
+		Intervals = require('./../utilities/intervalService'),
+		contentView = new ContentView();
 
 module.exports = Backbone.View.extend({
 		template: StopTemplate,
@@ -14,7 +17,7 @@ module.exports = Backbone.View.extend({
 			this.collection.on('add', this.addArrival, this);
 			this.collection.on('sort', this.checkOrder, this);
 			this.collection.on('sync', this.checkForEmpty, this);
-			this.listenTo(ContentView, 'forceRefresh', this.updateArrivalList);
+			this.listenTo(contentView, 'forceRefresh', this.updateArrivalList);
 
 			this.updateArrivalList();
 			Intervals.push(setInterval($.proxy(this.updateArrivalList, this), 60000));
@@ -59,6 +62,6 @@ module.exports = Backbone.View.extend({
 
 		addArrival: function(arrival) {
 			var arrivalView = new ArrivalView({model: arrival, stop: this.model});
-			this.$('.arrivals .table').nd(arrivalView.render().$el);
+			this.$('.arrivals .table').append(arrivalView.render().$el);
 		}
 	});

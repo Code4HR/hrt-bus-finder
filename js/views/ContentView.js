@@ -1,5 +1,7 @@
 module.exports = Backbone.View.extend({
 
+		debugger;
+
 		el: $(".app-container"),
 
 		initialize: function() {

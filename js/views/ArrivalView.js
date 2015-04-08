@@ -1,7 +1,13 @@
+var Backbone = require('backbone'),
+		_ = require('underscore'),
+		$ = require('jquery'),
+		ArrivalTemplate = require('./../views/templates/Arrival.tpl.html'),
+		Intervals = require('./../utilities/intervalService');
+
 module.exports = Backbone.View.extend({
 		className: 'schedule row-fluid',
 
-		template: _.template($('#arrival-template').html()),
+		template: ArrivalTemplate,
 
 		events: {
 			'click .row-fluid': 'showMap',
@@ -18,7 +24,7 @@ module.exports = Backbone.View.extend({
 			this.model.on('change', this.render, this);
 			this.model.on('remove', this.remove, this);
 			$(window).resize($.proxy(this.resize, this));
-			App.Intervals.push(setInterval($.proxy(this.updateTime, this), 10000));
+			Intervals.push(setInterval($.proxy(this.updateTime, this), 10000));
 		},
 
 		updateTime: function() {
@@ -29,7 +35,7 @@ module.exports = Backbone.View.extend({
 		    this.$('.timeframe').removeClass('departed imminent enroute');
 
 		    if(minutesToArrival < 0) {
-		        this.$('.timeframe').addClass('departed');
+		      this.$('.timeframe').addClass('departed');
 		    } else if (minutesToArrival >= 0 && minutesToArrival <= 5) {
 		    	this.$('.timeframe').addClass('imminent');
 		    } else {
@@ -76,17 +82,17 @@ module.exports = Backbone.View.extend({
 			$('.arrow > img').attr('src', './img/arrow-down.png');
 
 			if(!mapShowing) {
-				App.MapView.clear();
-				App.MapView.createStopMarker(this.options.stop);
-    			App.MapView.createBusMarker(this.model);
+				MapView.clear();
+				MapView.createStopMarker(this.options.stop);
+    			MapView.createBusMarker(this.model);
     			this.resize(true);
     			this.$('.mapcanvas').html(App.MapView.el);
 
 				this.$('.arrow > img').attr('src', './img/arrow-up.png');
-			    this.$('.extended-info').show();
+			  this.$('.extended-info').show();
 				this.$('.mapcanvas').show();
-				App.MapView.resize();
-				App.MapView.setBounds();
+				MapView.resize();
+				MapView.setBounds();
 
 				if(scroll) {
 				    $('html,body').animate({scrollTop: this.$el.offset().top - 50 }, 'slow');
@@ -102,9 +108,9 @@ module.exports = Backbone.View.extend({
 				var	stopHeight = $('.stop-name').height();
 				var	headHeight = $('.head-label').height();
 				var mapHeight = window.innerHeight - (headerHeight + scheduleHeight + stopHeight + headHeight + 6);
-				App.MapView.$el.height(mapHeight);
-				App.MapView.resize();
-				App.MapView.setBounds();
-	        }
+				MapView.$el.height(mapHeight);
+				MapView.resize();
+				MapView.setBounds();
+	      }
 		}
 	});
