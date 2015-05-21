@@ -54,7 +54,7 @@ $(function(){
 	var Stop = Backbone.Model.extend({
 		idAttribute: "_id"
 	});
-    //change_url
+
 	var API_URL = 'http://lit-inlet-3610.herokuapp.com/api/'
 	var ArrivalList = Backbone.Collection.extend({
 		model: Arrival,
