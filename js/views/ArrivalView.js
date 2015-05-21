@@ -2,7 +2,9 @@ var Backbone = require('backbone'),
 		_ = require('underscore'),
 		$ = require('jquery'),
 		ArrivalTemplate = require('./../views/templates/Arrival.tpl.html'),
-		Intervals = require('./../utilities/intervalService');
+		Intervals = require('./../utilities/intervalService'),
+		MapView = require('./../views/MapView'),
+		mapView = new MapView();
 
 module.exports = Backbone.View.extend({
 		className: 'schedule row-fluid',
@@ -82,17 +84,17 @@ module.exports = Backbone.View.extend({
 			$('.arrow > img').attr('src', './img/arrow-down.png');
 
 			if(!mapShowing) {
-				MapView.clear();
-				MapView.createStopMarker(this.options.stop);
-    			MapView.createBusMarker(this.model);
+				mapView.clear();
+				//mapView.createStopMarker(this.options.stop);
+    			mapView.createBusMarker(this.model);
     			this.resize(true);
-    			this.$('.mapcanvas').html(App.MapView.el);
+    			this.$('.mapcanvas').html(mapView.el);
 
 				this.$('.arrow > img').attr('src', './img/arrow-up.png');
 			  this.$('.extended-info').show();
 				this.$('.mapcanvas').show();
-				MapView.resize();
-				MapView.setBounds();
+				mapView.resize();
+				mapView.setBounds();
 
 				if(scroll) {
 				    $('html,body').animate({scrollTop: this.$el.offset().top - 50 }, 'slow');
@@ -108,9 +110,9 @@ module.exports = Backbone.View.extend({
 				var	stopHeight = $('.stop-name').height();
 				var	headHeight = $('.head-label').height();
 				var mapHeight = window.innerHeight - (headerHeight + scheduleHeight + stopHeight + headHeight + 6);
-				MapView.$el.height(mapHeight);
-				MapView.resize();
-				MapView.setBounds();
+				mapView.$el.height(mapHeight);
+				mapView.resize();
+				mapView.setBounds();
 	      }
 		}
 	});
