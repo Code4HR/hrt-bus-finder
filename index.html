@@ -30,19 +30,6 @@
 	<link rel="apple-touch-icon" href="./img/favicon.png">
 	<link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico" />
 
-  <script type="text/template" id="snow-route-template">
-
-    <div id="snow-mode">
-      <div class="container">
-        <img id="logo" src="img/favicon-rounded.png" alt="hrt logo">
-        <h1>Due to the Severe Weather Forecast, Snow Routes will be activated on Thursday, February 26th.</h1>
-        <p>For more information, please visit goHRT.com.</p>
-        <p><a href="http://gohrt.com/route/snow-routes/" class="btn btn-info">GoHRT.com</a></p>
-      </div>
-    </div>
-
-  </script>
-
 </head>
 <body>
 
@@ -55,40 +42,35 @@
     	</div>
     <![endif]-->
 
-	<div id="disclaimer" class="modal fade in" data-backdrop="static" data-keyboard="false" style="display: none;">
-	    <div class="modal-dialog">
+    <nav class="navbar-fixed">
+        <ul class="container">
+            <li><a href="#/"><img alt="HRT Bus Logo" width="75" src="./img/logo-small.png"></a></li>
+            <li><a href="#/">Near Me</a></li>
+            <li><a href="#/routes/">Routes</a></li>
+            <li><a href="#/findStops/">Stops</a></li>
+            <li><a href="http://gohrt.ticketleap.com/">Buy a Ticket</a></li>
+            <li><a href="https://github.com/code4hr/hrt-bus-finder/wiki/User-Guide">User Guide</a></li>
+            <li><a href="#/feedback/">Feedback</a></li>
+            <li><a href="#/about/">About</a></li>
+        </ul>
+    </nav>
+
+    <div id="disclaimer" class="modal fade in" data-backdrop="static" data-keyboard="false" style="display: none;">
+        <div class="modal-dialog">
             <div class="modal-content">
-		        <div class="modal-header">
-        			<h3>Disclaimer</h3>
-        		</div>
-        		<div class="modal-body">
-        		    <p>Hampton Roads Transit (HRT) is providing real time data contained [in this app] on an experimental basis. HRT cannot be held responsible for the accuracy of this data. Any applications using this data are not made by HRT, and HRT does not sell or license the apps. They are written by third parties unless otherwise noted.
-        			HRT shall not be held responsible for the content of third party websites or any issue arising from the use of third party applications. HRT neither endorses any third party products that use this data nor makes any guarantees or representations as to accuracy or reliability. Proceed with care and understand any usage charges that may apply to you. HRT reserves the right to remove/modify this real time data listing without notice. </p>
-        		</div>
-        		<div class="modal-footer">
-        			<a href="#" class="btn" data-dismiss="modal">I accept.</a>
-        		</div>
-        	</div>
+                <div class="modal-header">
+                    <h3>Disclaimer</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Hampton Roads Transit (HRT) is providing real time data contained [in this app] on an experimental basis. HRT cannot be held responsible for the accuracy of this data. Any applications using this data are not made by HRT, and HRT does not sell or license the apps. They are written by third parties unless otherwise noted.
+                    HRT shall not be held responsible for the content of third party websites or any issue arising from the use of third party applications. HRT neither endorses any third party products that use this data nor makes any guarantees or representations as to accuracy or reliability. Proceed with care and understand any usage charges that may apply to you. HRT reserves the right to remove/modify this real time data listing without notice. </p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn" data-dismiss="modal">I accept.</a>
+                </div>
+            </div>
         </div>
-	</div>
-
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-
-				<div class="span2 quarter">
-					<a class="brand"><img alt="HRT Bus Logo" width="75" src="./img/logo-small.png" ></a>
-				</div>
-				<div class="span8 half">
-					<h1 id="title">HRT Bus Finder</h1>
-				</div>
-				<div class="span2 quarter">
-					<button class="btn-current-location btn btn-info btn-address pull-right menu-trigger"><i class="icon-th-list icon-white"></i></button>
-				</div>
-
-			</div>
-		</div>
-	</div>
+    </div>
 
 	<div id="loading">
 		<div>
@@ -111,8 +93,8 @@
 	</div>
 
 	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-  <!-- <script src="./js/libs/bootstrap.min.js"></script> -->
-  <script src="./dist/main.js"></script>
+    <!-- <script src="./js/libs/bootstrap.min.js"></script> -->
+    <script src="./dist/main.js"></script>
 	<!-- <script src="./js/libs/modernizr.js"></script> -->
 
 </body>

@@ -16,50 +16,51 @@ var SNOW_ROUTES = false;
 
 module.exports = Backbone.Router.extend({
 
-    routes: {
-  		"": SNOW_ROUTES ? "snowRoute" : "homeView",
-  		"stops/*stopIds": SNOW_ROUTES ? "snowRoute" : "stopView",
-  		"routes(/*routeIds)": SNOW_ROUTES ? "snowRoute" : "routeView",
-  		"findStops(/:lat/:lng)(/)": SNOW_ROUTES ? "snowRoute" : "findStopsView",
-  		"feedback(/)" : SNOW_ROUTES ? "snowRoute" : "feedbackView"
-		},
+  routes: {
+    '': SNOW_ROUTES ? 'snowRoute' : 'homeView',
+    'stops/*stopIds': SNOW_ROUTES ? 'snowRoute' : 'stopView',
+    'routes(/*routeIds)': SNOW_ROUTES ? 'snowRoute' : 'routeView',
+    'findStops(/:lat/:lng)(/)': SNOW_ROUTES ? 'snowRoute' : 'findStopsView',
+    'feedback(/)': SNOW_ROUTES ? 'snowRoute' : 'feedbackView'
+  },
 
-		homeView: function() {
-  	  this.clearIntervals();
-  		contentView.setSubView(new HomeView());
-  		// MapView.setDraggable(false);
-		},
+  homeView: function() {
+    this.clearIntervals();
+    contentView.setSubView(new HomeView());
+    // MapView.setDraggable(false);
+  },
 
-		stopView: function(stopIds) {
-      this.clearIntervals();
-      contentView.setSubView(new StopsByIdView({stopIds: stopIds}));
-      // MapView.setDraggable(false);
-		},
+  stopView: function(stopIds) {
+    this.clearIntervals();
+    contentView.setSubView(new StopsByIdView({stopIds: stopIds}));
+    // MapView.setDraggable(false);
+  },
 
-		routeView: function(routeIds) {
-	    this.clearIntervals();
-	    contentView.setSubView(new RouteView({routeIds: routeIds}));
-	    // MapView.setDraggable(true);
-	    $('#loading').remove();
-		},
+  routeView: function(routeIds) {
+    this.clearIntervals();
+    contentView.setSubView(new RouteView({routeIds: routeIds}));
+    // MapView.setDraggable(true);
+    $('#loading').remove();
+  },
 
-		findStopsView: function(lat, lng) {
-	    this.clearIntervals();
-	    var location = lat && lng && new google.maps.LatLng(lat, lng);
-	    contentView.setSubView(new FindStopsView({location: location}));
-	    // MapView.setDraggable(true);
-	    $('#loading').remove();
-		},
+  findStopsView: function(lat, lng) {
+    this.clearIntervals();
+    var location = lat && lng && new google.maps.LatLng(lat, lng);
+    contentView.setSubView(new FindStopsView({location: location}));
+    // MapView.setDraggable(true);
+    $('#loading').remove();
+  },
 
-		clearIntervals: function() {
-	    $(window).off('resize');
-	    if(intervalService.get().length) {
-        intervalService.clear();
-	    }
-		},
+  clearIntervals: function() {
+    $(window).off('resize');
+    if (intervalService.get().length) {
+      intervalService.clear();
+    }
+  },
 
-		snowRoute: function() {
-  		contentView.setSubView(new SnowRoute());
-		}
+  snowRoute: function() {
+	contentView.setSubView(new SnowRoute());
 
-	});
+  }
+
+});

@@ -1,35 +1,7 @@
 .app-container {
-  	margin-top: 60px;
+  	margin-top: 72px;
 	text-align: center;
 	background-image: url("../img/ps_neutral.png");
-}
-
-.jPanelMenu-panel {
-    background-image: url("../img/ps_neutral.png") !important;
-}
-
-#jPanelMenu-menu {
-    padding-top: 50px;
-    background: #EEDFCC;
-}
-
-#jPanelMenu-menu ul {
-    /*border-bottom: 1px solid #eedfcc;*/
-    margin-top: 16px;
-}
-
-#jPanelMenu-menu li a {
-    background: #EEDFCC;
-    font-family: "Arvo", Helvetica Neue,Helvetica,Arial,sans-serif;
-    font-weight: 700;
-    display: block;
-    padding: 0.25em 5%;
-    border-bottom: 3px solid #eed9bf;
-    text-decoration: none;
-    color: #555;
-    letter-spacing: 1px;
-    font-size: 16px;
-    line-height: 2em;
 }
 
 nav ul, nav ol {
@@ -42,10 +14,40 @@ ul, ol, dd {
     padding: 0;
 }
 
-.navbar {
+.navbar-fixed {
 	position: fixed;
-	height: 52px;
+    top: 0;
+    width: 100%;
+    height: 64px;
+    background-color: #82A6BA;
+    z-index: 1024;
 }
+
+    .navbar.container {
+        height: 64px;
+    }
+
+    .navbar-fixed ul {
+        display: block;
+        overflow-x: scroll;
+        overflow-y: none;
+        white-space: nowrap;
+        max-width: 100%;
+        line-height: 64px;
+    }
+
+        .navbar-fixed li {
+            display: inline;
+            height: 48px;
+        }
+
+            .navbar-fixed li a {
+                height: 48px;
+                color: white;
+                padding: 20px 6px;
+                text-decoration: none;
+                font-size: 16px;
+            }
 
 .navbar-inner {
 	background-image: none !important;
@@ -53,27 +55,6 @@ ul, ol, dd {
 	border-bottom: none;
 	min-height: 52px;
 	filter: none;
-}
-
-.navbar-inner h1 {
-	font-size: 16px;
-	line-height:52px;
-	display: inline;
-	font-style: italic;
-	color: white;
-	text-transform: uppercase;
-	position: absolute;
-	left: 50%;
-	margin-left: -74px;
-}
-
-.navbar-inner .container {
-	position: relative;
-}
-
-input {
-	border: 2px solid white !important;
-	border-right: none !important;
 }
 
 .btn, .btn-info {
