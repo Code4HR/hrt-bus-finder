@@ -9,26 +9,26 @@ var Backbone = require('backbone'),
     RouteView = require('./../views/RouteView'),
     FindStopsView = require('./../views/FindStopsView'),
     SnowRoute = require('./../views/SnowRoute'),
-    intervalService = require('./intervalService.js'),
+    intervals = require('./intervalService.js'),
     contentView = new ContentView();
 
 var SNOW_ROUTES = false;
 
 module.exports = Backbone.Router.extend({
 
-  routes: {
-    '': SNOW_ROUTES ? 'snowRoute' : 'homeView',
-    'stops/*stopIds': SNOW_ROUTES ? 'snowRoute' : 'stopView',
-    'routes(/*routeIds)': SNOW_ROUTES ? 'snowRoute' : 'routeView',
-    'findStops(/:lat/:lng)(/)': SNOW_ROUTES ? 'snowRoute' : 'findStopsView',
-    'feedback(/)': SNOW_ROUTES ? 'snowRoute' : 'feedbackView'
-  },
+    routes: {
+        '': SNOW_ROUTES ? 'snowRoute' : 'homeView',
+        'stops/*stopIds': SNOW_ROUTES ? 'snowRoute' : 'stopView',
+        'routes(/*routeIds)': SNOW_ROUTES ? 'snowRoute' : 'routeView',
+        'findStops(/:lat/:lng)(/)': SNOW_ROUTES ? 'snowRoute' : 'findStopsView',
+        'feedback(/)' : SNOW_ROUTES ? 'snowRoute' : "feedbackView"
+	},
 
   homeView: function() {
     this.clearIntervals();
-    contentView.setSubView(new HomeView());
-    // MapView.setDraggable(false);
-  },
+	contentView.setSubView(new HomeView());
+	// MapView.setDraggable(false);
+	},
 
   stopView: function(stopIds) {
     this.clearIntervals();
@@ -53,14 +53,13 @@ module.exports = Backbone.Router.extend({
 
   clearIntervals: function() {
     $(window).off('resize');
-    if (intervalService.get().length) {
-      intervalService.clear();
+    if (intervals.get().length) {
+      intervals.clear();
     }
   },
 
   snowRoute: function() {
 	contentView.setSubView(new SnowRoute());
-
   }
 
 });
