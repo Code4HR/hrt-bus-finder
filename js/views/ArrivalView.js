@@ -7,116 +7,116 @@ var Backbone = require('backbone'),
 		mapView = new MapView();
 
 module.exports = Backbone.View.extend({
-		className: 'schedule row-fluid',
+  className: 'schedule row-fluid',
 
-		template: ArrivalTemplate,
+  template: ArrivalTemplate,
 
-		events: {
-			'click .row-fluid': 'showMap',
-			'click .arrow': 'showMap'
-		},
+  events: {
+    'click .row-fluid': 'showMap',
+    'click .arrow': 'showMap'
+  },
 
-		routeType: {
-		    '0': 'light-rail',
-		    '3': 'bus',
-		    '4': 'ferry'
-		},
+  routeType: {
+    '0': 'light-rail',
+    '3': 'bus',
+    '4': 'ferry'
+  },
 
-		initialize: function(options) {
+  initialize: function(options) {
 
-			this.options = options;
+    this.options = options;
 
-			this.model.on('change', this.render, this);
-			this.model.on('remove', this.remove, this);
-			$(window).resize($.proxy(this.resize, this));
-			Intervals.push(setInterval($.proxy(this.updateTime, this), 10000));
-		},
+    this.model.on('change', this.render, this);
+    this.model.on('remove', this.remove, this);
+    $(window).resize($.proxy(this.resize, this));
+    Intervals.push(setInterval($.proxy(this.updateTime, this), 10000));
+  },
 
-		updateTime: function() {
+  updateTime: function() {
 
-		    var minutesToArrival = this.model.minutesFromNow();
+    var minutesToArrival = this.model.minutesFromNow();
 
-		    this.$('.timeframe').html(this.minutesFromNowToString(minutesToArrival));
-		    this.$('.lastUpdate').html(this.model.lastCheckinTimeDescription());
-		    this.$('.timeframe').removeClass('departed imminent enroute');
+    this.$('.timeframe').html(this.minutesFromNowToString(minutesToArrival));
+    this.$('.lastUpdate').html(this.model.lastCheckinTimeDescription());
+    this.$('.timeframe').removeClass('departed imminent enroute');
 
-		    if(minutesToArrival < 0) {
-		      this.$('.timeframe').addClass('departed');
-		    } else if (minutesToArrival >= 0 && minutesToArrival <= 5) {
-		    	this.$('.timeframe').addClass('imminent');
-		    } else {
-		    	this.$('.timeframe').addClass('enroute');
-		    }
-		},
+    if (minutesToArrival < 0) {
+      this.$('.timeframe').addClass('departed');
+    } else if (minutesToArrival >= 0 && minutesToArrival <= 5) {
+      this.$('.timeframe').addClass('imminent');
+    } else {
+      this.$('.timeframe').addClass('enroute');
+    }
+  },
 
-		minutesFromNowToString: function(minutesFromNow) {
-		    if(minutesFromNow == 0) return 'Now';
-		    if(minutesFromNow < 0) return 'Gone';
-		    return minutesFromNow;
-		},
+  minutesFromNowToString: function(minutesFromNow) {
+    if (minutesFromNow == 0) return 'Now';
+    if (minutesFromNow < 0) return 'Gone';
+    return minutesFromNow;
+  },
 
-		render: function() {
-		    var mapShowing = this.$('.mapcanvas').is(':visible');
-		    var minutesToArrival = this.model.minutesFromNow();
+  render: function() {
+    var mapShowing = this.$('.mapcanvas').is(':visible');
+    var minutesToArrival = this.model.minutesFromNow();
 
-			this.$el.html(this.template({
-				routeId: this.model.get('route_id'),
-				destination: this.model.get('destination'),
-				arriveTime: this.model.localTime(),
-				adherence: this.model.adherenceDescription(),
-				arriveMinutes: this.minutesFromNowToString(minutesToArrival),
-				busId: this.model.get('busId'),
-				lastUpdate: this.model.lastCheckinTimeDescription()
-			}));
+    this.$el.html(this.template({
+      routeId: this.model.get('route_id'),
+      destination: this.model.get('destination'),
+      arriveTime: this.model.localTime(),
+      adherence: this.model.adherenceDescription(),
+      arriveMinutes: this.minutesFromNowToString(minutesToArrival),
+      busId: this.model.get('busId'),
+      lastUpdate: this.model.lastCheckinTimeDescription()
+    }));
 
-			this.updateTime();
-			this.$el.attr('data-id', this.model.id);
-			this.$el.addClass(this.routeType[this.model.get('routeType')] + '-route');
+    this.updateTime();
+    this.$el.attr('data-id', this.model.id);
+    this.$el.addClass(this.routeType[this.model.get('routeType')] + '-route');
 
-			if(mapShowing) {
-			    this.showMap(null);
-			}
+    if (mapShowing) {
+      this.showMap(null);
+    }
 
-			return this;
-		},
+    return this;
+  },
 
-		showMap: function(scroll) {
-		    var mapShowing = this.$('.mapcanvas').is(':visible');
+  showMap: function(scroll) {
+    var mapShowing = this.$('.mapcanvas').is(':visible');
 
-			$('.extended-info').hide();
-			$('.mapcanvas').hide();
-			$('.arrow > img').attr('src', './img/arrow-down.png');
+    $('.extended-info').hide();
+    $('.mapcanvas').hide();
+    $('.arrow > img').attr('src', './img/arrow-down.png');
 
-			if(!mapShowing) {
-				mapView.clear();
-				mapView.createStopMarker(this.options.stop);
-    			mapView.createBusMarker(this.model);
-    			this.resize(true);
-    			this.$('.mapcanvas').html(mapView.el);
+    if (!mapShowing) {
+      mapView.clear();
+      mapView.createStopMarker(this.options.stop);
+      mapView.createBusMarker(this.model);
+      this.resize(true);
+      this.$('.mapcanvas').html(mapView.el);
 
-				this.$('.arrow > img').attr('src', './img/arrow-up.png');
-			  this.$('.extended-info').show();
-				this.$('.mapcanvas').show();
-				mapView.resize();
-				mapView.setBounds();
+      this.$('.arrow > img').attr('src', './img/arrow-up.png');
+      this.$('.extended-info').show();
+      this.$('.mapcanvas').show();
+      mapView.resize();
+      mapView.setBounds();
 
-				if(scroll) {
-				    $('html,body').animate({scrollTop: this.$el.offset().top - 50 }, 'slow');
-			    }
-			}
-		},
+      if (scroll) {
+        $('html,body').animate({scrollTop: this.$el.offset().top - 64}, 'slow');
+      }
+    }
+  },
 
-		resize: function(force) {
-		    var mapShowing = this.$('.mapcanvas').is(':visible');
-		    if(force || mapShowing) {
-		        var scheduleHeight = $('.schedule').height();
-				var	headerHeight = $('.navbar').height();
-				var	stopHeight = $('.stop-name').height();
-				var	headHeight = $('.head-label').height();
-				var mapHeight = window.innerHeight - (headerHeight + scheduleHeight + stopHeight + headHeight + 6);
-				mapView.$el.height(mapHeight);
-				mapView.resize();
-				mapView.setBounds();
-	      }
-		}
+  resize: function(force) {
+    var mapShowing = this.$('.mapcanvas').is(':visible');
+    if (force || mapShowing) {
+      var scheduleHeight = $('.schedule').height();
+      var headerHeight = $('.navbar').height();
+      var stopHeight = $('.stop-name').height();
+      var headHeight = $('.head-label').height();
+      var mapHeight = window.innerHeight - (headerHeight + scheduleHeight + stopHeight + headHeight + 72);
+      mapView.$el.height(mapHeight);
+      mapView.resize();
+      mapView.setBounds();
+    }
+  }
 	});
