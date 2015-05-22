@@ -88,7 +88,6 @@ module.exports = Backbone.View.extend({
 			$('.arrow > img').attr('src', './img/arrow-down.png');
 
 			if(!mapShowing) {
-				console.log(this.options.stop);
 				mapView.clear();
 				mapView.createStopMarker(this.options.stop);
     			mapView.createBusMarker(this.model);
