@@ -22,7 +22,10 @@ module.exports = Backbone.View.extend({
 		    '4': 'ferry'
 		},
 
-		initialize: function() {
+		initialize: function(options) {
+
+			this.options = options;
+
 			this.model.on('change', this.render, this);
 			this.model.on('remove', this.remove, this);
 			$(window).resize($.proxy(this.resize, this));
@@ -30,6 +33,7 @@ module.exports = Backbone.View.extend({
 		},
 
 		updateTime: function() {
+
 		    var minutesToArrival = this.model.minutesFromNow();
 
 		    this.$('.timeframe').html(this.minutesFromNowToString(minutesToArrival));
@@ -84,8 +88,9 @@ module.exports = Backbone.View.extend({
 			$('.arrow > img').attr('src', './img/arrow-down.png');
 
 			if(!mapShowing) {
+				console.log(this.options.stop);
 				mapView.clear();
-				//mapView.createStopMarker(this.options.stop);
+				mapView.createStopMarker(this.options.stop);
     			mapView.createBusMarker(this.model);
     			this.resize(true);
     			this.$('.mapcanvas').html(mapView.el);
