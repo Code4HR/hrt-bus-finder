@@ -248,7 +248,7 @@ $(function(){
 	    },
 
 	    createStopMarker: function(stop, animate, onClick) {
-	        var stopPosition = new google.maps.LatLng(stop.get('location')[0], stop.get('location')[1]);
+	        var stopPosition = new google.maps.LatLng(stop.get('location')[1], stop.get('location')[0]);
 			var stopMarker = new google.maps.Marker({
 				position: stopPosition,
 				animation: animate && google.maps.Animation.DROP,
@@ -265,7 +265,7 @@ $(function(){
 	        var location = bus.get('busPosition') || bus.get('location');
 	        var direction = bus.get('direction_id') || bus.get('direction');
 	        if(location) {
-    			var position = new google.maps.LatLng(location[0], location[1]);
+    			var position = new google.maps.LatLng(location[1], location[0]);
     			var directionStr = direction ? 'inbound' : 'outbound';
     			var icon = './img/bus-' + directionStr + '.png';
     			var busMarker = new google.maps.Marker({
