@@ -71,7 +71,7 @@ $(function(){
 	var StopList = Backbone.Collection.extend({
 		url: function() {
 		    if(this.location) {
-		        return API_URL + 'stops/near/' + this.location.lng() + '/' + this.location.lat() + '/';
+		        return API_URL + 'stops/near/' + this.location.lat() + '/' + this.location.lng() + '/';
 		    }
 
 		    if(this.stopIds){
@@ -699,8 +699,8 @@ $(function(){
 		},
 
 		findClosestStops: function(location) {
-		    App.Router.navigate('findStops/' + '/' + location.lng() + '/' + location.lat());
-		    this.collection.url = API_URL + 'stops/near/' + '/' + location.lng() + '/' + location.lat();
+		    App.Router.navigate('findStops/' + '/' + location.lat() + '/' + location.lng());
+		    this.collection.url = API_URL + 'stops/near/' + '/' + location.lat() + '/' + location.lng();
 		    this.collection.fetch({remove: false, dataType: 'jsonp'});
 		},
 
