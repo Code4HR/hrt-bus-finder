@@ -699,8 +699,8 @@ $(function(){
 		},
 
 		findClosestStops: function(location) {
-		    App.Router.navigate('findStops/' + '/' + location.lat() + '/' + location.lng());
-		    this.collection.url = API_URL + 'stops/near/' + '/' + location.lat() + '/' + location.lng();
+		    App.Router.navigate('findStops/' + location.lat() + '/' + location.lng());
+		    this.collection.url = API_URL + 'stops/near/' + location.lat() + '/' + location.lng();
 		    this.collection.fetch({remove: false, dataType: 'jsonp'});
 		},
 
