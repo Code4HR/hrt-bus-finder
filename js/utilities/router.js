@@ -36,12 +36,14 @@ module.exports = Backbone.Router.extend({
     this.clearIntervals();
     contentView.setSubView(new StopsByIdView({stopIds: stopIds}));
     // MapView.setDraggable(false);
+    highlightActiveRoute('#/findStops/');
   },
 
   routeView: function(routeIds) {
     this.clearIntervals();
     contentView.setSubView(new RouteView({routeIds: routeIds}));
     // MapView.setDraggable(true);
+    highlightActiveRoute('#/routes/');
     $('#loading').remove();
   },
 

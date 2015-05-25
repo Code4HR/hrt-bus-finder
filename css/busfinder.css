@@ -14,6 +14,10 @@ ul, ol, dd {
     padding: 0;
 }
 
+/**********************
+Nav Menu Styles
+**********************/
+
 .navbar-fixed {
 	position: fixed;
     top: 0;
@@ -47,6 +51,11 @@ ul, ol, dd {
                 padding: 20px 6px;
                 text-decoration: none;
                 font-size: 16px;
+                border-bottom: 5px solid #82A6BA;
+            }
+
+            .navbar-fixed li a.active-route {
+              border-color: white;
             }
 
 .navbar-inner {
@@ -733,6 +742,10 @@ Geolocation Failure Alert
 #geolocation-failed .btn-info {
 
 }
+
+/**********************
+Snow Mode Message
+**********************/
 
 #snow-mode {
   background: url('../img/wet_snow.png');
