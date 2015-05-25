@@ -10,6 +10,7 @@ var Backbone = require('backbone'),
     FindStopsView = require('./../views/FindStopsView'),
     SnowRoute = require('./../views/SnowRoute'),
     intervalService = require('./intervalService.js'),
+    highlightActiveRoute = require('./highlightActiveRoute'),
     contentView = new ContentView();
 
 var SNOW_ROUTES = false;
@@ -28,6 +29,7 @@ module.exports = Backbone.Router.extend({
     this.clearIntervals();
     contentView.setSubView(new HomeView());
     // MapView.setDraggable(false);
+    highlightActiveRoute('#/');
   },
 
   stopView: function(stopIds) {
