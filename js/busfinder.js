@@ -426,7 +426,7 @@ $(function(){
 		    	this.$('.timeframe').addClass('approaching');
 		    } else if (minutesToArrival >= 10 && minutesToArrival <= 15) {
 		    	this.$('.timeframe').addClass('advancing');
-		    } else if (minutesToArrival >= 15 && minutesToArrival <= 20) {
+		    } else if (minutesToArrival >= 15 && minutesToArrival >= 20) {
 		    	this.$('.timeframe').addClass('forthcoming');
 		    } else {
 		    	this.$('.timeframe').addClass('enroute');
