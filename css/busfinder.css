@@ -252,7 +252,7 @@ h1 {
 	background-color: #A7BFCC;
 	font-weight: 700;
 }
-.
+
 .timeframe {
 	background-color: #A7BFCC;
 }
@@ -263,6 +263,18 @@ h1 {
 	color: #A7BFCC;
 	font-size: 16px;
 	line-height: 42px;
+}
+
+.forthcoming {
+  background: #84BA71;
+}
+
+.advancing {
+  background: #E0CC47;
+}
+
+.approaching {
+  background: #E89F31;
 }
 
 .imminent {

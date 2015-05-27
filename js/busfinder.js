@@ -418,13 +418,25 @@ $(function(){
 		    this.$('.lastUpdate').html(this.model.lastCheckinTimeDescription());
 		    this.$('.timeframe').removeClass('departed imminent enroute');
 
-		    if(minutesToArrival < 0) {
-		        this.$('.timeframe').addClass('departed');
-		    } else if (minutesToArrival >= 0 && minutesToArrival <= 5) {
-		    	this.$('.timeframe').addClass('imminent');
-		    } else {
-		    	this.$('.timeframe').addClass('enroute');
-		    }
+
+				if(minutesToArrival < 0) {
+					this.$('.timeframe').addClass('departed');
+				}
+				else if (minutesToArrival >= 0 && minutesToArrival <= 5) {
+					this.$('.timeframe').addClass('imminent');
+				}
+				else if (minutesToArrival >= 5 && minutesToArrival <= 10) {
+					this.$('.timeframe').addClass('approaching');
+				}
+				else if (minutesToArrival >= 10 && minutesToArrival <= 15) {
+					this.$('.timeframe').addClass('advancing');
+				}
+				else if (minutesToArrival >= 15) {
+					this.$('.timeframe').addClass('forthcoming');
+				}
+				else {
+					this.$('.timeframe').addClass('enroute');
+				}
 		},
 
 		minutesFromNowToString: function(minutesFromNow) {
