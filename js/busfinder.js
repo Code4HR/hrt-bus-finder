@@ -426,13 +426,13 @@ $(function(){
 					this.$('.timeframe').addClass('imminent');
 				}
 				else if (minutesToArrival >= 5 && minutesToArrival <= 10) {
-					this.$('.timeframe').addClass('approaching');
+					this.$('.timeframe').addClass('imminent05');
 				}
 				else if (minutesToArrival >= 10 && minutesToArrival <= 15) {
-					this.$('.timeframe').addClass('advancing');
+					this.$('.timeframe').addClass('imminent10');
 				}
 				else if (minutesToArrival >= 15) {
-					this.$('.timeframe').addClass('forthcoming');
+					this.$('.timeframe').addClass('imminent15');
 				}
 				else {
 					this.$('.timeframe').addClass('enroute');
