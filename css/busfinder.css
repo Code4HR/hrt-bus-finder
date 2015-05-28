@@ -579,7 +579,7 @@ Modal Disclaimer
 }
 
 #disclaimer p {
-	font-size: 12px;
+	font-size: 16px;
 	line-height: 1.1em;
 	padding: 0;
 }
@@ -591,7 +591,7 @@ Modal Disclaimer
 
 #disclaimer .modal-header h3 {
 	line-height: 30px;
-	font-size: 14px;
+	font-size: 16px;
 	text-transform: uppercase;
 	font-weight: 700;
 	letter-spacing: 1px;
@@ -599,13 +599,15 @@ Modal Disclaimer
 }
 
 #disclaimer .modal-body {
-	padding: 6px;
+	padding: 8px;
+	padding-top: 2px;
+	overflow-y:scroll;
 }
 
 #disclaimer .modal-footer {
 	background: #EEDFCC;
 	border-top: none;
-	padding: .5em;
+	padding: .01em;
 }
 
 #disclaimer .modal-footer .btn {
