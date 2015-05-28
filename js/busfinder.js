@@ -248,7 +248,7 @@ $(function(){
 	    },
 
 	    createStopMarker: function(stop, animate, onClick) {
-	        var stopPosition = new google.maps.LatLng(stop.get('location')[1], stop.get('location')[0]);
+	        var stopPosition = new google.maps.LatLng(stop.get('location')[0], stop.get('location')[1]);
 			var stopMarker = new google.maps.Marker({
 				position: stopPosition,
 				animation: animate && google.maps.Animation.DROP,
@@ -265,7 +265,7 @@ $(function(){
 	        var location = bus.get('busPosition') || bus.get('location');
 	        var direction = bus.get('direction_id') || bus.get('direction');
 	        if(location) {
-    			var position = new google.maps.LatLng(location[1], location[0]);
+    			var position = new google.maps.LatLng(location[0], location[1]);
     			var directionStr = direction ? 'inbound' : 'outbound';
     			var icon = './img/bus-' + directionStr + '.png';
     			var busMarker = new google.maps.Marker({
@@ -418,13 +418,25 @@ $(function(){
 		    this.$('.lastUpdate').html(this.model.lastCheckinTimeDescription());
 		    this.$('.timeframe').removeClass('departed imminent enroute');
 
-		    if(minutesToArrival < 0) {
-		        this.$('.timeframe').addClass('departed');
-		    } else if (minutesToArrival >= 0 && minutesToArrival <= 5) {
-		    	this.$('.timeframe').addClass('imminent');
-		    } else {
-		    	this.$('.timeframe').addClass('enroute');
-		    }
+
+				if(minutesToArrival < 0) {
+					this.$('.timeframe').addClass('departed');
+				}
+				else if (minutesToArrival >= 0 && minutesToArrival <= 5) {
+					this.$('.timeframe').addClass('imminent');
+				}
+				else if (minutesToArrival >= 5 && minutesToArrival <= 10) {
+					this.$('.timeframe').addClass('imminent05');
+				}
+				else if (minutesToArrival >= 10 && minutesToArrival <= 15) {
+					this.$('.timeframe').addClass('imminent10');
+				}
+				else if (minutesToArrival >= 15) {
+					this.$('.timeframe').addClass('imminent15');
+				}
+				else {
+					this.$('.timeframe').addClass('enroute');
+				}
 		},
 
 		minutesFromNowToString: function(minutesFromNow) {

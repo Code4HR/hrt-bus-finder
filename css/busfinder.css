@@ -1,6 +1,7 @@
 .app-container {
   	margin-top: 60px;
 	text-align: center;
+	max-width: 540px;
 	background-image: url("../img/ps_neutral.png");
 }
 
@@ -252,7 +253,7 @@ h1 {
 	background-color: #A7BFCC;
 	font-weight: 700;
 }
-.
+
 .timeframe {
 	background-color: #A7BFCC;
 }
@@ -263,6 +264,18 @@ h1 {
 	color: #A7BFCC;
 	font-size: 16px;
 	line-height: 42px;
+}
+
+.imminent15 {
+  background: #84BA71;
+}
+
+.imminent10 {
+  background: #E0CC47;
+}
+
+.imminent05 {
+  background: #E89F31;
 }
 
 .imminent {
