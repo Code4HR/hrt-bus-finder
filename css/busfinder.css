@@ -92,6 +92,10 @@ input {
 	text-shadow: none;
 }
 
+select, input[type="text"] {
+  height: 48px !important;
+}
+
 .btn-info {
 	position: absolute;
 	right: 5px;
@@ -380,6 +384,10 @@ h1 {
 
 @media (max-width: 767px) {
 
+  #disclaimer {
+    bottom: 20px;
+  }
+
 	body {
 		padding: 0px;
 	}
@@ -571,7 +579,40 @@ Modal Disclaimer
 
 #disclaimer {
 	border-radius: 0px;
-  max-height: 250px;
+  background: white;
+}
+
+@media screen and (max-width: 768px) {
+
+  #disclaimer {
+    left: 10px;
+    right: 10px;
+  }
+
+  .modal-header {
+    position: fixed;
+    top: 20px;
+    left: 10px;
+    right: 10px;
+  }
+
+  .modal-body {
+    position: fixed;
+    top: 80px;
+    left: 10px;
+    right: 10px;
+    bottom: 110px;
+    max-height: none;
+  }
+
+  .modal-footer {
+    position: fixed;
+    border-radius: 0px;
+    left: 10px;
+    bottom: 20px;
+    right: 10px;
+  }
+
 }
 
 #disclaimer h3 {
