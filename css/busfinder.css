@@ -48,6 +48,10 @@ ul, ol, dd {
 	height: 52px;
 }
 
+.navbar .btn {
+  margin: 0;
+}
+
 .navbar-inner {
 	background-image: none !important;
 	background: #82A6BA !important;
@@ -82,9 +86,14 @@ input {
 	background-color: #A7BFCC;
 	border: 2px solid white;
 	z-index: 3;
-	height: 36px;
+	height: 48px;
+  line-height: 36px;
 	color: white;
 	text-shadow: none;
+}
+
+select, input[type="text"] {
+  height: 48px !important;
 }
 
 .btn-info {
@@ -375,6 +384,10 @@ h1 {
 
 @media (max-width: 767px) {
 
+  #disclaimer {
+    bottom: 20px;
+  }
+
 	body {
 		padding: 0px;
 	}
@@ -489,8 +502,6 @@ h1 {
 Loading Message
 ************************/
 
-
-
 #loading {
 	z-index: 100;
 	display: block;
@@ -525,7 +536,6 @@ Loading Message
 About Page
 ************************/
 
-
 li#about {
 	padding: 1em;
 }
@@ -552,7 +562,6 @@ li#about a {
 	color: #DB5051;
 }
 
-
 /*********************
 map canvas
 *********************/
@@ -570,6 +579,40 @@ Modal Disclaimer
 
 #disclaimer {
 	border-radius: 0px;
+  background: white;
+}
+
+@media screen and (max-width: 768px) {
+
+  #disclaimer {
+    left: 10px;
+    right: 10px;
+  }
+
+  .modal-header {
+    position: fixed;
+    top: 20px;
+    left: 10px;
+    right: 10px;
+  }
+
+  .modal-body {
+    position: fixed;
+    top: 80px;
+    left: 10px;
+    right: 10px;
+    bottom: 110px;
+    max-height: none;
+  }
+
+  .modal-footer {
+    position: fixed;
+    border-radius: 0px;
+    left: 10px;
+    bottom: 20px;
+    right: 10px;
+  }
+
 }
 
 #disclaimer h3 {
@@ -580,13 +623,12 @@ Modal Disclaimer
 
 #disclaimer p {
 	font-size: 16px;
-	line-height: 1.1em;
-	padding: 0;
+	line-height: 1.25em;
+	padding: 16px;
 }
 
 #disclaimer .modal-header {
 	background: #A7BFCC;
-	padding: 0 !important;
 }
 
 #disclaimer .modal-header h3 {
@@ -607,7 +649,6 @@ Modal Disclaimer
 #disclaimer .modal-footer {
 	background: #EEDFCC;
 	border-top: none;
-	padding: .01em;
 }
 
 #disclaimer .modal-footer .btn {
@@ -639,9 +680,8 @@ Different Transit Types
 	padding: 10px;
 }
 
-#find-stops-view #intersection, #find-stops-view #city, #find-stops-view #search {
+input#intersection, #city, #search {
 	float: left;
-	height: 32px;
 }
 
 #find-stops-view #intersection {
