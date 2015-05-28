@@ -48,6 +48,10 @@ ul, ol, dd {
 	height: 52px;
 }
 
+.navbar .btn {
+  margin: 0;
+}
+
 .navbar-inner {
 	background-image: none !important;
 	background: #82A6BA !important;
@@ -82,7 +86,8 @@ input {
 	background-color: #A7BFCC;
 	border: 2px solid white;
 	z-index: 3;
-	height: 36px;
+	height: 48px;
+  line-height: 36px;
 	color: white;
 	text-shadow: none;
 }
@@ -489,8 +494,6 @@ h1 {
 Loading Message
 ************************/
 
-
-
 #loading {
 	z-index: 100;
 	display: block;
@@ -525,7 +528,6 @@ Loading Message
 About Page
 ************************/
 
-
 li#about {
 	padding: 1em;
 }
@@ -552,7 +554,6 @@ li#about a {
 	color: #DB5051;
 }
 
-
 /*********************
 map canvas
 *********************/
@@ -570,6 +571,7 @@ Modal Disclaimer
 
 #disclaimer {
 	border-radius: 0px;
+  max-height: 250px;
 }
 
 #disclaimer h3 {
@@ -580,13 +582,12 @@ Modal Disclaimer
 
 #disclaimer p {
 	font-size: 16px;
-	line-height: 1.1em;
-	padding: 0;
+	line-height: 1.25em;
+	padding: 16px;
 }
 
 #disclaimer .modal-header {
 	background: #A7BFCC;
-	padding: 0 !important;
 }
 
 #disclaimer .modal-header h3 {
@@ -607,7 +608,6 @@ Modal Disclaimer
 #disclaimer .modal-footer {
 	background: #EEDFCC;
 	border-top: none;
-	padding: .01em;
 }
 
 #disclaimer .modal-footer .btn {
@@ -639,9 +639,9 @@ Different Transit Types
 	padding: 10px;
 }
 
-#find-stops-view #intersection, #find-stops-view #city, #find-stops-view #search {
+input#intersection, #city, #search {
 	float: left;
-	height: 32px;
+	height: 48px;
 }
 
 #find-stops-view #intersection {
