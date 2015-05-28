@@ -682,7 +682,6 @@ Different Transit Types
 
 input#intersection, #city, #search {
 	float: left;
-	height: 48px;
 }
 
 #find-stops-view #intersection {
