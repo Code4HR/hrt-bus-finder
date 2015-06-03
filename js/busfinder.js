@@ -422,17 +422,17 @@ $(function(){
 				if(minutesToArrival < 0) {
 					this.$('.timeframe').addClass('departed');
 				}
-				else if (minutesToArrival >= 0 && minutesToArrival <= 5) {
-					this.$('.timeframe').addClass('imminent');
-				}
-				else if (minutesToArrival >= 5 && minutesToArrival <= 10) {
-					this.$('.timeframe').addClass('imminent05');
+				else if (minutesToArrival >= 15) {
+					this.$('.timeframe').addClass('imminent15');
 				}
 				else if (minutesToArrival >= 10 && minutesToArrival <= 15) {
 					this.$('.timeframe').addClass('imminent10');
 				}
-				else if (minutesToArrival >= 15) {
-					this.$('.timeframe').addClass('imminent15');
+				else if (minutesToArrival >= 5 && minutesToArrival <= 10) {
+					this.$('.timeframe').addClass('imminent05');
+				}
+				else if (minutesToArrival >= 0 && minutesToArrival <= 5) {
+					this.$('.timeframe').addClass('imminent');
 				}
 				else {
 					this.$('.timeframe').addClass('enroute');
