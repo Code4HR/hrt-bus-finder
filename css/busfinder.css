@@ -257,6 +257,14 @@ h1 {
 	margin-bottom: 6px;
 }
 
+.pull-left
+{float: left;
+}
+.pull-right
+{
+	float: right;
+}
+
 .route {
 	color:#7398AC;
 	background-color: #A7BFCC;
@@ -295,6 +303,20 @@ h1 {
 	background: #A7BFCC;
 }
 
+
+
+.card{
+	height: 72px;
+	background-color: white;
+
+}
+.onefive 
+{
+	width: 25%;
+	height: 48px;
+	float: left;
+
+}
 .destination {
 	font-size: 1em;
 	text-align: center;
