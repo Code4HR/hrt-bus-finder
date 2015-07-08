@@ -128,7 +128,9 @@
 	</div>
 
 	<div class="app-container container">
+
 		<div id="stops"></div>
+
 	</div>
 
 	<script src="./js/jquery-2.0.2.js"></script>
@@ -225,7 +227,18 @@
 	</script>
 
 	<script type="text/template" id="stop-list-template">
-	    <div id="stops"></div>
+
+      <div class="card">
+        <div class="imminent onefive"></div>
+        <div class="imminent05 onefive"></div>
+        <div class="imminent10 onefive"></div>
+        <div class="imminent15 onefive"></div>
+        <div class= "clearfix"></div>
+        <label class="pull-left">Arriving Now</label>
+        <label class="pull-right">Arriving Later</label>
+      </div>
+
+      <div id="stops"></div>
 	    <button class='loadMore'>Refresh</button>
 	</script>
 
