@@ -544,6 +544,21 @@ $(function(){
 		initialize: function() {
 		    _.bindAll(this);
 		    LocateUser(this.getStopList);
+
+		    //Add Icons for holidays
+		    var curtime = new Date(),
+    			curday = curtime.getDate(),
+    			curmonth = curtime.getMonth()+1;
+    			curwkday = curtime.getDay();
+
+			if(curmonth == 10 && curday == 31) {
+  	 			$('#title').append(" &nbsp<img src='./img/jack.png' width=43>");
+  	 		} else if (curmonth == 12 && curday == 25) {
+  	 			$('#title').append(" <img src='./img/bells.png' width=48>");
+  	 		} else if (curmonth == 11 && curday > 21 && curday < 29) {
+  	 			if (curwkday == 5)
+  	 			$('#title').append(" <img src='./img/turkey.png' width=48>");  	 			
+  	 		}
 		},
 
 		forceRefresh: function() {
