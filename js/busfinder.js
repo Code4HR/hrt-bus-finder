@@ -551,13 +551,13 @@ $(function(){
     			curmonth = curtime.getMonth()+1;
     			curwkday = curtime.getDay();
 
-			if(curmonth == 10 && curday == 31) {
-  	 			$('#title').append(" &nbsp<img src='./img/jack.png' width=43>");
-  	 		} else if (curmonth == 12 && curday == 25) {
-  	 			$('#title').append(" <img src='./img/bells.png' width=48>");
-  	 		} else if (curmonth == 11 && curday > 21 && curday < 29) {
-  	 			if (curwkday == 5)
-  	 			$('#title').append(" <img src='./img/turkey.png' width=48>");  	 			
+			if(curmonth == 10 && curday == 31) {  //Halloween
+  	 			$('#title').html("HRT Bus Finder &nbsp<img src='./img/jack.png' width=43>");
+  	 		} else if (curmonth == 12 && curday == 25) { //Christmas
+  	 			$('#title').html("HRT Bus Finder <img src='./img/bells.png' width=48>");
+  	 		} else if (curmonth == 11 && curday > 21 && curday < 29) {  //Thanksgiving
+  	 			if (curwkday == 5) //5 is Thursday
+  	 			$('#title').html("HRT Bus Finder <img src='./img/turkey.png' width=48>");  	 			
   	 		}
 		},
 
