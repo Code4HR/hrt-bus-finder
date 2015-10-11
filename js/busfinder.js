@@ -608,8 +608,18 @@ $(function(){
 			this.$('.mapcanvas').show();
 			App.MapView.resize();
 
+			//this.locate();
+
 			return this;
 		},
+
+		locate: function() {
+		    LocateUser($.proxy(this.onUserLocated, this));
+		},
+
+		onUserLocated: function(location) {
+			App.MapView.createUserMarker(location, true);
+	    },		
 
 		resize: function() {
 		    App.MapView.$el.height(window.innerHeight - $('.navbar').outerHeight(true) - this.$('select').outerHeight(true) - 10);
@@ -619,7 +629,7 @@ $(function(){
 
 		addBuses: function() {
 			App.MapView.clear();
-			App.MapView.createUserMarker(DowntownNorfolk);
+			//App.MapView.createUserMarker(DowntownNorfolk);
 			this.collection.each(function(bus){
 			    App.MapView.createBusMarker(bus);
 			});
@@ -628,6 +638,7 @@ $(function(){
 			    App.MapView.setBounds();
 			    this.firstUpdate = false;
 		    }
+		    this.locate();
 	    },
 
 		updateBuses: function() {
