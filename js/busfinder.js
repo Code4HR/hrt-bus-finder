@@ -832,12 +832,14 @@ $(function(){
 		    this.clearIntervals();
 			App.ContentView.setSubView(new HomeView);
 			App.MapView.setDraggable(false);
+		    App.MapView.setZoomOption(false);
 		},
 
 		stopView: function(stopIds) {
 		    this.clearIntervals();
 		    App.ContentView.setSubView(new StopsByIdView({stopIds: stopIds}));
 		    App.MapView.setDraggable(false);
+		    App.MapView.setZoomOption(false);
 		},
 
 		routeView: function(routeIds) {
@@ -853,6 +855,7 @@ $(function(){
 		    var location = lat && lng && new google.maps.LatLng(lat, lng);
 		    App.ContentView.setSubView(new FindStopsView({location: location}));
 		    App.MapView.setDraggable(true);
+		    App.MapView.setZoomOption(false);
 		    $('#loading').remove();
 		},
 
