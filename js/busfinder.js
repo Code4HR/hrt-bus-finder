@@ -401,6 +401,12 @@ $(function(){
 	            draggable: flag,
 	            scrollwheel: flag,
 	            disableDoubleClickZoom: !flag});
+	    },
+
+	    setZoomOption: function(flag) {
+	    	this.map.setOptions({
+	    		zoomControl: flag
+	    	});
 	    }
     });
 
@@ -838,6 +844,7 @@ $(function(){
 		    this.clearIntervals();
 		    App.ContentView.setSubView(new RouteView({routeIds: routeIds}));
 		    App.MapView.setDraggable(true);
+		    App.MapView.setZoomOption(true);
 		    $('#loading').remove();
 		},
 
