@@ -204,6 +204,7 @@ $(function(){
 			this.markers = [];
 			this.busMarkers = {};
 			this.oldBusMarkers = {};
+			this.routeUserMarkers = [];
 
 			google.maps.event.addListener(this.map, 'dragstart', $.proxy(this.cancelCenterChanged, this));
 			google.maps.event.addListener(this.map, 'dragend', $.proxy(this.readyCenterChanged, this));
@@ -231,6 +232,9 @@ $(function(){
 	        while(this.markers.length) {
 	            this.markers.pop().setMap(null);
             }
+           	while(this.routeUserMarkers.length) {
+	            this.routeUserMarkers.pop().setMap(null);
+            }
             this.oldBusMarkers = this.busMarkers;
             this.busMarkers = {};
             $.each(this.oldBusMarkers, function(key, value) {
@@ -245,7 +249,18 @@ $(function(){
 				map: this.map
 			});
 			this.markers.push(userMarker);
-			console.log(this.markers);
+	    },
+
+	    createRouteUserMarker: function(location, animate) {
+	        var userMarker = new google.maps.Marker({
+				position: location,
+				animation: animate && google.maps.Animation.DROP,
+				map: this.map
+			});
+			while(this.routeUserMarkers.length) {
+	            this.routeUserMarkers.pop().setMap(null);
+            };
+			this.routeUserMarkers.push(userMarker);
 	    },
 
 	    createStopMarker: function(stop, animate, onClick) {
@@ -511,8 +526,6 @@ $(function(){
 
 	    var onFail = function() {
 	        onLocated(DowntownNorfolk);
-	        console.log("OrigFail!");
-	        console.log(new Date());
 	        $('#geolocation-failed').prependTo('#stops').fadeIn();
 	    };
 
@@ -520,11 +533,9 @@ $(function(){
 
 	    var onSuccess = function(position) {
 	        clearTimeout(timeout);
-	        console.log("origSuccess");
 	        onLocated(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
 	    };
 
-	    console.log("starting orig locate");
 	    navigator.geolocation ?
 			navigator.geolocation.getCurrentPosition(onSuccess, onFail) : onFail();
 	};
@@ -533,19 +544,15 @@ $(function(){
 
 		var onFail = function() {
 	        onLocated(DowntownNorfolk);
-	        console.log("FAIL");
-	        console.log(new Date());
 	    };
 
 	    var failTwo = function() {
 	    	onLocated(DowntownNorfolk);
-	    	console.log("TimeFail");
 	    }
 
 	    var timeout = setTimeout(failTwo, 5000);
 
 	    var onSuccess = function(position) {
-	    	console.log("new Success");
 	        clearTimeout(timeout);
 	        onLocated(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
 	    };
@@ -639,8 +646,6 @@ $(function(){
 			this.$('.mapcanvas').show();
 			App.MapView.resize();
 
-			//this.locate();
-
 			return this;
 		},
 
@@ -649,9 +654,7 @@ $(function(){
 		},
 
 		onUserLocated: function(location) {
-			App.MapView.createUserMarker(location, true);
-			console.log(location);
-			console.log(new Date());
+			App.MapView.createRouteUserMarker(location, true);
 	    },		
 
 		resize: function() {
