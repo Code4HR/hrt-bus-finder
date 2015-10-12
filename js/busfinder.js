@@ -546,11 +546,7 @@ $(function(){
 	        onLocated(DowntownNorfolk);
 	    };
 
-	    var failTwo = function() {
-	    	onLocated(DowntownNorfolk);
-	    }
-
-	    var timeout = setTimeout(failTwo, 5000);
+	    var timeout = setTimeout(onFail, 5000);
 
 	    var onSuccess = function(position) {
 	        clearTimeout(timeout);
