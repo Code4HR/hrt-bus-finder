@@ -12,6 +12,7 @@
 #jPanelMenu-menu {
     padding-top: 50px;
     background: #EEDFCC;
+    border-left: 5px solid rgba(255, 255 , 255, 0.7);
 }
 
 #jPanelMenu-menu ul {
@@ -310,7 +311,7 @@ h1 {
 	background-color: white;
 
 }
-.onefive 
+.onefive
 {
 	width: 25%;
 	height: 48px;
