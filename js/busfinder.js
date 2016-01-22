@@ -750,13 +750,14 @@ $(function(){
 		    return this;
 		}
 
-	})
+	});
 
 	var ContentView = Backbone.View.extend({
 		el: $(".app-container"),
 
 		initialize: function() {
-		    $('#jPanelMenu-menu').click(function() {
+
+				$('#jPanelMenu-menu').click(function() {
 		        jPM.close();
 		    });
 		},
