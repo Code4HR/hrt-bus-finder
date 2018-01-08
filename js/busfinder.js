@@ -1,6 +1,6 @@
 $(function(){
 
-	var SNOW_ROUTES = false;
+	var SNOW_ROUTES = true;
 
 	var Arrival = Backbone.Model.extend({
 		idAttribute: "_id",
