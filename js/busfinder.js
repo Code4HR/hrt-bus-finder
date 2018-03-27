@@ -1,14 +1,6 @@
 $(function(){
 
-	var snowRouteStartTime = 1424930400000;
-	var currentTime = new Date();
-	var SNOW_ROUTES;
-
-	if (currentTime.getTime() > snowRouteStartTime) {
-		SNOW_ROUTES = true;
-	} else {
-		SNOW_ROUTES = false;
-	}
+	var SNOW_ROUTES = false;
 
 	var Arrival = Backbone.Model.extend({
 		idAttribute: "_id",
@@ -63,7 +55,7 @@ $(function(){
 		idAttribute: "_id"
 	});
 
-	var API_URL = 'http://lit-inlet-3610.herokuapp.com/api/'
+	var API_URL = '//lit-inlet-3610.herokuapp.com/api/'
 	var ArrivalList = Backbone.Collection.extend({
 		model: Arrival,
 
@@ -256,7 +248,7 @@ $(function(){
 	    },
 
 	    createStopMarker: function(stop, animate, onClick) {
-	        var stopPosition = new google.maps.LatLng(stop.get('location')[1], stop.get('location')[0]);
+	        var stopPosition = new google.maps.LatLng(stop.get('location')[0], stop.get('location')[1]);
 			var stopMarker = new google.maps.Marker({
 				position: stopPosition,
 				animation: animate && google.maps.Animation.DROP,
@@ -273,7 +265,7 @@ $(function(){
 	        var location = bus.get('busPosition') || bus.get('location');
 	        var direction = bus.get('direction_id') || bus.get('direction');
 	        if(location) {
-    			var position = new google.maps.LatLng(location[1], location[0]);
+    			var position = new google.maps.LatLng(location[0], location[1]);
     			var directionStr = direction ? 'inbound' : 'outbound';
     			var icon = './img/bus-' + directionStr + '.png';
     			var busMarker = new google.maps.Marker({
@@ -424,15 +416,22 @@ $(function(){
 
 		    this.$('.timeframe').html(this.minutesFromNowToString(minutesToArrival));
 		    this.$('.lastUpdate').html(this.model.lastCheckinTimeDescription());
-		    this.$('.timeframe').removeClass('departed imminent enroute');
+		    this.$('.timeframe').removeClass('departed imminent imminent05 imminent10 imminent15 enroute');
 
-		    if(minutesToArrival < 0) {
-		        this.$('.timeframe').addClass('departed');
-		    } else if (minutesToArrival >= 0 && minutesToArrival <= 5) {
-		    	this.$('.timeframe').addClass('imminent');
-		    } else {
-		    	this.$('.timeframe').addClass('enroute');
-		    }
+
+				if (minutesToArrival >= 15) {
+					this.$('.timeframe').addClass('imminent15');
+				} else if (minutesToArrival >= 10 && minutesToArrival < 15) {
+					this.$('.timeframe').addClass('imminent10');
+				} else if (minutesToArrival >= 5 && minutesToArrival < 10) {
+					this.$('.timeframe').addClass('imminent05');
+				} else if (minutesToArrival >= 0 && minutesToArrival < 5) {
+					this.$('.timeframe').addClass('imminent');
+				} else if (minutesToArrival < 0) {
+					this.$('.timeframe').addClass('departed');
+				} else {
+					this.$('.timeframe').addClass('enroute');
+				}
 		},
 
 		minutesFromNowToString: function(minutesFromNow) {
@@ -751,13 +750,14 @@ $(function(){
 		    return this;
 		}
 
-	})
+	});
 
 	var ContentView = Backbone.View.extend({
 		el: $(".app-container"),
 
 		initialize: function() {
-		    $('#jPanelMenu-menu').click(function() {
+
+				$('#jPanelMenu-menu').click(function() {
 		        jPM.close();
 		    });
 		},
@@ -774,10 +774,10 @@ $(function(){
 	var Router = Backbone.Router.extend({
 		 routes: {
 			"": SNOW_ROUTES ? "snowRoute" : "homeView",
-			"stops/*stopIds": "stopView",
-			"routes(/*routeIds)": "routeView",
-			"findStops(/:lat/:lng)(/)": "findStopsView",
-			"feedback(/)" : "feedbackView"
+			"stops/*stopIds": SNOW_ROUTES ? "snowRoute" : "stopView",
+			"routes(/*routeIds)": SNOW_ROUTES ? "snowRoute" : "routeView",
+			"findStops(/:lat/:lng)(/)": SNOW_ROUTES ? "snowRoute" : "findStopsView",
+			"feedback(/)" : SNOW_ROUTES ? "snowRoute" : "feedbackView"
 		 },
 
 		homeView: function() {

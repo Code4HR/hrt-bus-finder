@@ -1,6 +1,7 @@
 .app-container {
   	margin-top: 60px;
 	text-align: center;
+	max-width: 540px;
 	background-image: url("../img/ps_neutral.png");
 }
 
@@ -11,6 +12,7 @@
 #jPanelMenu-menu {
     padding-top: 50px;
     background: #EEDFCC;
+    border-left: 5px solid rgba(255, 255 , 255, 0.7);
 }
 
 #jPanelMenu-menu ul {
@@ -47,6 +49,10 @@ ul, ol, dd {
 	height: 52px;
 }
 
+.navbar .btn {
+  margin: 0;
+}
+
 .navbar-inner {
 	background-image: none !important;
 	background: #82A6BA !important;
@@ -81,9 +87,14 @@ input {
 	background-color: #A7BFCC;
 	border: 2px solid white;
 	z-index: 3;
-	height: 36px;
+	height: 48px;
+  line-height: 36px;
 	color: white;
 	text-shadow: none;
+}
+
+select, input[type="text"] {
+  height: 48px !important;
 }
 
 .btn-info {
@@ -247,12 +258,20 @@ h1 {
 	margin-bottom: 6px;
 }
 
+.pull-left
+{float: left;
+}
+.pull-right
+{
+	float: right;
+}
+
 .route {
 	color:#7398AC;
 	background-color: #A7BFCC;
 	font-weight: 700;
 }
-.
+
 .timeframe {
 	background-color: #A7BFCC;
 }
@@ -265,6 +284,18 @@ h1 {
 	line-height: 42px;
 }
 
+.imminent15 {
+  background: #84BA71;
+}
+
+.imminent10 {
+  background: #E0CC47;
+}
+
+.imminent05 {
+  background: #E89F31;
+}
+
 .imminent {
 	background: #DB5051;
 }
@@ -273,6 +304,20 @@ h1 {
 	background: #A7BFCC;
 }
 
+
+
+.card{
+	height: 72px;
+	background-color: white;
+
+}
+.onefive
+{
+	width: 25%;
+	height: 48px;
+	float: left;
+
+}
 .destination {
 	font-size: 1em;
 	text-align: center;
@@ -315,7 +360,7 @@ h1 {
 
 .loadMore {
 	width: 100%;
-	background: #DB5051;
+	background: #89BA9B;
 	border: none;
 	height: 50px;
 	color: white;
@@ -361,6 +406,10 @@ h1 {
 
 
 @media (max-width: 767px) {
+
+  #disclaimer {
+    bottom: 20px;
+  }
 
 	body {
 		padding: 0px;
@@ -476,8 +525,6 @@ h1 {
 Loading Message
 ************************/
 
-
-
 #loading {
 	z-index: 100;
 	display: block;
@@ -512,7 +559,6 @@ Loading Message
 About Page
 ************************/
 
-
 li#about {
 	padding: 1em;
 }
@@ -539,7 +585,6 @@ li#about a {
 	color: #DB5051;
 }
 
-
 /*********************
 map canvas
 *********************/
@@ -557,6 +602,40 @@ Modal Disclaimer
 
 #disclaimer {
 	border-radius: 0px;
+  background: white;
+}
+
+@media screen and (max-width: 768px) {
+
+  #disclaimer {
+    left: 10px;
+    right: 10px;
+  }
+
+  .modal-header {
+    position: fixed;
+    top: 20px;
+    left: 10px;
+    right: 10px;
+  }
+
+  .modal-body {
+    position: fixed;
+    top: 80px;
+    left: 10px;
+    right: 10px;
+    bottom: 110px;
+    max-height: none;
+  }
+
+  .modal-footer {
+    position: fixed;
+    border-radius: 0px;
+    left: 10px;
+    bottom: 20px;
+    right: 10px;
+  }
+
 }
 
 #disclaimer h3 {
@@ -566,19 +645,18 @@ Modal Disclaimer
 }
 
 #disclaimer p {
-	font-size: 12px;
-	line-height: 1.1em;
-	padding: 0;
+	font-size: 16px;
+	line-height: 1.25em;
+	padding: 16px;
 }
 
 #disclaimer .modal-header {
 	background: #A7BFCC;
-	padding: 0 !important;
 }
 
 #disclaimer .modal-header h3 {
 	line-height: 30px;
-	font-size: 14px;
+	font-size: 16px;
 	text-transform: uppercase;
 	font-weight: 700;
 	letter-spacing: 1px;
@@ -586,13 +664,14 @@ Modal Disclaimer
 }
 
 #disclaimer .modal-body {
-	padding: 6px;
+	padding: 8px;
+	padding-top: 2px;
+	overflow-y:scroll;
 }
 
 #disclaimer .modal-footer {
 	background: #EEDFCC;
 	border-top: none;
-	padding: .5em;
 }
 
 #disclaimer .modal-footer .btn {
@@ -624,9 +703,8 @@ Different Transit Types
 	padding: 10px;
 }
 
-#find-stops-view #intersection, #find-stops-view #city, #find-stops-view #search {
+input#intersection, #city, #search {
 	float: left;
-	height: 32px;
 }
 
 #find-stops-view #intersection {

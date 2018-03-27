@@ -26,7 +26,7 @@
 	<link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="./css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="./css/busfinder.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 	<link rel="apple-touch-icon" href="./img/favicon.png">
 	<link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico" />
 
@@ -35,12 +35,12 @@
     <div id="snow-mode">
       <div class="container">
         <img id="logo" src="img/favicon-rounded.png" alt="hrt logo">
-        <h1>Due to the Severe Weather Forecast, Snow Routes will be activated on Thursday, February 26th.</h1>
-        <p>For more information, please visit goHRT.com.</p>
-        <p><a href="http://gohrt.com/route/snow-routes/" class="btn btn-info">GoHRT.com</a></p>
+        <h1>Limited Service</h1>
+        <p>On Monday, HRT will implement the Snow Emergency Service described in the link below. </p>
+        <p><a href="//gohrt.com/route/snow-emergency-service/" class="btn btn-info">GoHRT.com</a></p>
       </div>
     </div>
-    
+
   </script>
 
 </head>
@@ -50,7 +50,7 @@
 		<div id="upgrade-message">
 		 	<div>
 				<img id="logo" src="img/favicon-rounded.png" alt="">
-	    		<p class="chromeframe">HRT Bus Finder works best with Chrome, Firefox, Safari, and Internet Explorer 9+.<br>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	    		<p class="chromeframe">HRT Bus Finder works best with Chrome, Firefox, Safari, and Internet Explorer 9+.<br>Please <a href="//browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 	    	</div>
     	</div>
     <![endif]-->
@@ -64,9 +64,8 @@
         			<h3>Disclaimer</h3>
         		</div>
         		<div class="modal-body">
-        			<p>Due to the Severe Weather Forecast, Snow Routes will be activated on Thursday, February 26th.  For more information, <a href="http://gohrt.com/route/snow-routes/">tap here to visit goHRT.com.</a></p>
-        		<!--	<p>Hampton Roads Transit (HRT) is providing real time data contained [in this app] on an experimental basis. HRT cannot be held responsible for the accuracy of this data. Any applications using this data are not made by HRT, and HRT does not sell or license the apps. They are written by third parties unless otherwise noted.
-        			HRT shall not be held responsible for the content of third party websites or any issue arising from the use of third party applications. HRT neither endorses any third party products that use this data nor makes any guarantees or representations as to accuracy or reliability. Proceed with care and understand any usage charges that may apply to you. HRT reserves the right to remove/modify this real time data listing without notice. </p> -->
+        		    <p>Hampton Roads Transit (HRT) is providing real time data contained [in this app] on an experimental basis. HRT cannot be held responsible for the accuracy of this data. Any applications using this data are not made by HRT, and HRT does not sell or license the apps. They are written by third parties unless otherwise noted.
+        			HRT shall not be held responsible for the content of third party websites or any issue arising from the use of third party applications. HRT neither endorses any third party products that use this data nor makes any guarantees or representations as to accuracy or reliability. Proceed with care and understand any usage charges that may apply to you. HRT reserves the right to remove/modify this real time data listing without notice. </p>
         		</div>
         		<div class="modal-footer">
         			<a href="#" class="btn" data-dismiss="modal">I accept.</a>
@@ -91,15 +90,16 @@
 
 				<nav id="menu" style="display: none">
         			<ul>
-        			    <li><a href="#/">Home</a></li>
-        				<li><a href="#/routes/">Routes</a></li>
-        				<li><a href="#/findStops/">Stop Finder</a></li>
-        				<li><a href="https://github.com/code4hr/hrt-bus-finder/wiki/User-Guide">User Guide</a></li>
-        				<li><a href="#/feedback/">Feedback</a></li>
-        				<li id="about">
+                <li><a href="#/">Home</a></li>
+                <li><a href="#/routes/">Routes</a></li>
+                <li><a href="#/findStops/">Stop Finder</a></li>
+                <li><a href="//gohrt.ticketleap.com/">Buy a Ticket</a></li>
+                <li><a href="//github.com/code4hr/hrt-bus-finder/wiki/User-Guide">User Guide</a></li>
+                <li><a href="#/feedback/">Feedback</a></li>
+                <li id="about">
         					<h3>About</h3>
-        					<p>HRT Bus Finder was developed by volunteers from <a href="http://code4hr.org">Code for Hampton Roads</a> in cooperation with <a href="http://gohrt.com">Hampton Roads Transit.</a></p>
-							<p>For help using this app or to answer any questions, contact us using <a href="http://hrtbus.uservoice.com">UserVoice</a>.</p>
+        					<p>HRT Bus Finder was developed by volunteers from <a href="//code4hr.org">Code for Hampton Roads</a> in cooperation with <a href="//gohrt.com">Hampton Roads Transit.</a></p>
+							<p>For help using this app or to answer any questions, contact us using <a href="//hrtbus.uservoice.com">UserVoice</a>.</p>
 							<br>
 							<div class="text-center">Powered by</div>
 							<img src="./img/rackspace.png">
@@ -128,7 +128,9 @@
 	</div>
 
 	<div class="app-container container">
+
 		<div id="stops"></div>
+
 	</div>
 
 	<script src="./js/jquery-2.0.2.js"></script>
@@ -189,9 +191,9 @@
 	</script>
 
 	<script type="text/template" id="find-stops-view-template">
-	    <div id="find-options" style="height: 100%">
+	    <div id="find-options">
 	        <form class="form-inline">
-    	        <input id="intersection" type="text" placeholder="Intersection" style="height: 100%">
+    	        <input id="intersection" type="text" placeholder="Intersection">
                 <select id="city">
                 	<option selected>City</option>
                     <option>Chesapeake</option>
@@ -225,7 +227,18 @@
 	</script>
 
 	<script type="text/template" id="stop-list-template">
-	    <div id="stops"></div>
+
+      <div class="card">
+        <div class="imminent onefive"></div>
+        <div class="imminent05 onefive"></div>
+        <div class="imminent10 onefive"></div>
+        <div class="imminent15 onefive"></div>
+        <div class= "clearfix"></div>
+        <label class="pull-left">Arriving Now</label>
+        <label class="pull-right">Arriving Later</label>
+      </div>
+
+      <div id="stops"></div>
 	    <button class='loadMore'>Refresh</button>
 	</script>
 
@@ -239,9 +252,9 @@
         }
 
         $(function () {
-            //if(!supports_html5_storage() || localStorage['disclaimer_accepted'] !== 'true') {
-                // $("#disclaimer").modal('show');
-            //}
+            if(!supports_html5_storage() || localStorage['disclaimer_accepted'] !== 'true') {
+                $("#disclaimer").modal('show');
+            }
         });
 
         $('#disclaimer a').click(function() {
