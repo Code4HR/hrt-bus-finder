@@ -163,7 +163,7 @@
 
 	<script type="text/template" id="arrival-template">
 		<div class="row-fluid">
-			<div class="span2 route quarter"><%= routeId %></div>
+			<div class="span2 route quarter"><%= routeShortName %></div>
 			<div class="span8 destination half">
 				<p><%= destination %></p>
 			</div>
@@ -184,7 +184,7 @@
 		<select id="route">
 			<option selected="selected" value="">All Routes</option>
 			<% _.each(routes, function(route) { %>
-				<option value="<%= route.route_id %>"><%= route.route_short_name %> - <%= route.route_long_name %></option>
+				<option value="<%= route.route_short_name %>"><%= route.route_short_name %> - <%= route.route_long_name %></option>
 			<% }); %>
 		</select>
 		<div class="mapcanvas"></div>

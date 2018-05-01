@@ -97,13 +97,13 @@ $(function(){
 
 	var BusList = Backbone.Collection.extend({
 	    initialize: function(models, options) {
-	        this.routeIds = options.routeIds;
+	        this.routeShortNames = options.routeShortNames;
 	    },
 
 		url: function() {
 		    var url = API_URL + 'buses/routes';
-		    if(this.routeIds) {
-		        url += '/' + this.routeIds + '/';
+		    if(this.routeShortNames) {
+		        url += '/' + this.routeShortNames + '/';
 	        }
 			return url;
 		}
@@ -301,7 +301,7 @@ $(function(){
 			var msg = '';
 			msg += 'Bus #' + bus.get('busId') + ' traveling ';
 			msg += bus.get('direction') == 0 ? 'outbound' : 'inbound';
-			msg += '<br>on route ' + bus.get('routeId');
+			msg += '<br>on route ' + bus.get('routeShortName');
 
 			var adherence = bus.get('adherence');
 			if (adherence != null) msg += '<br>is ';
@@ -445,7 +445,7 @@ $(function(){
 		    var minutesToArrival = this.model.minutesFromNow();
 
 			this.$el.html(this.template({
-				routeId: this.model.get('route_id'),
+				routeShortName: this.model.get('route_short_name'),
 				destination: this.model.get('destination'),
 				arriveTime: this.model.localTime(),
 				adherence: this.model.adherenceDescription(),
@@ -586,7 +586,7 @@ $(function(){
 	    initialize: function() {
 	        this.firstUpdate = true;
 
-			this.collection = new BusList({}, {routeIds: this.options.routeIds});
+			this.collection = new BusList({}, {routeShortNames: this.options.routeShortNames});
 			this.collection.on('reset', this.addBuses, this);
 
 			this.activeRoutesList = new ActiveRoutesList();
@@ -601,7 +601,7 @@ $(function(){
 
 		render: function() {
 		    this.$el.html(this.template({ routes: this.activeRoutesList.toJSON() }));
-		    this.setSelectedRoutes(this.options.routeIds && this.options.routeIds.split('/'));
+		    this.setSelectedRoutes(this.options.routeShortNames && this.options.routeShortNames.split('/'));
 
 		    App.MapView.$el.height(window.innerHeight - $('.navbar').outerHeight(true) - this.$('select').outerHeight(true) - 10);
 		    this.$('.mapcanvas').html(App.MapView.el);
@@ -775,7 +775,7 @@ $(function(){
 		 routes: {
 			"": SNOW_ROUTES ? "snowRoute" : "homeView",
 			"stops/*stopIds": SNOW_ROUTES ? "snowRoute" : "stopView",
-			"routes(/*routeIds)": SNOW_ROUTES ? "snowRoute" : "routeView",
+			"routes(/*routeShortNames)": SNOW_ROUTES ? "snowRoute" : "routeView",
 			"findStops(/:lat/:lng)(/)": SNOW_ROUTES ? "snowRoute" : "findStopsView",
 			"feedback(/)" : SNOW_ROUTES ? "snowRoute" : "feedbackView"
 		 },
@@ -792,9 +792,9 @@ $(function(){
 		    App.MapView.setDraggable(false);
 		},
 
-		routeView: function(routeIds) {
+		routeView: function(routeShortNames) {
 		    this.clearIntervals();
-		    App.ContentView.setSubView(new RouteView({routeIds: routeIds}));
+		    App.ContentView.setSubView(new RouteView({routeShortNames: routeShortNames}));
 		    App.MapView.setDraggable(true);
 		    $('#loading').remove();
 		},
