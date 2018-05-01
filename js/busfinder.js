@@ -55,7 +55,7 @@ $(function(){
 		idAttribute: "_id"
 	});
 
-	var API_URL = '//lit-inlet-3610.herokuapp.com/api/'
+	var API_URL = '//hrt-bus-backend.herokuapp.com/api/'
 	var ArrivalList = Backbone.Collection.extend({
 		model: Arrival,
 
