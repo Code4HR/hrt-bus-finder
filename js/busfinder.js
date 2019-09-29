@@ -204,6 +204,7 @@ $(function(){
 			this.markers = [];
 			this.busMarkers = {};
 			this.oldBusMarkers = {};
+			this.routeUserMarkers = [];
 
 			google.maps.event.addListener(this.map, 'dragstart', $.proxy(this.cancelCenterChanged, this));
 			google.maps.event.addListener(this.map, 'dragend', $.proxy(this.readyCenterChanged, this));
@@ -231,6 +232,9 @@ $(function(){
 	        while(this.markers.length) {
 	            this.markers.pop().setMap(null);
             }
+           	while(this.routeUserMarkers.length) {
+	            this.routeUserMarkers.pop().setMap(null);
+            }
             this.oldBusMarkers = this.busMarkers;
             this.busMarkers = {};
             $.each(this.oldBusMarkers, function(key, value) {
@@ -245,6 +249,18 @@ $(function(){
 				map: this.map
 			});
 			this.markers.push(userMarker);
+	    },
+
+	    createRouteUserMarker: function(location, animate) {
+	        var userMarker = new google.maps.Marker({
+				position: location,
+				animation: animate && google.maps.Animation.DROP,
+				map: this.map
+			});
+			while(this.routeUserMarkers.length) {
+	            this.routeUserMarkers.pop().setMap(null);
+            };
+			this.routeUserMarkers.push(userMarker);
 	    },
 
 	    createStopMarker: function(stop, animate, onClick) {
@@ -385,6 +401,12 @@ $(function(){
 	            draggable: flag,
 	            scrollwheel: flag,
 	            disableDoubleClickZoom: !flag});
+	    },
+
+	    setZoomOption: function(flag) {
+	    	this.map.setOptions({
+	    		zoomControl: flag
+	    	});
 	    }
     });
 
@@ -524,6 +546,24 @@ $(function(){
 			navigator.geolocation.getCurrentPosition(onSuccess, onFail) : onFail();
 	};
 
+	var LocateRouteUser = function(onLocated) {
+
+		var onFail = function() {
+	        onLocated(DowntownNorfolk);
+	    };
+
+	    var timeout = setTimeout(onFail, 5000);
+
+	    var onSuccess = function(position) {
+	        clearTimeout(timeout);
+	        onLocated(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+	    };
+
+	    navigator.geolocation ?
+			navigator.geolocation.getCurrentPosition(onSuccess, onFail) : onFail();
+
+	};
+
 	var SnowRoute = Backbone.View.extend({
 		template: _.template($('#snow-route-template').html()),
 
@@ -611,6 +651,14 @@ $(function(){
 			return this;
 		},
 
+		locate: function() {
+		    LocateRouteUser($.proxy(this.onUserLocated, this));
+		},
+
+		onUserLocated: function(location) {
+			App.MapView.createRouteUserMarker(location, true);
+	    },		
+
 		resize: function() {
 		    App.MapView.$el.height(window.innerHeight - $('.navbar').outerHeight(true) - this.$('select').outerHeight(true) - 10);
 		    App.MapView.resize();
@@ -619,7 +667,7 @@ $(function(){
 
 		addBuses: function() {
 			App.MapView.clear();
-			App.MapView.createUserMarker(DowntownNorfolk);
+			//App.MapView.createUserMarker(DowntownNorfolk);
 			this.collection.each(function(bus){
 			    App.MapView.createBusMarker(bus);
 			});
@@ -628,6 +676,7 @@ $(function(){
 			    App.MapView.setBounds();
 			    this.firstUpdate = false;
 		    }
+		    this.locate();
 	    },
 
 		updateBuses: function() {
@@ -784,18 +833,21 @@ $(function(){
 		    this.clearIntervals();
 			App.ContentView.setSubView(new HomeView);
 			App.MapView.setDraggable(false);
+		    App.MapView.setZoomOption(false);
 		},
 
 		stopView: function(stopIds) {
 		    this.clearIntervals();
 		    App.ContentView.setSubView(new StopsByIdView({stopIds: stopIds}));
 		    App.MapView.setDraggable(false);
+		    App.MapView.setZoomOption(false);
 		},
 
 		routeView: function(routeShortNames) {
 		    this.clearIntervals();
 		    App.ContentView.setSubView(new RouteView({routeShortNames: routeShortNames}));
 		    App.MapView.setDraggable(true);
+		    App.MapView.setZoomOption(true);
 		    $('#loading').remove();
 		},
 
@@ -804,6 +856,7 @@ $(function(){
 		    var location = lat && lng && new google.maps.LatLng(lat, lng);
 		    App.ContentView.setSubView(new FindStopsView({location: location}));
 		    App.MapView.setDraggable(true);
+		    App.MapView.setZoomOption(false);
 		    $('#loading').remove();
 		},
 
