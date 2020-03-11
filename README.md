@@ -1,6 +1,8 @@
 hrt-bus-finder
 ==============
 
+HRT disabled the FTP feed on March 10, 2020. It will not be coming back. HRT will publish a GTFS realtime feed soon. This app has been sunset.
+
 The HRT Bus Finder is the front end / proof-of-concept to the [hrt-bus-api](https://github.com/c4hrva/hrt-bus-api). The live demo can be found here: http://hrtb.us. 
 
 Requirements
