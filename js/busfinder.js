@@ -479,15 +479,17 @@ $(function(){
     			this.resize(true);
     			this.$('.mapcanvas').html(App.MapView.el);
 
-				this.$('.arrow > img').attr('src', './img/arrow-up.png');
-			    this.$('.extended-info').show();
-				this.$('.mapcanvas').show();
-				App.MapView.resize();
-				App.MapView.setBounds();
+				setTimeout($.proxy(function() {
+					this.$('.arrow > img').attr('src', './img/arrow-up.png');
+					this.$('.extended-info').show();
+					this.$('.mapcanvas').show();
+					App.MapView.resize();
+					App.MapView.setBounds();
 
-				if(scroll) {
-				    $('html,body').animate({scrollTop: this.$el.offset().top - 50 }, 'slow');
-			    }
+					if(scroll) {
+						$('html,body').animate({scrollTop: this.$el.offset().top - 50 }, 'slow');
+					}
+				}, this), 250);
 			}
 		},
 
